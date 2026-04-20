@@ -5,6 +5,11 @@ from typing import Iterable
 
 from cli2slivka.model.canonical import SlivkaService
 
+"""
+This file is basically defining a common interface (a contract) for all “parsers” in your project. 
+It doesn't do parsing itself—it forces other classes to follow a consistent structure.
+"""
+
 # All parsers must:
 #
 # Implement .parse(path) → CanonicalCLI

@@ -7,11 +7,14 @@ from cli2slivka.parsers.base import CLIParser
 from cli2slivka.parsers.registry import ParserRegistry
 from cli2slivka.utils.xml import slugify
 
+### Connection of everything
+# click tells that the function becomes a terminal command so you can 
+# run something like python script.py convert --format galaxy file.xml
 
 @click.command()
 @click.option("--format", type=click.Choice(["acd", "galaxy"]))
-@click.argument('inputs', type=click.Path(exists=True, dir_okay=True), required=True, nargs=-1)
-def convert(format, inputs):
+@click.argument('inputs', type=click.Path(exists=True, dir_okay=True), required=True, nargs=-1) # accepting one or more paths
+def convert(format, inputs): # Getting files and parsers
      parser: CLIParser | None = None
      if format:
           parser = ParserRegistry.get_by_format(format)
@@ -20,8 +23,8 @@ def convert(format, inputs):
           if p.is_file():
                if not is_hidden(p):
                     process(parser, p)
-          else:
-               for file in p.rglob("*"):
+          else: # if not file than folder
+               for file in p.rglob("*"): # scan whole folder recursively for all files. 
                     if file.is_file() and not is_hidden(file):
                          process(parser, file)
 
@@ -29,6 +32,7 @@ def convert(format, inputs):
 def is_hidden(path: Path) -> bool:
      return any(part.startswith('.') for part in path.parts)
 
+# ACTUALLY CREATING SERVICE
 def process(parser: CLIParser, input: Path):
      parser = parser or ParserRegistry.detect(input)
      service = parser.parse(input)
@@ -40,4 +44,4 @@ def process(parser: CLIParser, input: Path):
           click.secho(f"Parsing of {input} failed", fg="red")
 
 if __name__ == "__main__":
-    convert()
+     convert()

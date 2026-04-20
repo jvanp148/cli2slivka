@@ -11,7 +11,7 @@ from cli2slivka.parsers.base import CLIParser
 from cli2slivka.parsers.registry import register_parser
 
 
-@register_parser
+@register_parser # automatically registers parser method
 class GalaxyXMLParser(CLIParser):
     """
     Reads a Galaxy XML tool wrapper and builds a SlivkaService.
@@ -35,7 +35,8 @@ class GalaxyXMLParser(CLIParser):
     #: file suffixes this parser understands
     suffixes = ('.xml',)
 
-# Mapping galaxy parameters to slivka parameter classes
+### This could come into a separate file.
+# Mapping galaxy parameters to slivka parameter classes 
     TYPE_MAP: dict = {
         "data":    FileParameter,
         "text":    TextParameter,
@@ -67,12 +68,15 @@ class GalaxyXMLParser(CLIParser):
         "needle":  "needle",
     }
 
+    # The constructor prepares storage for XML tree, root node and command string (allocates place 
+    # in memory, but only later on can something take place, can also easily be replaced...)
+
     def __init__(self):
         self._tree    = None
         self._root    = None # root element is tool
         self._raw_cmd = "" # prepares the raw command, later filled with <command> text
 
-    @classmethod
+    @classmethod # setting this function completely for the galaxy parser
     def can_parse(cls, path):
         try:    
             with open(path, "rb") as fh:
@@ -84,9 +88,11 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
     # Public entry point
     # ------------------------------------------------------------------
-    
+    # Here you are doing the XML to Python object, and putting this in the SlivkaService to go to YAML.
+
     def parse(self, xml_path: str | Path) -> SlivkaService: # -> .. is typing, just saying what it will return
         # Creating an empty slivka service.
+        # Loading the XML as a python object tree
         self.xml_path = xml_path
         self._tree    = ET.parse(xml_path)
         self._root    = self._tree.getroot() # root element is tool
@@ -123,7 +129,8 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def post_process(self, service: SlivkaService) -> None:
-        """Called after the service is fully built. Override freely."""
+        """Called after the service is fully built. Override freely.
+        If there still is something not right, you can here adapt it"""
 
     # ------------------------------------------------------------------
     # Metadata
@@ -198,7 +205,7 @@ class GalaxyXMLParser(CLIParser):
         required = not optional
 
         common = dict(
-            slug        = slug,
+            slug        = slug, # ID
             name        = label,
             galaxy_name = gname,
             description = help_,
@@ -208,7 +215,7 @@ class GalaxyXMLParser(CLIParser):
         if cls is FileParameter:
             fmt = el.get("format", "")
             return FileParameter(
-                **common,
+                **common, # see dict above this, inheriting these params, but also media_type
                 media_type=self.FORMAT_MEDIA_MAP.get(fmt, f"application/{fmt}"),
             )
 
@@ -250,13 +257,13 @@ class GalaxyXMLParser(CLIParser):
     def _detect_arg(self, param: SlivkaParameter) -> SlivkaArg:
         gname = param.galaxy_name
 
-        pattern = re.compile(
-            r"(-[\w]+\s+['\"]?\$" + re.escape(gname) + r"['\"]?)"
-            r"|(-[\w]+=\$" + re.escape(gname) + r")"
-            r"|(\$" + re.escape(gname) + r"\b)",
+        pattern = re.compile( # matches 3 patterns
+            r"(-[\w]+\s+['\"]?\$" + re.escape(gname) + r"['\"]?)" # -threshold $threshold
+            r"|(-[\w]+=\$" + re.escape(gname) + r")" # -threshold=$threshold
+            r"|(\$" + re.escape(gname) + r"\b)", # standalone
             re.IGNORECASE,
         )
-        m = pattern.search(self._raw_cmd)
+        m = pattern.search(self._raw_cmd) # try to find pattern in the raw command
 
         if m:
             matched = m.group(0).strip()
@@ -271,7 +278,8 @@ class GalaxyXMLParser(CLIParser):
             else:
                 arg_str = f"-{gname} $(value)"
 
-        symlink = f"{gname}.input" if isinstance(param, FileParameter) else None
+        # Only for files! create symbolic file name 
+        symlink = f"{gname}.input" if isinstance(param, FileParameter) else None # input.input sis real uploaded file
         return SlivkaArg(slug=param.slug, arg=arg_str, symlink=symlink)
 
     # ------------------------------------------------------------------
