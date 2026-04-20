@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File (uv)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "CLI Help",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "cli2slivka.cli",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "args": ["--help"]
+        },
+        {
+            "name": "CLI Testrun",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "cli2slivka.cli",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "args": ["--format", "galaxy", "/home/julie/SlivkaExploration/emboss_needle.xml"]
+        }
+    ]
+}

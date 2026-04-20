@@ -1,0 +1,86 @@
+---
+slivka-version: 0.8.3
+name: needle
+description: Needleman-Wunsch global alignment
+version: '1'
+license: GPL
+
+parameters:
+  input1:
+    name: Sequence 1
+    type: file
+    required: true
+    media-type: application/fasta
+  input2:
+    name: Sequence 2
+    type: file
+    required: true
+    media-type: application/fasta
+  gapopen:
+    name: Gap open penalty
+    type: decimal
+    required: true
+    default: 10.0
+  gapextend:
+    name: Gap extension penalty
+    type: decimal
+    required: true
+    default: 0.5
+  brief:
+    name: Brief identity and similarity
+    type: choice
+    required: true
+    choices:
+      yes: yes
+      no: no
+  out-format1:
+    name: Output alignment file format
+    type: choice
+    required: true
+    choices:
+      srs-pair-p: srspair
+      simple-m: simple
+      fasta-m: fasta
+      msf-m: msf
+      srs-m: srs
+      pair-p: pair
+      markx0-p: markx0
+      markx1-p: markx1
+      markx2-p: markx2
+      markx3-p: markx3
+      markx10-p: markx10
+      score-p: score
+
+command: needle
+
+args:
+  input1:
+    arg: -asequence '$(value)'
+    symlink: input1.input
+  input2:
+    arg: -bsequence '$(value)'
+    symlink: input2.input
+  gapopen:
+    arg: -gapopen $(value)
+  gapextend:
+    arg: -gapextend $(value)
+  brief:
+    arg: -brief $(value)
+  out-format1:
+    arg: -aformat3 $(value)
+
+outputs:
+  out_file1:
+    name: out_file1
+    path: output.needle
+    media-type: text/plain
+  error-log:
+    name: Error Log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...
