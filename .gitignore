@@ -1,0 +1,18 @@
+# Python build directories
+build/
+dist/
+*egg-info/
+__pycache__/
+ 
+secrets.json
+ 
+# IDEA artifacts
+.idea/
+ 
+# Jupyter stuff
+.ipynb_checkpoints/
+ipynb/*txt
+Untitled.ipynb
+
+# vscode folder
+.vscode/
