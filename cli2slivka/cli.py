@@ -34,7 +34,8 @@ def is_hidden(path: Path) -> bool:
 
 # ACTUALLY CREATING SERVICE
 def process(parser: CLIParser, input: Path):
-     parser = parser or ParserRegistry.detect(input)
+     parser = parser or ParserRegistry.detect(input) # if there was no parser with get_by_format then parser will be none but 
+     # here a parser can be detected automatically.
      service = parser.parse(input)
      if service is not None:
           yaml_path = f"{slugify(service.name)}.service.yaml"

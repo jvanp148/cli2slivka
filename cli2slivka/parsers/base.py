@@ -20,10 +20,11 @@ It doesn't do parsing itself—it forces other classes to follow a consistent st
 
 class CLIParser(ABC):
     #: short symbolic names (e.g. "galaxy", "acd")
-    formats: Iterable[str] = ()
+    formats: Iterable[str] = ()   # in the galaxy.py formats are specified as formats = ('galaxy', 'galaxy-xml', 'xml')
 
     #: file suffixes this parser understands
-    suffixes: Iterable[str] = ()
+    suffixes: Iterable[str] = () # in the galaxy.py suffixes are specified as suffixes = ('.xml',)
+
 
     @abstractmethod
     def parse(self, path: str | Path) -> SlivkaService:
