@@ -1,0 +1,327 @@
+---
+slivka-version: 0.8.3
+name: Infoseq
+description: Infoseq displays basic information about sequences in a tabular
+  format. For each input sequence it can report fields such as the USA, database
+  name, sequence name, accession number, GI number, sequence version, type
+  (nucleotide or protein), length, percent GC content, organism, and description.
+  Output can be formatted as aligned columns or as delimiter-separated records,
+  and optionally as an HTML table.
+author: EMBOSS
+version: '6.6.0.0'
+license: GPL
+
+classifiers:
+- 'Topic :: Computational biology :: Sequence analysis'
+- 'Operation :: Analysis :: Sequence analysis :: Sequence feature detection ::
+  Sequence retrieval'
+
+parameters:
+  sequence:
+    name: Input sequence (file)
+    description: One or more sequences to retrieve information about. Common
+      formats include fasta, genbank, embl, and swissprot.
+    type: file
+    required: true
+
+  sequence-direct:
+    name: Input sequence (text)
+    description: Input sequence(s) provided as raw text (e.g. pasted FASTA).
+      Use either this or the file input, not both.
+    type: text
+    required: false
+
+  sformat-sequence:
+    name: Sequence input format
+    description: Format of the input sequence file. Leave unset for automatic
+      detection.
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+
+  sbegin-sequence:
+    name: Sequence start position
+    description: Start position within the sequence (1-based). Use 0 for the
+      beginning.
+    type: integer
+    required: false
+    min: 0
+
+  send-sequence:
+    name: Sequence end position
+    description: End position within the sequence (1-based). Use 0 for no
+      limit.
+    type: integer
+    required: false
+    min: 0
+
+  sprotein-sequence:
+    name: Treat sequence as protein
+    description: Force the input to be treated as a protein sequence.
+    type: flag
+    required: false
+
+  snucleotide-sequence:
+    name: Treat sequence as nucleotide
+    description: Force the input to be treated as a nucleotide sequence.
+    type: flag
+    required: false
+
+  sreverse-sequence:
+    name: Reverse-complement sequence
+    description: Reverse-complement the sequence before processing.
+    type: flag
+    required: false
+
+  slower-sequence:
+    name: Lowercase sequence
+    description: Convert the sequence to lowercase before processing.
+    type: flag
+    required: false
+
+  supper-sequence:
+    name: Uppercase sequence
+    description: Convert the sequence to uppercase before processing.
+    type: flag
+    required: false
+
+  columns:
+    name: Print in aligned columns
+    description: Print sequence information in neat, aligned columns. When set,
+      the delimiter option is ignored.
+    type: flag
+    required: false
+
+  delimiter:
+    name: Record delimiter
+    description: Character or string used to separate fields in the text output
+      when column mode is off. Default is the pipe character.
+    type: text
+    required: false
+    default: '|'
+
+  html:
+    name: Format output as HTML table
+    description: Produce an HTML-formatted table of sequence information
+      instead of plain text.
+    type: flag
+    required: false
+
+  only:
+    name: Display specified columns only
+    description: Suppress all columns by default. Use together with individual
+      column flags (e.g. -length) to show only those fields. This is a
+      shorthand for individually disabling every other column.
+    type: flag
+    required: false
+
+  heading:
+    name: Display column headings
+    description: Print a header line with column names at the top of the
+      output.
+    type: flag
+    required: false
+
+  usa:
+    name: Display USA column
+    description: Include the Uniform Sequence Address (USA) of each sequence
+      in the output.
+    type: flag
+    required: false
+
+  database:
+    name: Display database column
+    description: Include the source database name for each sequence.
+    type: flag
+    required: false
+
+  name:
+    name: Display name column
+    description: Include the sequence name field in the output.
+    type: flag
+    required: false
+
+  accession:
+    name: Display accession column
+    description: Include the accession number for each sequence.
+    type: flag
+    required: false
+
+  gi:
+    name: Display GI column
+    description: Include the NCBI GI number for each sequence.
+    type: flag
+    required: false
+
+  seqversion:
+    name: Display version column
+    description: Include the sequence version number in the output.
+    type: flag
+    required: false
+
+  type:
+    name: Display type column
+    description: Include the sequence type (nucleotide or protein) in the
+      output.
+    type: flag
+    required: false
+
+  length:
+    name: Display length column
+    description: Include the sequence length (in residues or base pairs) in
+      the output.
+    type: flag
+    required: false
+
+  pgc:
+    name: Display percent GC content column
+    description: Include the percentage GC content for each sequence.
+    type: flag
+    required: false
+
+  organism:
+    name: Display organism column
+    description: Include the source organism name for each sequence.
+    type: flag
+    required: false
+
+  description:
+    name: Display description column
+    description: Include the free-text description line for each sequence.
+    type: flag
+    required: false
+
+command: infoseq
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: input_sequence.dat
+  sequence-direct:
+    arg: -sequence $(value)
+  sformat-sequence:
+    arg: -sformat $(value)
+  sbegin-sequence:
+    arg: -sbegin $(value)
+  send-sequence:
+    arg: -send $(value)
+  sprotein-sequence:
+    arg: -sprotein
+  snucleotide-sequence:
+    arg: -snucleotide
+  sreverse-sequence:
+    arg: -sreverse
+  slower-sequence:
+    arg: -slower
+  supper-sequence:
+    arg: -supper
+  columns:
+    arg: -columns
+  delimiter:
+    arg: -delimiter $(value)
+  html:
+    arg: -html
+  only:
+    arg: -only
+  heading:
+    arg: -heading
+  usa:
+    arg: -usa
+  database:
+    arg: -database
+  name:
+    arg: -name
+  accession:
+    arg: -accession
+  gi:
+    arg: -gi
+  seqversion:
+    arg: -seqversion
+  type:
+    arg: -type
+  length:
+    arg: -length
+  pgc:
+    arg: -pgc
+  organism:
+    arg: -organism
+  description:
+    arg: -description
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.infoseq
+
+outputs:
+  sequence-info:
+    path: outfile.infoseq
+    name: Sequence information table
+    media-type: text/plain
+  log:
+    path: stdout
+    name: Standard log
+    media-type: text/plain
+  error-log:
+    path: stderr
+    name: Error log
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+
+tests:
+- applicable-runners: ["default"]
+  parameters:
+    sequence: ${SLIVKA_HOME}/testdata/uniref50.fa
+  timeout: 10
+...
