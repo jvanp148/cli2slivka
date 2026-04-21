@@ -1,0 +1,1141 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    infoalign_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:46 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "infoalign"
+        type = "Alignment Multiple, Data retrieval Sequence data"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Display basic information about a multiple sequence alignment</description>
+        <input
+            name = "sequence_usa"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sequence_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sformat_sequence"
+            type = "string"
+            mandatory = "false"
+            >
+            <allowed>abi</allowed>
+            <allowed>ace</allowed>
+            <allowed>acedb</allowed>
+            <allowed>bam</allowed>
+            <allowed>biomart</allowed>
+            <allowed>clustal</allowed>
+            <allowed>codata</allowed>
+            <allowed>dbid</allowed>
+            <allowed>embl</allowed>
+            <allowed>ensembl</allowed>
+            <allowed>experiment</allowed>
+            <allowed>fasta</allowed>
+            <allowed>fastq</allowed>
+            <allowed>fastq-illumina</allowed>
+            <allowed>fastq-sanger</allowed>
+            <allowed>fastq-solexa</allowed>
+            <allowed>fitch</allowed>
+            <allowed>gcg</allowed>
+            <allowed>genbank</allowed>
+            <allowed>genpept</allowed>
+            <allowed>gff2</allowed>
+            <allowed>gff3</allowed>
+            <allowed>gifasta</allowed>
+            <allowed>hennig86</allowed>
+            <allowed>ig</allowed>
+            <allowed>igstrict</allowed>
+            <allowed>jackknifer</allowed>
+            <allowed>mase</allowed>
+            <allowed>mega</allowed>
+            <allowed>msf</allowed>
+            <allowed>nbrf</allowed>
+            <allowed>nexus</allowed>
+            <allowed>pdb</allowed>
+            <allowed>pdbnuc</allowed>
+            <allowed>pdbnucseq</allowed>
+            <allowed>pdbseq</allowed>
+            <allowed>pearson</allowed>
+            <allowed>phylip</allowed>
+            <allowed>phylipnon</allowed>
+            <allowed>raw</allowed>
+            <allowed>refseqp</allowed>
+            <allowed>sam</allowed>
+            <allowed>selex</allowed>
+            <allowed>staden</allowed>
+            <allowed>stockholm</allowed>
+            <allowed>strider</allowed>
+            <allowed>swiss</allowed>
+            <allowed>text</allowed>
+            <allowed>treecon</allowed>
+        </input>
+        <input
+            name = "sbegin_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "send_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sprotein_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "snucleotide_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sreverse_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "slower_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "supper_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "matrix_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "matrix_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "refseq"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "plurality"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "identity"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "html"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "only"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "heading"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "usa"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "name"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "seqlength"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "alignlength"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "gaps"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "gapcount"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "idcount"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "simcount"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "diffcount"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "change"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "weight"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "description"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "alignment_multiple"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/infoalign.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "infoalign"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "sequence"
+                    qualifier = "sequence"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <help>The sequence alignment to be displayed.</help>
+                    <option
+                        name = "EDAM_data:0863"
+                        value = "Sequence alignment"
+                        type = "normal"
+                        />
+                    <option
+                        name = "seq_type"
+                        value = "gapany"
+                        type = "normal"
+                        />
+                    <option
+                        name = "server_class"
+                        value = "org.soaplab.emboss.SeqParameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    >
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "abi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ace"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "acedb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "bam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "biomart"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "clustal"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "codata"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dbid"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "embl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ensembl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "experiment"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-illumina"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-sanger"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-solexa"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fitch"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gcg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genbank"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genpept"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff3"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gifasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hennig86"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "igstrict"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jackknifer"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mase"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mega"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "msf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nbrf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nexus"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnuc"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnucseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pearson"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylip"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylipnon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "raw"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "refseqp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "sam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "selex"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "staden"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "stockholm"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "strider"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "swiss"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "text"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "treecon"
+                            level = "0"
+                            />
+                    </list>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "11"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <help>If you enter the name of a file here then this program will
+           write the sequence details into that file.</help>
+                    <option
+                        name = "EDAM_data:0866"
+                        value = "Sequence alignment metadata"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "infoalign output"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    extension = "infoalign"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "3"
+                    name = "matrix"
+                    qualifier = "matrix"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Similarity scoring Matrix file</prompt>
+                    <help>This is the scoring matrix file used when comparing
+           sequences. By default it is the file 'EBLOSUM62' (for proteins) or
+           the file 'EDNAFULL' (for nucleic sequences). These files are
+           found in the 'data' directory of the EMBOSS installation.</help>
+                    <option
+                        name = "EDAM_data:0874"
+                        value = "Comparison matrix"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "matrix"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "refseq"
+                    qualifier = "refseq"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>0</default>
+                    <prompt>The number or the name of the reference
+                  sequence</prompt>
+                    <help>If you give the number in the alignment or the name of a
+           sequence, it will be taken to be the reference sequence. The
+           reference sequence is the one against which all the other
+           sequences are compared. If this is set to 0 then the consensus
+           sequence will be used as the reference sequence. By default the
+           consensus sequence is used as the reference sequence.</help>
+                    <option
+                        name = "EDAM_identifier:1063"
+                        value = "Sequence identifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "sequence id input"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "7"
+                    name = "plurality"
+                    qualifier = "plurality"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Plurality check % for consensus</prompt>
+                    <help>Set a cut-off for the % of positive scoring matches below
+           which there is no consensus. The default plurality is taken as 50%
+           of the total weight of all the sequences in the alignment.</help>
+                    <option
+                        name = "EDAM_data:2146"
+                        value = "Threshold"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "100.0"
+                        type = "style"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.0"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.0"
+                    max = "100.0"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "8"
+                    name = "identity"
+                    qualifier = "identity"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Required % of identities at a position fro
+                  consensus</prompt>
+                    <help>Provides the facility of setting the required number of
+           identities at a position for it to give a consensus. Therefore, if
+           this is set to 100% only columns of identities contribute to the
+           consensus.</help>
+                    <option
+                        name = "EDAM_data:2146"
+                        value = "Threshold"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "100.0"
+                        type = "style"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.0"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.0"
+                    max = "100.0"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "12"
+                    name = "html"
+                    qualifier = "html"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Format output as an HTML table</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "13"
+                    name = "only"
+                    qualifier = "only"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display the specified columns</prompt>
+                    <help>This is a way of shortening the command line if you only
+           want a few things to be displayed. Instead of specifying: 
+           '-nohead -nousa -noname -noalign -nogaps -nogapcount -nosimcount
+           -noidcount -nodiffcount -noweight' 
+           to get only the sequence length output, you can specify 
+           '-only -seqlength'</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "14"
+                    name = "heading"
+                    qualifier = "heading"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display column headings</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "15"
+                    name = "usa"
+                    qualifier = "usa"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display the USA of the sequence</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "16"
+                    name = "name"
+                    qualifier = "name"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display 'name' column</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "17"
+                    name = "seqlength"
+                    qualifier = "seqlength"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display 'seqlength' column</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "18"
+                    name = "alignlength"
+                    qualifier = "alignlength"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display 'alignlength' column</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "19"
+                    name = "gaps"
+                    qualifier = "gaps"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display number of gaps</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "20"
+                    name = "gapcount"
+                    qualifier = "gapcount"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display number of gap positions</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "21"
+                    name = "idcount"
+                    qualifier = "idcount"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display number of identical positions</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "22"
+                    name = "simcount"
+                    qualifier = "simcount"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display number of similar positions</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "23"
+                    name = "diffcount"
+                    qualifier = "diffcount"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display number of different positions</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "24"
+                    name = "change"
+                    qualifier = "change"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display % number of changed positions</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "25"
+                    name = "weight"
+                    qualifier = "weight"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display 'weight' column</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "26"
+                    name = "description"
+                    qualifier = "description"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display 'description' column</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_default"
+                        value = "!${only}"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0564"
+                value = "Sequence rendering"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_operation:2422"
+                value = "Data retrieval"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0090"
+                value = "Data search and retrieval"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0182"
+                value = "Sequence alignment"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

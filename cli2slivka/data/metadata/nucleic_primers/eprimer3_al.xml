@@ -1,0 +1,2956 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    eprimer3_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:46 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "eprimer3"
+        type = "Nucleic Primers"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Pick PCR primers and hybridization oligos</description>
+        <input
+            name = "sequence_usa"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sequence_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sformat_sequence"
+            type = "string"
+            mandatory = "false"
+            >
+            <allowed>abi</allowed>
+            <allowed>ace</allowed>
+            <allowed>acedb</allowed>
+            <allowed>bam</allowed>
+            <allowed>biomart</allowed>
+            <allowed>clustal</allowed>
+            <allowed>codata</allowed>
+            <allowed>dbid</allowed>
+            <allowed>embl</allowed>
+            <allowed>ensembl</allowed>
+            <allowed>experiment</allowed>
+            <allowed>fasta</allowed>
+            <allowed>fastq</allowed>
+            <allowed>fastq-illumina</allowed>
+            <allowed>fastq-sanger</allowed>
+            <allowed>fastq-solexa</allowed>
+            <allowed>fitch</allowed>
+            <allowed>gcg</allowed>
+            <allowed>genbank</allowed>
+            <allowed>genpept</allowed>
+            <allowed>gff2</allowed>
+            <allowed>gff3</allowed>
+            <allowed>gifasta</allowed>
+            <allowed>hennig86</allowed>
+            <allowed>ig</allowed>
+            <allowed>igstrict</allowed>
+            <allowed>jackknifer</allowed>
+            <allowed>mase</allowed>
+            <allowed>mega</allowed>
+            <allowed>msf</allowed>
+            <allowed>nbrf</allowed>
+            <allowed>nexus</allowed>
+            <allowed>pdb</allowed>
+            <allowed>pdbnuc</allowed>
+            <allowed>pdbnucseq</allowed>
+            <allowed>pdbseq</allowed>
+            <allowed>pearson</allowed>
+            <allowed>phylip</allowed>
+            <allowed>phylipnon</allowed>
+            <allowed>raw</allowed>
+            <allowed>refseqp</allowed>
+            <allowed>sam</allowed>
+            <allowed>selex</allowed>
+            <allowed>staden</allowed>
+            <allowed>stockholm</allowed>
+            <allowed>strider</allowed>
+            <allowed>swiss</allowed>
+            <allowed>text</allowed>
+            <allowed>treecon</allowed>
+        </input>
+        <input
+            name = "sbegin_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "send_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sprotein_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "snucleotide_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sreverse_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "slower_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "supper_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "selfend"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>3.00</default>
+        </input>
+        <input
+            name = "primer"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "task"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>1</default>
+            <allowed>1</allowed>  <!-- Pick PCR primers -->
+            <allowed>2</allowed>  <!-- Pick forward primer only -->
+            <allowed>3</allowed>  <!-- Pick
+             reverse primer only -->
+            <allowed>4</allowed>  <!-- No primers needed -->
+        </input>
+        <input
+            name = "hybridprobe"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "mishyblibraryfile_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "mishyblibraryfile_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "mispriminglibraryfile_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "mispriminglibraryfile_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "numreturn"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>5</default>
+        </input>
+        <input
+            name = "includedregion"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "targetregion"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "excludedregion"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "forwardinput"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "reverseinput"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "gcclamp"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "optsize"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>20</default>
+        </input>
+        <input
+            name = "minsize"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>18</default>
+        </input>
+        <input
+            name = "maxsize"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>27</default>
+        </input>
+        <input
+            name = "opttm"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>60.0</default>
+        </input>
+        <input
+            name = "mintm"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>57.0</default>
+        </input>
+        <input
+            name = "maxtm"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>63.0</default>
+        </input>
+        <input
+            name = "maxdifftm"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>100.0</default>
+        </input>
+        <input
+            name = "ogcpercent"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "mingc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>20.0</default>
+        </input>
+        <input
+            name = "maxgc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>80.0</default>
+        </input>
+        <input
+            name = "saltconc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "dnaconc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "maxpolyx"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>5</default>
+        </input>
+        <input
+            name = "psizeopt"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>200</default>
+        </input>
+        <input
+            name = "prange"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>100-300</default>
+        </input>
+        <input
+            name = "ptmopt"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "ptmmin"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>-1000000.0</default>
+        </input>
+        <input
+            name = "ptmmax"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>1000000.0</default>
+        </input>
+        <input
+            name = "oexcludedregion"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "oligoinput"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "osizeopt"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>20</default>
+        </input>
+        <input
+            name = "ominsize"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>18</default>
+        </input>
+        <input
+            name = "omaxsize"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>27</default>
+        </input>
+        <input
+            name = "otmopt"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>60.0</default>
+        </input>
+        <input
+            name = "otmmin"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>57.0</default>
+        </input>
+        <input
+            name = "otmmax"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>63.0</default>
+        </input>
+        <input
+            name = "ogcopt"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "ogcmin"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>20.0</default>
+        </input>
+        <input
+            name = "ogcmax"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>80.0</default>
+        </input>
+        <input
+            name = "osaltconc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "odnaconc"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>50.0</default>
+        </input>
+        <input
+            name = "oanyself"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>12.00</default>
+        </input>
+        <input
+            name = "oendself"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>12.00</default>
+        </input>
+        <input
+            name = "opolyxmax"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>5</default>
+        </input>
+        <input
+            name = "omishybmax"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>12.0</default>
+        </input>
+        <input
+            name = "explainflag"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "fileflag"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "firstbaseindex"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>1</default>
+        </input>
+        <input
+            name = "pickanyway"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "maxmispriming"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>12.00</default>
+        </input>
+        <input
+            name = "pairmaxmispriming"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>24.00</default>
+        </input>
+        <input
+            name = "numnsaccepted"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "selfany"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>8.00</default>
+        </input>
+        <input
+            name = "maxendstability"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>9.0</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "nucleic_primers"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/eprimer3.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "eprimer3"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "sequence"
+                    qualifier = "sequence"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <help>The sequence from which to choose primers. The sequence
+           must be presented 5' to 3'</help>
+                    <option
+                        name = "EDAM_data:2887"
+                        value = "Sequence record (nucleic acid)"
+                        type = "normal"
+                        />
+                    <option
+                        name = "seq_type"
+                        value = "dna"
+                        type = "normal"
+                        />
+                    <option
+                        name = "server_class"
+                        value = "org.soaplab.emboss.SeqParameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    >
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "abi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ace"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "acedb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "bam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "biomart"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "clustal"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "codata"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dbid"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "embl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ensembl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "experiment"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-illumina"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-sanger"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-solexa"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fitch"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gcg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genbank"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genpept"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff3"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gifasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hennig86"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "igstrict"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jackknifer"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mase"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mega"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "msf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nbrf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nexus"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnuc"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnucseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pearson"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylip"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylipnon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "raw"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "refseqp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "sam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "selex"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "staden"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "stockholm"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "strider"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "swiss"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "text"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "treecon"
+                            level = "0"
+                            />
+                    </list>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "74"
+                    name = "selfend"
+                    qualifier = "selfend"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>3.00</default>
+                    <prompt>Maximum 3' self complementarity</prompt>
+                    <help>The maximum allowable 3'-anchored global alignment score
+           when testing a single primer for self-complementarity, and the
+           maximum allowable 3'-anchored global alignment score when testing
+           for complementarity between forward and reverse primers. The
+           3'-anchored global alignment score is taken to predict the
+           likelihood of PCR-priming primer-dimers, for example 
+           5' ATGCCCTAGCTTCCGGATG 3' 
+           .............||| ||||| 
+           ..........3' AAGTCCTACATTTAGCCTAGT 5' 
+           or 
+           5' AGGCTATGGGCCTCGCGA 3' 
+           ...............|||||| 
+           ............3' AGCGCTCCGGGTATCGGA 5' 
+           The scoring system is as for the Maximum Complementarity argument.
+           In the examples above the scores are 7.00 and 6.00 respectively.
+           Scores are non-negative, and a score of 0.00 indicates that there
+           is no reasonable 3'-anchored global alignment between two oligos.
+           In order to estimate 3'-anchored global alignments for candidate
+           primers and primer pairs, Primer assumes that the sequence from
+           which to choose primers is presented 5' to 3'. It is nonsensical
+           to provide a larger value for this parameter than for the Maximum
+           (local) Complementarity parameter because the score of a local
+           alignment will always be at least as great as the score of a
+           global alignment.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmax"
+                        value = "${selfany}"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.00"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.00"
+                    max = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "80"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Whitehead primer3_core program output file</prompt>
+                    <option
+                        name = "EDAM_data:0922"
+                        value = "Nucleic acid features (primers)"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "primer3 output"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "3"
+                    name = "primer"
+                    qualifier = "primer"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Pick PCR primer(s)</prompt>
+                    <help>Tell EPrimer3 to pick primer(s)</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "task"
+                    qualifier = "task"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>1</default>
+                    <prompt>Task</prompt>
+                    <help>Tell EPrimer3 what task to perform. Legal values are 1:
+           'Pick PCR primers', 2: 'Pick forward primer only', 3: 'Pick
+           reverse primer only', 4: 'No primers needed'.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Task"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "1"
+                            shown_as = "Pick PCR primers"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "2"
+                            shown_as = "Pick forward primer only"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "3"
+                            shown_as = "Pick
+             reverse primer only"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "4"
+                            shown_as = "No primers needed"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "hybridprobe"
+                    qualifier = "hybridprobe"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Pick hybridization probe</prompt>
+                    <help>An 'internal oligo' is intended to be used as a
+           hybridization probe (hyb probe) to detect the PCR product after
+           amplification.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "6"
+                    name = "mishyblibraryfile"
+                    qualifier = "mishyblibraryfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Primer3 internal oligo mishybridizing library
+                  file (optional)</prompt>
+                    <help>Similar to MISPRIMING-LIBRARY, except that the event we
+           seek to avoid is hybridization of the internal oligo to sequences
+           in this library rather than priming from them. 
+           The file must be in (a slightly restricted) FASTA format (W. B.
+           Pearson and D.J. Lipman, PNAS 85:8 pp 2444-2448 [1988]); we
+           briefly discuss the organization of this file below. If this
+           parameter is specified then EPrimer3 locally aligns each candidate
+           oligo against each library sequence and rejects those primers for
+           which the local alignment score times a specified weight (see
+           below) exceeds INTERNAL-OLIGO-MAX-MISHYB. (The maximum value of
+           the weight is arbitrarily set to 12.0.) 
+           Each sequence entry in the FASTA-format file must begin with an
+           'id line' that starts with '&gt;'. The contents of the id line is
+           'slightly restricted' in that EPrimer3 parses everything after any
+           optional asterisk ('*') as a floating point number to use as the
+           weight mentioned above. If the id line contains no asterisk then
+           the weight defaults to 1.0. The alignment scoring system used is
+           the same as for calculating complementarity among oligos (e.g.
+           SELF-ANY). The remainder of an entry contains the sequence as
+           lines following the id line up until a line starting with '&gt;' or
+           the end of the file. Whitespace and newlines are ignored.
+           Characters 'A', 'T', 'G', 'C', 'a', 't', 'g', 'c' are retained and
+           any other character is converted to 'N' (with the consequence
+           that any IUB / IUPAC codes for ambiguous bases are converted to
+           'N'). There are no restrictions on line length. 
+           An empty value for this parameter indicates that no library should
+           be used.</help>
+                    <option
+                        name = "EDAM_data:0850"
+                        value = "Sequence set"
+                        type = "normal"
+                        />
+                    <option
+                        name = "EDAM_format:1215"
+                        value = "pure dna"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "primer3 mishybridizing"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "7"
+                    name = "mispriminglibraryfile"
+                    qualifier = "mispriminglibraryfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Primer3 mispriming library file (optional)</prompt>
+                    <help>The name of a file containing a nucleotide sequence library
+           of sequences to avoid amplifying (for example repetitive
+           sequences, or possibly the sequences of genes in a gene family
+           that should not be amplified.) The file must be in (a slightly
+           restricted) FASTA format (W. B. Pearson and D.J. Lipman, PNAS 85:8
+           pp 2444-2448 [1988]); we briefly discuss the organization of this
+           file below. If this parameter is specified then EPrimer3 locally
+           aligns each candidate primer against each library sequence and
+           rejects those primers for which the local alignment score times a
+           specified weight (see below) exceeds MAX-MISPRIMING. (The maximum
+           value of the weight is arbitrarily set to 100.0.) 
+           Each sequence entry in the FASTA-format file must begin with an
+           'id line' that starts with '&gt;'. The contents of the id line is
+           'slightly restricted' in that EPrimer3 parses everything after any
+           optional asterisk ('*') as a floating point number to use as the
+           weight mentioned above. If the id line contains no asterisk then
+           the weight defaults to 1.0. The alignment scoring system used is
+           the same as for calculating complementarity among oligos (e.g.
+           SELF-ANY). The remainder of an entry contains the sequence as
+           lines following the id line up until a line starting with '&gt;' or
+           the end of the file. Whitespace and newlines are ignored.
+           Characters 'A', 'T', 'G', 'C', 'a', 't', 'g', 'c' are retained and
+           any other character is converted to 'N' (with the consequence
+           that any IUB / IUPAC codes for ambiguous bases are converted to
+           'N'). There are no restrictions on line length. 
+           An empty value for this parameter indicates that no repeat library
+           should be used.</help>
+                    <option
+                        name = "EDAM_data:0850"
+                        value = "Sequence set"
+                        type = "normal"
+                        />
+                    <option
+                        name = "EDAM_format:1215"
+                        value = "pure dna"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "primer3 mispriming"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "11"
+                    name = "numreturn"
+                    qualifier = "numreturn"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>5</default>
+                    <prompt>Number of results to return</prompt>
+                    <help>The maximum number of primer pairs to return. Primer
+             pairs returned are sorted by their 'quality', in other words by
+             the value of the objective function (where a lower number
+             indicates a better primer pair). Caution: setting this parameter
+             to a large value will increase running time.</help>
+                    <option
+                        name = "EDAM_data:1694"
+                        value = "Number of output entities"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "14"
+                    name = "includedregion"
+                    qualifier = "includedregion"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Included region(s)</prompt>
+                    <help>A sub-region of the given sequence in which to pick
+             primers. For example, often the first dozen or so bases of a
+             sequence are vector, and should be excluded from consideration.
+             The value for this parameter has the form 
+             (start),(end) 
+             where (start) is the index of the first base to consider, and
+             (end) is the last in the primer-picking region.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "15"
+                    name = "targetregion"
+                    qualifier = "targetregion"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Target region(s)</prompt>
+                    <help>If one or more Targets is specified then a legal primer
+             pair must flank at least one of them. A Target might be a simple
+             sequence repeat site (for example a CA repeat) or a
+             single-base-pair polymorphism. The value should be a
+             space-separated list of 
+             (start),(end) 
+             pairs where (start) is the index of the first base of a Target,
+             and (end) is the last 
+             E.g. 50,51 requires primers to surround the 2 bases at positions
+             50 and 51.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "16"
+                    name = "excludedregion"
+                    qualifier = "excludedregion"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Excluded region(s)</prompt>
+                    <help>Primer oligos may not overlap any region specified in
+             this tag. The associated value must be a space-separated list of
+             
+             (start),(end) 
+             pairs where (start) is the index of the first base of the
+             excluded region, and and (end) is the last. This tag is useful
+             for tasks such as excluding regions of low sequence quality or
+             for excluding regions containing repetitive elements such as
+             ALUs or LINEs. 
+             E.g. 401,407 68,70 forbids selection of primers in the 7 bases
+             starting at 401 and the 3 bases at 68.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "17"
+                    name = "forwardinput"
+                    qualifier = "forwardinput"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Forward input primer sequence to check</prompt>
+                    <help>The sequence of a forward primer to check and around
+             which to design reverse primers and optional internal oligos.
+             Must be a substring of SEQUENCE.</help>
+                    <option
+                        name = "EDAM_format:1210"
+                        value = "pure nucleotide"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "nucleotide sequence"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "18"
+                    name = "reverseinput"
+                    qualifier = "reverseinput"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Reverse input primer sequence to check</prompt>
+                    <help>The sequence of a reverse primer to check and around
+             which to design forward primers and optional internal oligos.
+             Must be a substring of the reverse strand of SEQUENCE.</help>
+                    <option
+                        name = "EDAM_format:1210"
+                        value = "pure nucleotide"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "nucleotide sequence"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "21"
+                    name = "gcclamp"
+                    qualifier = "gcclamp"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>GC clamp</prompt>
+                    <help>Require the specified number of consecutive Gs and Cs at
+             the 3' end of both the forward and reverse primer. (This
+             parameter has no effect on the internal oligo if one is
+             requested.)</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "22"
+                    name = "optsize"
+                    qualifier = "optsize"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>20</default>
+                    <prompt>Primer optimum size</prompt>
+                    <help>Optimum length (in bases) of a primer oligo. EPrimer3
+             will attempt to pick primers close to this length.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "23"
+                    name = "minsize"
+                    qualifier = "minsize"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>18</default>
+                    <prompt>Primer minimum size</prompt>
+                    <help>Minimum acceptable length of a primer. Must be greater
+             than 0 and less than or equal to MAX-SIZE.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "1"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "24"
+                    name = "maxsize"
+                    qualifier = "maxsize"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>27</default>
+                    <prompt>Primer maximum size</prompt>
+                    <help>Maximum acceptable length (in bases) of a primer.
+             Currently this parameter cannot be larger than 35. This limit is
+             governed by the maximum oligo size for which EPrimer3's
+             melting-temperature is valid.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${minsize}"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "35"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    max = "35"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "25"
+                    name = "opttm"
+                    qualifier = "opttm"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>60.0</default>
+                    <prompt>Primer optimum Tm</prompt>
+                    <help>Optimum melting temperature(Celsius) for a primer oligo.
+             EPrimer3 will try to pick primers with melting temperatures are
+             close to this temperature. The oligo melting temperature formula
+             in EPrimer3 is that given in Rychlik, Spencer and Rhoads,
+             Nucleic Acids Research, vol 18, num 21, pp 6409-6412 and
+             Breslauer, Frank, Bloecker and Marky, Proc. Natl. Acad. Sci. USA,
+             vol 83, pp 3746-3750. Please refer to the former paper for
+             background discussion.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "26"
+                    name = "mintm"
+                    qualifier = "mintm"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>57.0</default>
+                    <prompt>Primer minimum Tm</prompt>
+                    <help>Minimum acceptable melting temperature(Celsius) for a
+             primer oligo.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "27"
+                    name = "maxtm"
+                    qualifier = "maxtm"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>63.0</default>
+                    <prompt>Primer maximum Tm</prompt>
+                    <help>Maximum acceptable melting temperature(Celsius) for a
+             primer oligo.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${mintm}"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "28"
+                    name = "maxdifftm"
+                    qualifier = "maxdifftm"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>100.0</default>
+                    <prompt>Maximum difference in Tm of primers</prompt>
+                    <help>Maximum acceptable (unsigned) difference between the
+             melting temperatures of the forward and reverse primers.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "29"
+                    name = "ogcpercent"
+                    qualifier = "ogcpercent"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Primer optimum GC percent</prompt>
+                    <help>Primer optimum GC percent.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "30"
+                    name = "mingc"
+                    qualifier = "mingc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>20.0</default>
+                    <prompt>Primer minimum GC percent</prompt>
+                    <help>Minimum allowable percentage of Gs and Cs in any primer.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "31"
+                    name = "maxgc"
+                    qualifier = "maxgc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>80.0</default>
+                    <prompt>Primer maximum GC percent</prompt>
+                    <help>Maximum allowable percentage of Gs and Cs in any primer
+             generated by Primer.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${mingc}"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "32"
+                    name = "saltconc"
+                    qualifier = "saltconc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Salt concentration (mM)</prompt>
+                    <help>The millimolar concentration of salt (usually KCl) in the
+             PCR. EPrimer3 uses this argument to calculate oligo melting
+             temperatures.</help>
+                    <option
+                        name = "EDAM_data:2140"
+                        value = "Concentration"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "33"
+                    name = "dnaconc"
+                    qualifier = "dnaconc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>DNA concentration (nM)</prompt>
+                    <help>The nanomolar concentration of annealing oligos in the
+             PCR. EPrimer3 uses this argument to calculate oligo melting
+             temperatures. The default (50nM) works well with the standard
+             protocol used at the Whitehead/MIT Center for Genome
+             Research--0.5 microliters of 20 micromolar concentration for
+             each primer oligo in a 20 microliter reaction with 10 nanograms
+             template, 0.025 units/microliter Taq polymerase in 0.1 mM each
+             dNTP, 1.5mM MgCl2, 50mM KCl, 10mM Tris-HCL (pH 9.3) using 35
+             cycles with an annealing temperature of 56 degrees Celsius. This
+             parameter corresponds to 'c' in Rychlik, Spencer and Rhoads'
+             equation (ii) (Nucleic Acids Research, vol 18, num 21) where a
+             suitable value (for a lower initial concentration of template)
+             is 'empirically determined'. The value of this parameter is less
+             than the actual concentration of oligos in the reaction because
+             it is the concentration of annealing oligos, which in turn
+             depends on the amount of template (including PCR product) in a
+             given cycle. This concentration increases a great deal during a
+             PCR; fortunately PCR seems quite robust for a variety of oligo
+             melting temperatures. 
+             See ADVICE FOR PICKING PRIMERS.</help>
+                    <option
+                        name = "EDAM_data:2140"
+                        value = "Concentration"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "34"
+                    name = "maxpolyx"
+                    qualifier = "maxpolyx"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>5</default>
+                    <prompt>Maximum polynucleotide repeat</prompt>
+                    <help>The maximum allowable length of a mononucleotide repeat
+             in a primer, for example AAAAAA.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "37"
+                    name = "psizeopt"
+                    qualifier = "psizeopt"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>200</default>
+                    <prompt>Product optimum size</prompt>
+                    <help>The optimum size for the PCR product. 0 indicates that
+             there is no optimum product size.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "38"
+                    name = "prange"
+                    qualifier = "prange"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>100-300</default>
+                    <prompt>Product size range</prompt>
+                    <help>The associated values specify the lengths of the product
+             that the user wants the primers to create, and is a space
+             separated list of elements of the form 
+             (x)-(y) 
+             where an (x)-(y) pair is a legal range of lengths for the
+             product. For example, if one wants PCR products to be between
+             100 to 150 bases (inclusive) then one would set this parameter
+             to 100-150. If one desires PCR products in either the range from
+             100 to 150 bases or in the range from 200 to 250 bases then one
+             would set this parameter to 100-150 200-250. 
+             EPrimer3 favors ranges to the left side of the parameter string.
+             EPrimer3 will return legal primers pairs in the first range
+             regardless the value of the objective function for these pairs.
+             Only if there are an insufficient number of primers in the first
+             range will EPrimer3 return primers in a subsequent range.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "39"
+                    name = "ptmopt"
+                    qualifier = "ptmopt"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Product optimum Tm</prompt>
+                    <help>The optimum melting temperature for the PCR product. 0
+             indicates that there is no optimum temperature.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "40"
+                    name = "ptmmin"
+                    qualifier = "ptmmin"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>-1000000.0</default>
+                    <prompt>Product minimum Tm</prompt>
+                    <help>The minimum allowed melting temperature of the amplicon.
+             Please see the documentation on the maximum melting temperature
+             of the product for details.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "41"
+                    name = "ptmmax"
+                    qualifier = "ptmmax"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>1000000.0</default>
+                    <prompt>Product maximum Tm</prompt>
+                    <help>The maximum allowed melting temperature of the amplicon.
+             Product Tm is calculated using the formula from Bolton and
+             McCarthy, PNAS 84:1390 (1962) as presented in Sambrook, Fritsch
+             and Maniatis, Molecular Cloning, p 11.46 (1989, CSHL Press). 
+             Tm = 81.5 + 16.6(log10([Na+])) + .41*(%GC) - 600/length 
+             Where [Na+} is the molar sodium concentration, (%GC) is the
+             percent of Gs and Cs in the sequence, and length is the length
+             of the sequence. 
+             A similar formula is used by the prime primer selection program
+             in GCG, which instead uses 675.0/length in
+             the last term (after F. Baldino, Jr, M.-F. Chesselet, and M.E.
+             Lewis, Methods in Enzymology 168:766 (1989) eqn (1) on page 766
+             without the mismatch and formamide terms). The formulas here and
+             in Baldino et al. assume Na+ rather than K+. According to J.G.
+             Wetmur, Critical Reviews in BioChem. and Mol. Bio. 26:227 (1991)
+             50 mM K+ should be equivalent in these formulae to .2 M Na+.
+             EPrimer3 uses the same salt concentration value for calculating
+             both the primer melting temperature and the oligo melting
+             temperature. If you are planning to use the PCR product for
+             hybridization later this behavior will not give you the Tm under
+             hybridization conditions.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${ptmmin}"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "44"
+                    name = "oexcludedregion"
+                    qualifier = "oexcludedregion"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Internal oligo excluded region</prompt>
+                    <help>Middle oligos may not overlap any region specified by
+             this tag. The associated value must be a space-separated list of
+             
+             (start),(end) 
+             pairs, where (start) is the index of the first base of an
+             excluded region, and (end) is the last. Often one would make
+             Target regions excluded regions for internal oligos.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "45"
+                    name = "oligoinput"
+                    qualifier = "oligoinput"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Internal oligo input sequence (if any)</prompt>
+                    <help>The sequence of an internal oligo to check and around
+             which to design forward and reverse primers. Must be a substring
+             of SEQUENCE.</help>
+                    <option
+                        name = "EDAM_format:1210"
+                        value = "pure nucleotide"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "nucleotide sequence"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "48"
+                    name = "osizeopt"
+                    qualifier = "osizeopt"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>20</default>
+                    <prompt>Internal oligo optimum size</prompt>
+                    <help>Optimum length (in bases) of an internal oligo. EPrimer3
+             will attempt to pick primers close to this length.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "49"
+                    name = "ominsize"
+                    qualifier = "ominsize"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>18</default>
+                    <prompt>Internal oligo minimum size</prompt>
+                    <help>Minimum acceptable length of an internal oligo. Must be
+             greater than 0 and less than or equal to
+             INTERNAL-OLIGO-MAX-SIZE.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "50"
+                    name = "omaxsize"
+                    qualifier = "omaxsize"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>27</default>
+                    <prompt>Internal oligo maximum size</prompt>
+                    <help>Maximum acceptable length (in bases) of an internal
+             oligo. Currently this parameter cannot be larger than 35. This
+             limit is governed by maximum oligo size for which EPrimer3's
+             melting-temperature is valid.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${ominsize}"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "35"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    max = "35"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "51"
+                    name = "otmopt"
+                    qualifier = "otmopt"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>60.0</default>
+                    <prompt>Internal oligo optimum Tm</prompt>
+                    <help>Optimum melting temperature (Celsius) for an internal
+             oligo. EPrimer3 will try to pick oligos with melting
+             temperatures that are close to this temperature. The oligo
+             melting temperature formula in EPrimer3 is that given in
+             Rychlik, Spencer and Rhoads, Nucleic Acids Research, vol 18, num
+             21, pp 6409-6412 and Breslauer, Frank, Bloecker and Marky, Proc.
+             Natl. Acad. Sci. USA, vol 83, pp 3746-3750. Please refer to the
+             former paper for background discussion.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "52"
+                    name = "otmmin"
+                    qualifier = "otmmin"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>57.0</default>
+                    <prompt>Internal oligo minimum Tm</prompt>
+                    <help>Minimum acceptable melting temperature(Celsius) for an
+             internal oligo.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "53"
+                    name = "otmmax"
+                    qualifier = "otmmax"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>63.0</default>
+                    <prompt>Internal oligo maximum Tm</prompt>
+                    <help>Maximum acceptable melting temperature (Celsius) for an
+             internal oligo.</help>
+                    <option
+                        name = "EDAM_data:2139"
+                        value = "Nucleic acid melting temperature"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${otmmin}"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "54"
+                    name = "ogcopt"
+                    qualifier = "ogcopt"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Internal oligo optimum GC percent</prompt>
+                    <help>Internal oligo optimum GC percent.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "55"
+                    name = "ogcmin"
+                    qualifier = "ogcmin"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>20.0</default>
+                    <prompt>Internal oligo minimum GC</prompt>
+                    <help>Minimum allowable percentage of Gs and Cs in an internal
+             oligo.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "56"
+                    name = "ogcmax"
+                    qualifier = "ogcmax"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>80.0</default>
+                    <prompt>Internal oligo maximum GC</prompt>
+                    <help>Maximum allowable percentage of Gs and Cs in any internal
+             oligo generated by Primer.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${ogcmin}"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "57"
+                    name = "osaltconc"
+                    qualifier = "osaltconc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Internal oligo salt concentration (mM)</prompt>
+                    <help>The millimolar concentration of salt (usually KCl) in the
+             hybridization. EPrimer3 uses this argument to calculate
+             internal oligo melting temperatures.</help>
+                    <option
+                        name = "EDAM_data:2140"
+                        value = "Concentration"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "58"
+                    name = "odnaconc"
+                    qualifier = "odnaconc"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>50.0</default>
+                    <prompt>Internal oligo DNA concentration (nM)</prompt>
+                    <help>The nanomolar concentration of annealing internal oligo
+             in the hybridization.</help>
+                    <option
+                        name = "EDAM_data:2140"
+                        value = "Concentration"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "59"
+                    name = "oanyself"
+                    qualifier = "oanyself"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>12.00</default>
+                    <prompt>Internal oligo maximum self
+                    complementarity</prompt>
+                    <help>The maximum allowable local alignment score when testing
+             an internal oligo for (local) self-complementarity. Local
+             self-complementarity is taken to predict the tendency of oligos
+             to anneal to themselves The scoring system gives 1.00 for
+             complementary bases, -0.25 for a match of any base (or N) with
+             an N, -1.00 for a mismatch, and -2.00 for a gap. Only
+             single-base-pair gaps are allowed. For example, the alignment 
+             5' ATCGNA 3' 
+             || | | 
+             3' TA-CGT 5' 
+             is allowed (and yields a score of 1.75), but the alignment 
+             5' ATCCGNA 3' 
+             || | | 
+             3' TA--CGT 5' 
+             is not considered. Scores are non-negative, and a score of 0.00
+             indicates that there is no reasonable local alignment between
+             two oligos.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "60"
+                    name = "oendself"
+                    qualifier = "oendself"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>12.00</default>
+                    <prompt>Internal oligo maximum 3' self
+                    complementarity</prompt>
+                    <help>The maximum allowable 3'-anchored global alignment score
+             when testing a single oligo for self-complementarity. 
+             The scoring system is as for the Maximum Complementarity
+             argument. In the examples above the scores are 7.00 and 6.00
+             respectively. Scores are non-negative, and a score of 0.00
+             indicates that there is no reasonable 3'-anchored global
+             alignment between two oligos. In order to estimate 3'-anchored
+             global alignments for candidate oligos, Primer assumes that the
+             sequence from which to choose oligos is presented 5' to 3'. 
+             INTERNAL-OLIGO-SELF-END is meaningless when applied to internal
+             oligos used for hybridization-based detection, since
+             primer-dimer will not occur. We recommend that
+             INTERNAL-OLIGO-SELF-END be set at least as high as
+             INTERNAL-OLIGO-SELF-ANY.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                    <option
+                        name = "calculated_hardmin"
+                        value = "${oanyself}"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = ""
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "61"
+                    name = "opolyxmax"
+                    qualifier = "opolyxmax"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>5</default>
+                    <prompt>Internal oligo maximum polynucleotide
+                    repeat</prompt>
+                    <help>The maximum allowable length of an internal oligo
+             mononucleotide repeat, for example AAAAAA.</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "62"
+                    name = "omishybmax"
+                    qualifier = "omishybmax"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>12.0</default>
+                    <prompt>Internal oligo maximum mishybridization</prompt>
+                    <help>Similar to MAX-MISPRIMING except that this parameter
+             applies to the similarity of candidate internal oligos to the
+             library specified in INTERNAL-OLIGO-MISHYB-LIBRARY.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "66"
+                    name = "explainflag"
+                    qualifier = "explainflag"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Explain flag</prompt>
+                    <help>If this flag is true, produce LEFT-EXPLAIN, RIGHT-EXPLAIN,
+           and INTERNAL-OLIGO-EXPLAIN output tags, which are intended to
+           provide information on the number of oligos and primer pairs that
+           EPrimer3 examined, and statistics on the number discarded for
+           various reasons.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "67"
+                    name = "fileflag"
+                    qualifier = "fileflag"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Create results files for each sequence</prompt>
+                    <help>If the associated value is true, then EPrimer3 creates two
+           output files for each input SEQUENCE. File (sequence-id).for lists
+           all acceptable forward primers for (sequence-id), and
+           (sequence-id).rev lists all acceptable reverse primers for
+           (sequence-id), where (sequence-id) is the value of the SEQUENCE-ID
+           tag (which must be supplied). In addition, if the input tag TASK
+           is 1 or 4, EPrimer3 produces a file (sequence-id).int, which lists
+           all acceptable internal oligos.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "68"
+                    name = "firstbaseindex"
+                    qualifier = "firstbaseindex"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>1</default>
+                    <prompt>First base index</prompt>
+                    <help>This parameter is the index of the first base in the input
+           sequence. For input and output using 1-based indexing (such as
+           that used in GenBank and to which many users are accustomed) set
+           this parameter to 1. For input and output using 0-based indexing
+           set this parameter to 0. (This parameter also affects the indexes
+           in the contents of the files produced when the primer file flag is
+           set.)</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "69"
+                    name = "pickanyway"
+                    qualifier = "pickanyway"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Pick anyway</prompt>
+                    <help>If true pick a primer pair even if LEFT-INPUT, RIGHT-INPUT,
+           or INTERNAL-OLIGO-INPUT violates specific constraints.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "70"
+                    name = "maxmispriming"
+                    qualifier = "maxmispriming"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>12.00</default>
+                    <prompt>Primer maximum mispriming</prompt>
+                    <help>The maximum allowed weighted similarity with any sequence
+           in MISPRIMING-LIBRARY.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "71"
+                    name = "pairmaxmispriming"
+                    qualifier = "pairmaxmispriming"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>24.00</default>
+                    <prompt>Primer pair maximum mispriming</prompt>
+                    <help>The maximum allowed sum of weighted similarities of a
+           primer pair (one similarity for each primer) with any single
+           sequence in MISPRIMING-LIBRARY.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "72"
+                    name = "numnsaccepted"
+                    qualifier = "numnsaccepted"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>Maximum Ns accepted in a primer</prompt>
+                    <help>Maximum number of unknown bases (N) allowable in any
+           primer.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "73"
+                    name = "selfany"
+                    qualifier = "selfany"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>8.00</default>
+                    <prompt>Maximum self complementarity</prompt>
+                    <help>The maximum allowable local alignment score when testing a
+           single primer for (local) self-complementarity and the maximum
+           allowable local alignment score when testing for complementarity
+           between forward and reverse primers. Local self-complementarity is
+           taken to predict the tendency of primers to anneal to each other
+           without necessarily causing self-priming in the PCR. The scoring
+           system gives 1.00 for complementary bases, -0.25 for a match of
+           any base (or N) with an N, -1.00 for a mismatch, and -2.00 for a
+           gap. Only single-base-pair gaps are allowed. For example, the
+           alignment 
+           5' ATCGNA 3' 
+           ...|| | | 
+           3' TA-CGT 5' 
+           is allowed (and yields a score of 1.75), but the alignment 
+           5' ATCCGNA 3' 
+           ...|| | | 
+           3' TA--CGT 5' 
+           is not considered. Scores are non-negative, and a score of 0.00
+           indicates that there is no reasonable local alignment between two
+           oligos.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "9999.99"
+                        type = "style"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.00"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.00"
+                    max = "9999.99"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "76"
+                    name = "maxendstability"
+                    qualifier = "maxendstability"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>9.0</default>
+                    <prompt>Maximum 3' end stability</prompt>
+                    <help>The maximum stability for the five 3' bases of a forward
+             or reverse primer. Bigger numbers mean more stable 3' ends. The
+             value is the maximum delta G for duplex disruption for the five
+             3' bases as calculated using the nearest neighbor parameters
+             published in Breslauer, Frank, Bloecker and Marky, Proc. Natl.
+             Acad. Sci. USA, vol 83, pp 3746-3750. EPrimer3 uses a completely
+             permissive default value for backward compatibility (which we
+             may change in the next release). Rychlik recommends a maximum
+             value of 9 (Wojciech Rychlik, 'Selection of Primers for
+             Polymerase Chain Reaction' in BA White, Ed., 'Methods in
+             Molecular Biology, Vol. 15: PCR Protocols: Current Methods and
+             Applications', 1993, pp 31-40, Humana Press, Totowa NJ).</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "999.9999"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    max = "999.9999"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0308"
+                value = "PCR primer design"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_operation:0309"
+                value = "Microarray probe design"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0077"
+                value = "Nucleic acid analysis"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

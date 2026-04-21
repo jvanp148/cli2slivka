@@ -1,0 +1,242 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    drfindid_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:45 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "drfindid"
+        type = "Ontology EDAM, Data retrieval Resource data"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Find public databases by identifier</description>
+        <input
+            name = "query"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sensitive"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "subclasses"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "ontology_edam"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/drfindid.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "drfindid"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "query"
+                    qualifier = "query"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>List of EDAM data keywords</prompt>
+                    <option
+                        name = "EDAM_data:0968"
+                        value = "Keyword"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "keyword"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "9"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:0957"
+                        value = "Database metadata"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "sensitive"
+                    qualifier = "sensitive"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Increase sensitivity of search</prompt>
+                    <help>By default, the query keywords are matched against the EDAM
+          term names (and synonyms) only. This option also matches the
+	  keywords against the EDAM term definitions and will therefore
+	  (typically) report more matches.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "6"
+                    name = "subclasses"
+                    qualifier = "subclasses"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Include subclasses of hits</prompt>
+                    <help>Extend the query matches to include all terms which are
+           specialisations (EDAM sub-classes) of the matched type.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0516"
+                value = "Data retrieval (database metadata)"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0090"
+                value = "Data search and retrieval"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0219"
+                value = "Annotation"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

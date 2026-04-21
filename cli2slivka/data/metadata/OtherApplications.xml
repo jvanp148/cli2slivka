@@ -1,0 +1,121 @@
+<?xml version = "1.0"?>
+<!DOCTYPE Analyses [
+<!ELEMENT Analyses (category*)>
+
+<!ELEMENT category (app+)>
+<!ATTLIST category
+    name     CDATA #REQUIRED>
+
+<!ELEMENT app EMPTY>
+<!ATTLIST app
+    name     CDATA #REQUIRED
+    module   CDATA "sowa"
+    xml      CDATA #IMPLIED
+    desc     CDATA #IMPLIED>
+]>
+
+<!--
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    This file was generated: Mon Mar  3 16:16:04 CET 2025
+
+    This file contains a list of applications which are available
+    from a Soaplab2 server.
+-->
+
+<Analyses>
+    <category
+        name = "classic"
+        >
+        <app
+            name = "helloworld"
+            xml = "./classic/helloworld_al.xml"
+            desc = "Classic greeting from the beginning of the UNIX epoch"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+    </category>
+    <category
+        name = "graphics"
+        >
+        <app
+            name = "dot"
+            xml = "./graphics/dot_al.xml"
+            desc = "Draw directed graphs as hierarchies"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+    </category>
+    <category
+        name = "plugins"
+        >
+        <app
+            name = "alloutputtypes_plugin"
+            xml = "./plugins/alloutputtypes_plugin_al.xml"
+            desc = "Showing how a plugin can create all kinds of outputs"
+            module = "org.soaplab.samples.OutputTypesJobFactory"
+            />
+        <app
+            name = "helloworld_plugin"
+            xml = "./plugins/helloworld_plugin_al.xml"
+            desc = "Classic greeting from the beginning of the UNIX epoch"
+            module = "org.soaplab.samples.HelloWorldJobFactory"
+            />
+    </category>
+    <category
+        name = "simple"
+        >
+        <app
+            name = "helloworld"
+            xml = "./classic/helloworld_al.xml"
+            desc = "Classic greeting from the beginning of the UNIX epoch"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+    </category>
+    <category
+        name = "testing"
+        >
+        <app
+            name = "alloutputtypes_plugin"
+            xml = "./plugins/alloutputtypes_plugin_al.xml"
+            desc = "Showing how a plugin can create all kinds of outputs"
+            module = "org.soaplab.samples.OutputTypesJobFactory"
+            />
+        <app
+            name = "binaries"
+            xml = "./testing/binaries_al.xml"
+            desc = "Dealing with binary data"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+        <app
+            name = "files"
+            xml = "./testing/files_al.xml"
+            desc = "Copying and merging files to standard output"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+        <app
+            name = "inputtypes"
+            xml = "./testing/inputtypes_al.xml"
+            desc = "Testing various types of inputs"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+        <app
+            name = "lists"
+            xml = "./testing/lists_al.xml"
+            desc = "How to use lists"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+        <app
+            name = "sleep"
+            xml = "./testing/sleep_al.xml"
+            desc = "Just sleep for a while"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+        <app
+            name = "streams"
+            xml = "./testing/streams_al.xml"
+            desc = "Filtering stdin into stdout and stderr streams"
+            module = "org.soaplab.sowa.SowaJobFactory"
+            />
+    </category>
+</Analyses>

@@ -1,0 +1,928 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    emowse_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:46 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "emowse"
+        type = "Protein Composition"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Search protein sequences by digest fragment molecular weight</description>
+        <input
+            name = "sequence_usa"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sequence_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sformat_sequence"
+            type = "string"
+            mandatory = "false"
+            >
+            <allowed>abi</allowed>
+            <allowed>ace</allowed>
+            <allowed>acedb</allowed>
+            <allowed>bam</allowed>
+            <allowed>biomart</allowed>
+            <allowed>clustal</allowed>
+            <allowed>codata</allowed>
+            <allowed>dbid</allowed>
+            <allowed>embl</allowed>
+            <allowed>ensembl</allowed>
+            <allowed>experiment</allowed>
+            <allowed>fasta</allowed>
+            <allowed>fastq</allowed>
+            <allowed>fastq-illumina</allowed>
+            <allowed>fastq-sanger</allowed>
+            <allowed>fastq-solexa</allowed>
+            <allowed>fitch</allowed>
+            <allowed>gcg</allowed>
+            <allowed>genbank</allowed>
+            <allowed>genpept</allowed>
+            <allowed>gff2</allowed>
+            <allowed>gff3</allowed>
+            <allowed>gifasta</allowed>
+            <allowed>hennig86</allowed>
+            <allowed>ig</allowed>
+            <allowed>igstrict</allowed>
+            <allowed>jackknifer</allowed>
+            <allowed>mase</allowed>
+            <allowed>mega</allowed>
+            <allowed>msf</allowed>
+            <allowed>nbrf</allowed>
+            <allowed>nexus</allowed>
+            <allowed>pdb</allowed>
+            <allowed>pdbnuc</allowed>
+            <allowed>pdbnucseq</allowed>
+            <allowed>pdbseq</allowed>
+            <allowed>pearson</allowed>
+            <allowed>phylip</allowed>
+            <allowed>phylipnon</allowed>
+            <allowed>raw</allowed>
+            <allowed>refseqp</allowed>
+            <allowed>sam</allowed>
+            <allowed>selex</allowed>
+            <allowed>staden</allowed>
+            <allowed>stockholm</allowed>
+            <allowed>strider</allowed>
+            <allowed>swiss</allowed>
+            <allowed>text</allowed>
+            <allowed>treecon</allowed>
+        </input>
+        <input
+            name = "sbegin_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "send_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sprotein_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "snucleotide_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sreverse_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "slower_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "supper_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "infile_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "infile_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "weight"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "mono"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "mwdata_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "mwdata_url"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>Emolwt.dat</default>
+        </input>
+        <input
+            name = "frequencies_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "frequencies_url"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>Efreqs.dat</default>
+        </input>
+        <input
+            name = "enzyme"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>1</default>
+            <allowed>1</allowed>  <!-- Trypsin -->
+            <allowed>2</allowed>  <!-- Lys-C -->
+            <allowed>3</allowed>  <!-- Arg-C -->
+            <allowed>4</allowed>  <!-- Asp-N -->
+            <allowed>5</allowed>  <!-- V8-bicarb -->
+            <allowed>6</allowed>  <!-- V8-phosph -->
+            <allowed>7</allowed>  <!-- Chymotrypsin -->
+            <allowed>8</allowed>  <!-- CNBr -->
+        </input>
+        <input
+            name = "pcrange"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>25</default>
+        </input>
+        <input
+            name = "tolerance"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.1</default>
+        </input>
+        <input
+            name = "partials"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.4</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "protein_composition"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/emowse.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "emowse"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "sequence"
+                    qualifier = "sequence"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:2886"
+                        value = "Sequence record (protein)"
+                        type = "normal"
+                        />
+                    <option
+                        name = "seq_type"
+                        value = "protein"
+                        type = "normal"
+                        />
+                    <option
+                        name = "server_class"
+                        value = "org.soaplab.emboss.SeqParameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    >
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "abi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ace"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "acedb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "bam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "biomart"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "clustal"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "codata"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dbid"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "embl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ensembl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "experiment"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-illumina"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-sanger"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-solexa"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fitch"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gcg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genbank"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genpept"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff3"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gifasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hennig86"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "igstrict"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jackknifer"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mase"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mega"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "msf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nbrf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nexus"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnuc"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnucseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pearson"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylip"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylipnon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "raw"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "refseqp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "sam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "selex"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "staden"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "stockholm"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "strider"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "swiss"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "text"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "treecon"
+                            level = "0"
+                            />
+                    </list>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "3"
+                    name = "infile"
+                    qualifier = "infile"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <prompt>Peptide molecular weight values file</prompt>
+                    <option
+                        name = "EDAM_data:1519"
+                        value = "Peptide molecular weights"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "peptide molweights"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "8"
+                    name = "weight"
+                    qualifier = "weight"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>Whole sequence molwt</prompt>
+                    <option
+                        name = "EDAM_data:0844"
+                        value = "Molecular mass"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "9"
+                    name = "mono"
+                    qualifier = "mono"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Use monoisotopic weights</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "17"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:1262"
+                        value = "Peptide molecular weight hits"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "emowse output"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "mwdata"
+                    qualifier = "mwdata"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>Emolwt.dat</default>
+                    <prompt>Molecular weights data file</prompt>
+                    <option
+                        name = "EDAM_data:1505"
+                        value = "Amino acid index (molecular weight)"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "datafile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "molecular weights"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "frequencies"
+                    qualifier = "frequencies"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>Efreqs.dat</default>
+                    <prompt>Amino acid frequencies data file</prompt>
+                    <option
+                        name = "EDAM_data:1519"
+                        value = "Peptide molecular weights"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "datafile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "amino acid frequencies"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "11"
+                    name = "enzyme"
+                    qualifier = "enzyme"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>1</default>
+                    <prompt>Enzymes and reagents</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Enzymes and reagents"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "1"
+                            shown_as = "Trypsin"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "2"
+                            shown_as = "Lys-C"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "3"
+                            shown_as = "Arg-C"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "4"
+                            shown_as = "Asp-N"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "5"
+                            shown_as = "V8-bicarb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "6"
+                            shown_as = "V8-phosph"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "7"
+                            shown_as = "Chymotrypsin"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "8"
+                            shown_as = "CNBr"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "12"
+                    name = "pcrange"
+                    qualifier = "pcrange"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>25</default>
+                    <prompt>Allowed whole sequence weight variability</prompt>
+                    <option
+                        name = "EDAM_data:0844"
+                        value = "Molecular mass"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "75"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    max = "75"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "13"
+                    name = "tolerance"
+                    qualifier = "tolerance"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.1</default>
+                    <prompt>Tolerance</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "1.0"
+                        type = "style"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.1"
+                    max = "1.0"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "14"
+                    name = "partials"
+                    qualifier = "partials"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.4</default>
+                    <prompt>Partials factor</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemax"
+                        value = "1.0"
+                        type = "style"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "0.1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "0.1"
+                    max = "1.0"
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0355"
+                value = "Sequence database search
+              (by molecular weight)"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0157"
+                value = "Sequence composition analysis"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0767"
+                value = "Protein and peptide identification"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

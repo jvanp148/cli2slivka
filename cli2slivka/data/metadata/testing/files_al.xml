@@ -1,0 +1,204 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    files_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Mon Mar  3 16:16:04 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "files"
+        type = "Testing"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Copying and merging files to standard output</description>
+        <input
+            name = "input_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "input_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "list"
+            type = "byte[][]"
+            mandatory = "false"
+            >
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "output"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "output_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "testing"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "copy-files.pl"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "1"
+                    name = "input"
+                    qualifier = "input"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "qualifier"
+                        value = "i"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "list"
+                    qualifier = "list"
+                    mandatory = "false"
+                    type = "string"
+                    input_adaptor = "org.soaplab.services.adaptor.InputManyFiles"
+                    >
+                    <option
+                        name = "datatype"
+                        value = "filelist"
+                        type = "normal"
+                        />
+                    <option
+                        name = "default_for_direct"
+                        value = "1"
+                        type = "normal"
+                        />
+                    <option
+                        name = "qualifier"
+                        value = "l"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "direct"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "3"
+                    name = "output"
+                    qualifier = "output"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>stdout</default>
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "stdout"
+                    >
+                    <result
+                        name = "output"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "output_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+
+            <option
+                name = "emboss"
+                value = "false"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

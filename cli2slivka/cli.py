@@ -38,7 +38,7 @@ def process(parser: CLIParser, input: Path):
      # here a parser can be detected automatically.
      service = parser.parse(input)
      if service is not None:
-          yaml_path = f"{slugify(service.name)}.service.yaml"
+          yaml_path = f"generated_yamls/{slugify(service.name)}.service.yaml"
           writer = SlivkaYAMLWriter(service)
           writer.write(yaml_path)
      else:

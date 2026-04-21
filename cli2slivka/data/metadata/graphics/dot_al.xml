@@ -1,0 +1,376 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    dot_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Mon Mar  3 16:16:04 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "dot"
+        type = "Graphics"
+        version = "1.9"
+        supplier = "Eleftherios Koutsofios and Stephen North"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Draw directed graphs as hierarchies</description>
+        <input
+            name = "dotfile_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "dotfile_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "library_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "library_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "format"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>png</default>
+            <allowed>canon</allowed>
+            <allowed>dot</allowed>
+            <allowed>fig</allowed>
+            <allowed>gd</allowed>
+            <allowed>gif</allowed>
+            <allowed>hpgl</allowed>
+            <allowed>imap</allowed>
+            <allowed>jpg</allowed>
+            <allowed>mif</allowed>
+            <allowed>mp</allowed>
+            <allowed>pcl</allowed>
+            <allowed>pic</allowed>
+            <allowed>plain</allowed>
+            <allowed>png</allowed>
+            <allowed>ps</allowed>
+            <allowed>ps2</allowed>
+            <allowed>svg</allowed>
+            <allowed>vrml</allowed>
+            <allowed>vtx</allowed>
+            <allowed>wbmp</allowed>
+        </input>
+        <input
+            name = "v"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "resultgraph"
+            type = "byte[]"
+            >
+        </output>
+        <output
+            name = "resultgraph_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "graphics"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "dot"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "dotfile"
+                    qualifier = "dotfile"
+                    method = "$&quot;dotfile&quot;"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <prompt>An input file with a graph definition in DOT language</prompt>
+                    <help>http://www.research.att.com/sw/tools/graphviz/</help>
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "1"
+                    name = "library"
+                    qualifier = "library"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>A custom  PostScript  library file</prompt>
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "qualifier"
+                        value = "l"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "format"
+                    qualifier = "format"
+                    method = "-T${format}"
+                    mandatory = "false"
+                    type = "string"
+                    use_defaults = "true"
+                    >
+                    <default>png</default>
+                    <prompt>Output format</prompt>
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "canon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dot"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gd"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gif"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hpgl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "imap"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jpg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mif"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pcl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pic"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "plain"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "png"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ps"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ps2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "svg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "vrml"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "vtx"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "wbmp"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "3"
+                    name = "v"
+                    qualifier = "v"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Verbose output</prompt>
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "resultgraph"
+                    qualifier = "resultgraph"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>stdout</default>
+                    <prompt>Textual or graphical output with a graph</prompt>
+                    <option
+                        name = "datatype"
+                        value = "bindata"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "stdout"
+                    extension = "png"
+                    >
+                    <result
+                        name = "resultgraph"
+                        type = "byte[]"
+                        >
+                    </result>
+                    <result
+                        name = "resultgraph_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+
+            <option
+                name = "emboss"
+                value = "false"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Eleftherios Koutsofios and Stephen North"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "1.9"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

@@ -1,0 +1,2133 @@
+<?xml version = "1.0"?>
+<!DOCTYPE Analyses [
+<!ELEMENT Analyses (category*)>
+
+<!ELEMENT category (app+)>
+<!ATTLIST category
+    name     CDATA #REQUIRED>
+
+<!ELEMENT app EMPTY>
+<!ATTLIST app
+    name     CDATA #REQUIRED
+    module   CDATA "sowa"
+    xml      CDATA #IMPLIED
+    desc     CDATA #IMPLIED>
+]>
+
+<!--
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    This file was generated: Tue Mar  4 10:36:48 CET 2025
+
+    This file contains a list of applications which are available
+    from a Soaplab2 server.
+-->
+
+<Analyses>
+    <category
+        name = "alignment"
+        >
+        <app
+            name = "extractalign"
+            xml = "./alignment/extractalign_al.xml"
+            desc = "Extract regions from a sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_consensus"
+        >
+        <app
+            name = "cons"
+            xml = "./alignment_consensus/cons_al.xml"
+            desc = "Create a consensus sequence from a multiple alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "consambig"
+            xml = "./alignment_consensus/consambig_al.xml"
+            desc = "Create an ambiguous consensus sequence from a multiple alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "megamerger"
+            xml = "./alignment_consensus/megamerger_al.xml"
+            desc = "Merge two large overlapping DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "merger"
+            xml = "./alignment_consensus/merger_al.xml"
+            desc = "Merge two overlapping sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_differences"
+        >
+        <app
+            name = "diffseq"
+            xml = "./alignment_differences/diffseq_al.xml"
+            desc = "Compare and report features of two similar sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_dot_plots"
+        >
+        <app
+            name = "dotmatcher"
+            xml = "./alignment_dot_plots/dotmatcher_al.xml"
+            desc = "Draw a threshold dotplot of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dotpath"
+            xml = "./alignment_dot_plots/dotpath_al.xml"
+            desc = "Draw a non-overlapping wordmatch dotplot of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dottup"
+            xml = "./alignment_dot_plots/dottup_al.xml"
+            desc = "Display a wordmatch dotplot of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "polydot"
+            xml = "./alignment_dot_plots/polydot_al.xml"
+            desc = "Draw dotplots for all-against-all comparison of a sequence set"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_global"
+        >
+        <app
+            name = "est2genome"
+            xml = "./alignment_global/est2genome_al.xml"
+            desc = "Align EST sequences to genomic DNA sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "needle"
+            xml = "./alignment_global/needle_al.xml"
+            desc = "Needleman-Wunsch global alignment of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "needleall"
+            xml = "./alignment_global/needleall_al.xml"
+            desc = "Many-to-many pairwise alignments of two sequence sets"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "stretcher"
+            xml = "./alignment_global/stretcher_al.xml"
+            desc = "Needleman-Wunsch rapid global alignment of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_local"
+        >
+        <app
+            name = "matcher"
+            xml = "./alignment_local/matcher_al.xml"
+            desc = "Waterman-Eggert local alignment of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqmatchall"
+            xml = "./alignment_local/seqmatchall_al.xml"
+            desc = "All-against-all word comparison of a sequence set"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "supermatcher"
+            xml = "./alignment_local/supermatcher_al.xml"
+            desc = "Calculate approximate local pair-wise alignments of larger sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "water"
+            xml = "./alignment_local/water_al.xml"
+            desc = "Smith-Waterman local alignment of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wordfinder"
+            xml = "./alignment_local/wordfinder_al.xml"
+            desc = "Match large sequences against one or more other sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wordmatch"
+            xml = "./alignment_local/wordmatch_al.xml"
+            desc = "Find regions of identity (exact matches) of two sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "alignment_multiple"
+        >
+        <app
+            name = "edialign"
+            xml = "./alignment_multiple/edialign_al.xml"
+            desc = "Local multiple alignment of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "emma"
+            xml = "./alignment_multiple/emma_al.xml"
+            desc = "Multiple sequence alignment (ClustalW wrapper)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "infoalign"
+            xml = "./alignment_multiple/infoalign_al.xml"
+            desc = "Display basic information about a multiple sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "plotcon"
+            xml = "./alignment_multiple/plotcon_al.xml"
+            desc = "Plot conservation of a sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prettyplot"
+            xml = "./alignment_multiple/prettyplot_al.xml"
+            desc = "Draw a sequence alignment with pretty formatting"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showalign"
+            xml = "./alignment_multiple/showalign_al.xml"
+            desc = "Display a multiple sequence alignment in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "tranalign"
+            xml = "./alignment_multiple/tranalign_al.xml"
+            desc = "Generate an alignment of nucleic coding regions from aligned proteins"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_resources"
+        >
+        <app
+            name = "cachedas"
+            xml = "./data_resources/cachedas_al.xml"
+            desc = "Generate server cache file for DAS servers or for the DAS registry"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cachedbfetch"
+            xml = "./data_resources/cachedbfetch_al.xml"
+            desc = "Generate server cache file for Dbfetch/WSDbfetch data sources"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cacheebeyesearch"
+            xml = "./data_resources/cacheebeyesearch_al.xml"
+            desc = "Generate server cache file for EB-eye search domains"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cacheensembl"
+            xml = "./data_resources/cacheensembl_al.xml"
+            desc = "Generate server cache file for an Ensembl server"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbtell"
+            xml = "./data_resources/dbtell_al.xml"
+            desc = "Display information about a public database"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "servertell"
+            xml = "./data_resources/servertell_al.xml"
+            desc = "Display information about a public server"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showdb"
+            xml = "./data_resources/showdb_al.xml"
+            desc = "Display information on configured databases"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showserver"
+            xml = "./data_resources/showserver_al.xml"
+            desc = "Display information on configured servers"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval"
+        >
+        <app
+            name = "codcopy"
+            xml = "./data_retrieval/codcopy_al.xml"
+            desc = "Copy and reformat a codon usage table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqret"
+            xml = "./data_retrieval/seqret_al.xml"
+            desc = "Read and write (return) sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_chemistry_data"
+        >
+        <app
+            name = "infobase"
+            xml = "./data_retrieval_chemistry_data/infobase_al.xml"
+            desc = "Return information on a given nucleotide base"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "inforesidue"
+            xml = "./data_retrieval_chemistry_data/inforesidue_al.xml"
+            desc = "Return information on a given amino acid residue"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_feature_data"
+        >
+        <app
+            name = "featcopy"
+            xml = "./data_retrieval_feature_data/featcopy_al.xml"
+            desc = "Read and write a feature table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "featmerge"
+            xml = "./data_retrieval_feature_data/featmerge_al.xml"
+            desc = "Merge two overlapping feature tables"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_ontology_data"
+        >
+        <app
+            name = "edamdef"
+            xml = "./ontology_edam/edamdef_al.xml"
+            desc = "Find EDAM ontology terms by definition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamhasinput"
+            xml = "./ontology_edam/edamhasinput_al.xml"
+            desc = "Find EDAM ontology terms by has_input relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamhasoutput"
+            xml = "./ontology_edam/edamhasoutput_al.xml"
+            desc = "Find EDAM ontology terms by has_output relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamisformat"
+            xml = "./ontology_edam/edamisformat_al.xml"
+            desc = "Find EDAM ontology terms by is_format_of relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamisid"
+            xml = "./ontology_edam/edamisid_al.xml"
+            desc = "Find EDAM ontology terms by is_identifier_of relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamname"
+            xml = "./ontology_edam/edamname_al.xml"
+            desc = "Find EDAM ontology terms by name"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "godef"
+            xml = "./ontology_go/godef_al.xml"
+            desc = "Find GO ontology terms by definition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "goname"
+            xml = "./ontology_go/goname_al.xml"
+            desc = "Find GO ontology terms by name"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontoget"
+            xml = "./ontology/ontoget_al.xml"
+            desc = "Get ontology term(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetcommon"
+            xml = "./ontology/ontogetcommon_al.xml"
+            desc = "Get common ancestor for terms"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetdown"
+            xml = "./ontology/ontogetdown_al.xml"
+            desc = "Get ontology term(s) by parent id"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetobsolete"
+            xml = "./ontology/ontogetobsolete_al.xml"
+            desc = "Get ontology ontology terms"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetroot"
+            xml = "./ontology/ontogetroot_al.xml"
+            desc = "Get ontology root terms by child identifier"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetsibs"
+            xml = "./ontology/ontogetsibs_al.xml"
+            desc = "Get ontology term(s) by id with common parent"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetup"
+            xml = "./ontology/ontogetup_al.xml"
+            desc = "Get ontology term(s) by id of child"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontoisobsolete"
+            xml = "./ontology/ontoisobsolete_al.xml"
+            desc = "Report whether an ontology term id is obsolete"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontotext"
+            xml = "./ontology/ontotext_al.xml"
+            desc = "Get ontology term(s) original full text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_resource_data"
+        >
+        <app
+            name = "drfinddata"
+            xml = "./ontology_edam/drfinddata_al.xml"
+            desc = "Find public databases by data type"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindformat"
+            xml = "./ontology_edam/drfindformat_al.xml"
+            desc = "Find public databases by format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindid"
+            xml = "./ontology_edam/drfindid_al.xml"
+            desc = "Find public databases by identifier"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindresource"
+            xml = "./ontology_edam/drfindresource_al.xml"
+            desc = "Find public databases by resource"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drget"
+            xml = "./data_retrieval_resource_data/drget_al.xml"
+            desc = "Get data resource entries"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drtext"
+            xml = "./data_retrieval_resource_data/drtext_al.xml"
+            desc = "Get data resource entries complete text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_sequence_data"
+        >
+        <app
+            name = "coderet"
+            xml = "./nucleic_translation/coderet_al.xml"
+            desc = "Extract CDS, mRNA and translations from feature tables"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "entret"
+            xml = "./edit/entret_al.xml"
+            desc = "Retrieve sequence entries from flatfile databases and files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "extractalign"
+            xml = "./alignment/extractalign_al.xml"
+            desc = "Extract regions from a sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "infoalign"
+            xml = "./alignment_multiple/infoalign_al.xml"
+            desc = "Display basic information about a multiple sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "infoseq"
+            xml = "./data_retrieval_sequence_data/infoseq_al.xml"
+            desc = "Display basic information about sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "refseqget"
+            xml = "./data_retrieval_sequence_data/refseqget_al.xml"
+            desc = "Get reference sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqxref"
+            xml = "./data_retrieval_sequence_data/seqxref_al.xml"
+            desc = "Retrieve all database cross-references for a sequence entry"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqxrefget"
+            xml = "./data_retrieval_sequence_data/seqxrefget_al.xml"
+            desc = "Retrieve all cross-referenced data for a sequence entry"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showalign"
+            xml = "./alignment_multiple/showalign_al.xml"
+            desc = "Display a multiple sequence alignment in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "whichdb"
+            xml = "./data_retrieval_sequence_data/whichdb_al.xml"
+            desc = "Search all sequence databases for an entry and retrieve it"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_sequence_data_assembly_data"
+        >
+        <app
+            name = "assemblyget"
+            xml = "./data_retrieval_sequence_data_assembly_data/assemblyget_al.xml"
+            desc = "Get assembly of sequence reads"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "infoassembly"
+            xml = "./data_retrieval_sequence_data_assembly_data/infoassembly_al.xml"
+            desc = "Display information about assemblies"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "data_retrieval_text_data"
+        >
+        <app
+            name = "drtext"
+            xml = "./data_retrieval_resource_data/drtext_al.xml"
+            desc = "Get data resource entries complete text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "entret"
+            xml = "./edit/entret_al.xml"
+            desc = "Retrieve sequence entries from flatfile databases and files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontotext"
+            xml = "./ontology/ontotext_al.xml"
+            desc = "Get ontology term(s) original full text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "textget"
+            xml = "./data_retrieval_text_data/textget_al.xml"
+            desc = "Get text data entries"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "textsearch"
+            xml = "./data_retrieval_text_data/textsearch_al.xml"
+            desc = "Search the textual description of sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "display"
+        >
+        <app
+            name = "cirdna"
+            xml = "./display/cirdna_al.xml"
+            desc = "Draw circular map of DNA constructs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "iep"
+            xml = "./protein_properties/iep_al.xml"
+            desc = "Calculate the isoelectric point of proteins"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "lindna"
+            xml = "./display/lindna_al.xml"
+            desc = "Draw linear maps of DNA constructs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepinfo"
+            xml = "./protein_composition/pepinfo_al.xml"
+            desc = "Plot amino acid properties of a protein sequence in parallel."
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepnet"
+            xml = "./display/pepnet_al.xml"
+            desc = "Draw a helical net for a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepwheel"
+            xml = "./display/pepwheel_al.xml"
+            desc = "Draw a helical wheel diagram for a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "plotorf"
+            xml = "./nucleic_gene_finding/plotorf_al.xml"
+            desc = "Plot potential open reading frames in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prettyplot"
+            xml = "./alignment_multiple/prettyplot_al.xml"
+            desc = "Draw a sequence alignment with pretty formatting"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prettyseq"
+            xml = "./nucleic_translation/prettyseq_al.xml"
+            desc = "Write a nucleotide sequence and its translation to file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "remap"
+            xml = "./display/remap_al.xml"
+            desc = "Display restriction enzyme binding sites in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showfeat"
+            xml = "./display/showfeat_al.xml"
+            desc = "Display features of a sequence in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showpep"
+            xml = "./display/showpep_al.xml"
+            desc = "Display protein sequences with features in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sixpack"
+            xml = "./nucleic_gene_finding/sixpack_al.xml"
+            desc = "Display a DNA sequence with 6-frame translation and ORFs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "documentation"
+        >
+        <app
+            name = "seealso"
+            xml = "./documentation/seealso_al.xml"
+            desc = "Find programs with similar function to a specified program"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "tfm"
+            xml = "./documentation/tfm_al.xml"
+            desc = "Display full documentation for an application"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossdata"
+            xml = "./ontology_edam/wossdata_al.xml"
+            desc = "Find programs by EDAM data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossinput"
+            xml = "./ontology_edam/wossinput_al.xml"
+            desc = "Find programs by EDAM input data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossname"
+            xml = "./documentation/wossname_al.xml"
+            desc = "Find programs by keywords in their short description"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossoperation"
+            xml = "./ontology_edam/wossoperation_al.xml"
+            desc = "Find programs by EDAM operation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossoutput"
+            xml = "./ontology_edam/wossoutput_al.xml"
+            desc = "Find programs by EDAM output data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossparam"
+            xml = "./ontology_edam/wossparam_al.xml"
+            desc = "Find programs by EDAM parameter"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wosstopic"
+            xml = "./ontology_edam/wosstopic_al.xml"
+            desc = "Find programs by EDAM topic"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "edit"
+        >
+        <app
+            name = "aligncopy"
+            xml = "./edit/aligncopy_al.xml"
+            desc = "Read and write alignments"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "aligncopypair"
+            xml = "./edit/aligncopypair_al.xml"
+            desc = "Read and write pairs from alignments"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "biosed"
+            xml = "./edit/biosed_al.xml"
+            desc = "Replace or delete sequence sections"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "codcopy"
+            xml = "./data_retrieval/codcopy_al.xml"
+            desc = "Copy and reformat a codon usage table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cutseq"
+            xml = "./edit/cutseq_al.xml"
+            desc = "Remove a section from a sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "degapseq"
+            xml = "./edit/degapseq_al.xml"
+            desc = "Remove non-alphabetic (e.g. gap) characters from sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "descseq"
+            xml = "./edit/descseq_al.xml"
+            desc = "Alter the name or description of a sequence."
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "entret"
+            xml = "./edit/entret_al.xml"
+            desc = "Retrieve sequence entries from flatfile databases and files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "extractalign"
+            xml = "./alignment/extractalign_al.xml"
+            desc = "Extract regions from a sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "extractfeat"
+            xml = "./edit/extractfeat_al.xml"
+            desc = "Extract features from sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "extractseq"
+            xml = "./edit/extractseq_al.xml"
+            desc = "Extract regions from a sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "featcopy"
+            xml = "./data_retrieval_feature_data/featcopy_al.xml"
+            desc = "Read and write a feature table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "featmerge"
+            xml = "./data_retrieval_feature_data/featmerge_al.xml"
+            desc = "Merge two overlapping feature tables"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "featreport"
+            xml = "./edit/featreport_al.xml"
+            desc = "Read and write a feature table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "feattext"
+            xml = "./edit/feattext_al.xml"
+            desc = "Return a feature table original text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "listor"
+            xml = "./edit/listor_al.xml"
+            desc = "Write a list file of the logical OR of two sets of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "makenucseq"
+            xml = "./edit/makenucseq_al.xml"
+            desc = "Create random nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "makeprotseq"
+            xml = "./edit/makeprotseq_al.xml"
+            desc = "Create random protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "maskambignuc"
+            xml = "./edit/maskambignuc_al.xml"
+            desc = "Mask all ambiguity characters in nucleotide sequences with N"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "maskambigprot"
+            xml = "./edit/maskambigprot_al.xml"
+            desc = "Mask all ambiguity characters in protein sequences with X"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "maskfeat"
+            xml = "./edit/maskfeat_al.xml"
+            desc = "Write a sequence with masked features"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "maskseq"
+            xml = "./edit/maskseq_al.xml"
+            desc = "Write a sequence with masked regions"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "newseq"
+            xml = "./edit/newseq_al.xml"
+            desc = "Create a sequence file from a typed-in sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "nohtml"
+            xml = "./edit/nohtml_al.xml"
+            desc = "Remove mark-up (e.g. HTML tags) from an ASCII text file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "noreturn"
+            xml = "./edit/noreturn_al.xml"
+            desc = "Remove carriage return from ASCII files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "nospace"
+            xml = "./edit/nospace_al.xml"
+            desc = "Remove whitespace from an ASCII text file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "notab"
+            xml = "./edit/notab_al.xml"
+            desc = "Replace tabs with spaces in an ASCII text file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "notseq"
+            xml = "./edit/notseq_al.xml"
+            desc = "Write to file a subset of an input stream of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "nthseq"
+            xml = "./edit/nthseq_al.xml"
+            desc = "Write to file a single sequence from an input stream of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "nthseqset"
+            xml = "./edit/nthseqset_al.xml"
+            desc = "Read and write (return) one set of sequences from many"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pasteseq"
+            xml = "./edit/pasteseq_al.xml"
+            desc = "Insert one sequence into another"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "revseq"
+            xml = "./edit/revseq_al.xml"
+            desc = "Reverse and complement a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqcount"
+            xml = "./edit/seqcount_al.xml"
+            desc = "Read and count sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqret"
+            xml = "./data_retrieval/seqret_al.xml"
+            desc = "Read and write (return) sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "seqretsetall"
+            xml = "./edit/seqretsetall_al.xml"
+            desc = "Read and write (return) many sets of sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sizeseq"
+            xml = "./edit/sizeseq_al.xml"
+            desc = "Sort sequences by size"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "skipredundant"
+            xml = "./edit/skipredundant_al.xml"
+            desc = "Remove redundant sequences from an input set"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "skipseq"
+            xml = "./edit/skipseq_al.xml"
+            desc = "Read and write (return) sequences, skipping first few"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "splitsource"
+            xml = "./edit/splitsource_al.xml"
+            desc = "Split sequence(s) into original source sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "splitter"
+            xml = "./edit/splitter_al.xml"
+            desc = "Split sequence(s) into smaller sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "trimest"
+            xml = "./nucleic_functional_sites/trimest_al.xml"
+            desc = "Remove poly-A tails from nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "trimseq"
+            xml = "./edit/trimseq_al.xml"
+            desc = "Remove unwanted characters from start and end of sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "trimspace"
+            xml = "./edit/trimspace_al.xml"
+            desc = "Remove extra whitespace from an ASCII text file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "union"
+            xml = "./edit/union_al.xml"
+            desc = "Concatenate multiple sequences into a single sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "vectorstrip"
+            xml = "./edit/vectorstrip_al.xml"
+            desc = "Remove vectors from the ends of nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "yank"
+            xml = "./edit/yank_al.xml"
+            desc = "Add a sequence reference (a full USA) to a list file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "enzyme_kinetics"
+        >
+        <app
+            name = "findkm"
+            xml = "./enzyme_kinetics/findkm_al.xml"
+            desc = "Calculate and plot enzyme reaction data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "feature_tables"
+        >
+        <app
+            name = "extractfeat"
+            xml = "./edit/extractfeat_al.xml"
+            desc = "Extract features from sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "maskfeat"
+            xml = "./edit/maskfeat_al.xml"
+            desc = "Write a sequence with masked features"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showfeat"
+            xml = "./display/showfeat_al.xml"
+            desc = "Display features of a sequence in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "twofeat"
+            xml = "./feature_tables/twofeat_al.xml"
+            desc = "Find neighbouring pairs of features in sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_2d_structure"
+        >
+        <app
+            name = "banana"
+            xml = "./nucleic_properties/banana_al.xml"
+            desc = "Plot bending and curvature data for B-DNA"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "btwisted"
+            xml = "./nucleic_properties/btwisted_al.xml"
+            desc = "Calculate the twisting in a B-DNA sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "einverted"
+            xml = "./nucleic_repeats/einverted_al.xml"
+            desc = "Find inverted repeats in nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sirna"
+            xml = "./nucleic_functional_sites/sirna_al.xml"
+            desc = "Find siRNA duplexes in mRNA"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_codon_usage"
+        >
+        <app
+            name = "cai"
+            xml = "./nucleic_codon_usage/cai_al.xml"
+            desc = "Calculate codon adaptation index"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "chips"
+            xml = "./nucleic_codon_usage/chips_al.xml"
+            desc = "Calculate Nc codon usage statistic"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "codcmp"
+            xml = "./nucleic_codon_usage/codcmp_al.xml"
+            desc = "Codon usage table comparison"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "codcopy"
+            xml = "./data_retrieval/codcopy_al.xml"
+            desc = "Copy and reformat a codon usage table"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cusp"
+            xml = "./nucleic_codon_usage/cusp_al.xml"
+            desc = "Create a codon usage table from nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "syco"
+            xml = "./nucleic_codon_usage/syco_al.xml"
+            desc = "Draw synonymous codon usage statistic plot for a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_composition"
+        >
+        <app
+            name = "banana"
+            xml = "./nucleic_properties/banana_al.xml"
+            desc = "Plot bending and curvature data for B-DNA"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "btwisted"
+            xml = "./nucleic_properties/btwisted_al.xml"
+            desc = "Calculate the twisting in a B-DNA sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "chaos"
+            xml = "./nucleic_composition/chaos_al.xml"
+            desc = "Draw a chaos game representation plot for a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "compseq"
+            xml = "./nucleic_composition/compseq_al.xml"
+            desc = "Calculate the composition of unique words in sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dan"
+            xml = "./nucleic_properties/dan_al.xml"
+            desc = "Calculate nucleic acid melting temperature"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "freak"
+            xml = "./nucleic_composition/freak_al.xml"
+            desc = "Generate residue/base frequency table or plot"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "isochore"
+            xml = "./nucleic_composition/isochore_al.xml"
+            desc = "Plot isochores in DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wordcount"
+            xml = "./nucleic_composition/wordcount_al.xml"
+            desc = "Count and extract unique words in molecular sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_cpg_islands"
+        >
+        <app
+            name = "cpgplot"
+            xml = "./nucleic_cpg_islands/cpgplot_al.xml"
+            desc = "Identify and plot CpG islands in nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "cpgreport"
+            xml = "./nucleic_cpg_islands/cpgreport_al.xml"
+            desc = "Identify and report CpG-rich regions in nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "geecee"
+            xml = "./nucleic_cpg_islands/geecee_al.xml"
+            desc = "Calculate fractional GC content of nucleic acid sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "newcpgreport"
+            xml = "./nucleic_cpg_islands/newcpgreport_al.xml"
+            desc = "Identify CpG islands in nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "newcpgseek"
+            xml = "./nucleic_cpg_islands/newcpgseek_al.xml"
+            desc = "Identify and report CpG-rich regions in nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_functional_sites"
+        >
+        <app
+            name = "marscan"
+            xml = "./nucleic_gene_finding/marscan_al.xml"
+            desc = "Find matrix/scaffold recognition (MRS) signatures in DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sirna"
+            xml = "./nucleic_functional_sites/sirna_al.xml"
+            desc = "Find siRNA duplexes in mRNA"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "trimest"
+            xml = "./nucleic_functional_sites/trimest_al.xml"
+            desc = "Remove poly-A tails from nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_gene_finding"
+        >
+        <app
+            name = "checktrans"
+            xml = "./nucleic_gene_finding/checktrans_al.xml"
+            desc = "Report STOP codons and ORF statistics of a protein"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "getorf"
+            xml = "./nucleic_gene_finding/getorf_al.xml"
+            desc = "Find and extract open reading frames (ORFs)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "marscan"
+            xml = "./nucleic_gene_finding/marscan_al.xml"
+            desc = "Find matrix/scaffold recognition (MRS) signatures in DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "plotorf"
+            xml = "./nucleic_gene_finding/plotorf_al.xml"
+            desc = "Plot potential open reading frames in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showorf"
+            xml = "./nucleic_gene_finding/showorf_al.xml"
+            desc = "Display a nucleotide sequence and translation in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sixpack"
+            xml = "./nucleic_gene_finding/sixpack_al.xml"
+            desc = "Display a DNA sequence with 6-frame translation and ORFs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "syco"
+            xml = "./nucleic_codon_usage/syco_al.xml"
+            desc = "Draw synonymous codon usage statistic plot for a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "tcode"
+            xml = "./nucleic_gene_finding/tcode_al.xml"
+            desc = "Identify protein-coding regions using Fickett TESTCODE statistic"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wobble"
+            xml = "./nucleic_gene_finding/wobble_al.xml"
+            desc = "Plot third base position variability in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_motifs"
+        >
+        <app
+            name = "dreg"
+            xml = "./nucleic_motifs/dreg_al.xml"
+            desc = "Regular expression search of nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "fuzznuc"
+            xml = "./nucleic_motifs/fuzznuc_al.xml"
+            desc = "Search for patterns in nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "fuzztran"
+            xml = "./nucleic_motifs/fuzztran_al.xml"
+            desc = "Search for patterns in protein sequences (translated)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_mutation"
+        >
+        <app
+            name = "msbar"
+            xml = "./nucleic_mutation/msbar_al.xml"
+            desc = "Mutate a sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "shuffleseq"
+            xml = "./nucleic_mutation/shuffleseq_al.xml"
+            desc = "Shuffle a set of sequences maintaining composition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_primers"
+        >
+        <app
+            name = "eprimer3"
+            xml = "./nucleic_primers/eprimer3_al.xml"
+            desc = "Pick PCR primers and hybridization oligos"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "eprimer32"
+            xml = "./nucleic_primers/eprimer32_al.xml"
+            desc = "Pick PCR primers and hybridization oligos"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "primersearch"
+            xml = "./nucleic_primers/primersearch_al.xml"
+            desc = "Search DNA sequences for matches with primer pairs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "stssearch"
+            xml = "./nucleic_primers/stssearch_al.xml"
+            desc = "Search a DNA database for matches with a set of STS primers"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_profiles"
+        >
+        <app
+            name = "profit"
+            xml = "./nucleic_profiles/profit_al.xml"
+            desc = "Scan one or more sequences with a simple frequency matrix"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prophecy"
+            xml = "./nucleic_profiles/prophecy_al.xml"
+            desc = "Create frequency matrix or profile from a multiple alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prophet"
+            xml = "./nucleic_profiles/prophet_al.xml"
+            desc = "Scan one or more sequences with a Gribskov or Henikoff profile"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_properties"
+        >
+        <app
+            name = "banana"
+            xml = "./nucleic_properties/banana_al.xml"
+            desc = "Plot bending and curvature data for B-DNA"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "btwisted"
+            xml = "./nucleic_properties/btwisted_al.xml"
+            desc = "Calculate the twisting in a B-DNA sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dan"
+            xml = "./nucleic_properties/dan_al.xml"
+            desc = "Calculate nucleic acid melting temperature"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_repeats"
+        >
+        <app
+            name = "einverted"
+            xml = "./nucleic_repeats/einverted_al.xml"
+            desc = "Find inverted repeats in nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "equicktandem"
+            xml = "./nucleic_repeats/equicktandem_al.xml"
+            desc = "Find tandem repeats in nucleotide sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "etandem"
+            xml = "./nucleic_repeats/etandem_al.xml"
+            desc = "Find tandem repeats in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "palindrome"
+            xml = "./nucleic_repeats/palindrome_al.xml"
+            desc = "Find inverted repeats in nucleotide sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_restriction"
+        >
+        <app
+            name = "recoder"
+            xml = "./nucleic_restriction/recoder_al.xml"
+            desc = "Find restriction sites to remove (mutate) with no translation change"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "redata"
+            xml = "./nucleic_restriction/redata_al.xml"
+            desc = "Retrieve information from REBASE restriction enzyme database"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "remap"
+            xml = "./display/remap_al.xml"
+            desc = "Display restriction enzyme binding sites in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "restover"
+            xml = "./nucleic_restriction/restover_al.xml"
+            desc = "Find restriction enzymes producing a specific overhang"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "restrict"
+            xml = "./nucleic_restriction/restrict_al.xml"
+            desc = "Report restriction enzyme cleavage sites in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showseq"
+            xml = "./nucleic_translation/showseq_al.xml"
+            desc = "Display sequences with features in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "silent"
+            xml = "./nucleic_restriction/silent_al.xml"
+            desc = "Find restriction sites to insert (mutate) with no translation change"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_transcription"
+        >
+        <app
+            name = "jaspscan"
+            xml = "./nucleic_transcription/jaspscan_al.xml"
+            desc = "Scan DNA sequences for transcription factors"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "marscan"
+            xml = "./nucleic_gene_finding/marscan_al.xml"
+            desc = "Find matrix/scaffold recognition (MRS) signatures in DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "tfscan"
+            xml = "./nucleic_transcription/tfscan_al.xml"
+            desc = "Identify transcription factor binding sites in DNA sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "nucleic_translation"
+        >
+        <app
+            name = "backtranambig"
+            xml = "./nucleic_translation/backtranambig_al.xml"
+            desc = "Back-translate a protein sequence to ambiguous nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "backtranseq"
+            xml = "./nucleic_translation/backtranseq_al.xml"
+            desc = "Back-translate a protein sequence to a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "checktrans"
+            xml = "./nucleic_gene_finding/checktrans_al.xml"
+            desc = "Report STOP codons and ORF statistics of a protein"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "coderet"
+            xml = "./nucleic_translation/coderet_al.xml"
+            desc = "Extract CDS, mRNA and translations from feature tables"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "plotorf"
+            xml = "./nucleic_gene_finding/plotorf_al.xml"
+            desc = "Plot potential open reading frames in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prettyseq"
+            xml = "./nucleic_translation/prettyseq_al.xml"
+            desc = "Write a nucleotide sequence and its translation to file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "remap"
+            xml = "./display/remap_al.xml"
+            desc = "Display restriction enzyme binding sites in a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showorf"
+            xml = "./nucleic_gene_finding/showorf_al.xml"
+            desc = "Display a nucleotide sequence and translation in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "showseq"
+            xml = "./nucleic_translation/showseq_al.xml"
+            desc = "Display sequences with features in pretty format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sixpack"
+            xml = "./nucleic_gene_finding/sixpack_al.xml"
+            desc = "Display a DNA sequence with 6-frame translation and ORFs"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "transeq"
+            xml = "./nucleic_translation/transeq_al.xml"
+            desc = "Translate nucleic acid sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "ontology"
+        >
+        <app
+            name = "ontocount"
+            xml = "./ontology/ontocount_al.xml"
+            desc = "Count ontology term(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontoget"
+            xml = "./ontology/ontoget_al.xml"
+            desc = "Get ontology term(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetcommon"
+            xml = "./ontology/ontogetcommon_al.xml"
+            desc = "Get common ancestor for terms"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetdown"
+            xml = "./ontology/ontogetdown_al.xml"
+            desc = "Get ontology term(s) by parent id"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetobsolete"
+            xml = "./ontology/ontogetobsolete_al.xml"
+            desc = "Get ontology ontology terms"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetroot"
+            xml = "./ontology/ontogetroot_al.xml"
+            desc = "Get ontology root terms by child identifier"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetsibs"
+            xml = "./ontology/ontogetsibs_al.xml"
+            desc = "Get ontology term(s) by id with common parent"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontogetup"
+            xml = "./ontology/ontogetup_al.xml"
+            desc = "Get ontology term(s) by id of child"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontoisobsolete"
+            xml = "./ontology/ontoisobsolete_al.xml"
+            desc = "Report whether an ontology term id is obsolete"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "ontotext"
+            xml = "./ontology/ontotext_al.xml"
+            desc = "Get ontology term(s) original full text"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "ontology_edam"
+        >
+        <app
+            name = "drfinddata"
+            xml = "./ontology_edam/drfinddata_al.xml"
+            desc = "Find public databases by data type"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindformat"
+            xml = "./ontology_edam/drfindformat_al.xml"
+            desc = "Find public databases by format"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindid"
+            xml = "./ontology_edam/drfindid_al.xml"
+            desc = "Find public databases by identifier"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "drfindresource"
+            xml = "./ontology_edam/drfindresource_al.xml"
+            desc = "Find public databases by resource"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamdef"
+            xml = "./ontology_edam/edamdef_al.xml"
+            desc = "Find EDAM ontology terms by definition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamhasinput"
+            xml = "./ontology_edam/edamhasinput_al.xml"
+            desc = "Find EDAM ontology terms by has_input relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamhasoutput"
+            xml = "./ontology_edam/edamhasoutput_al.xml"
+            desc = "Find EDAM ontology terms by has_output relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamisformat"
+            xml = "./ontology_edam/edamisformat_al.xml"
+            desc = "Find EDAM ontology terms by is_format_of relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamisid"
+            xml = "./ontology_edam/edamisid_al.xml"
+            desc = "Find EDAM ontology terms by is_identifier_of relation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "edamname"
+            xml = "./ontology_edam/edamname_al.xml"
+            desc = "Find EDAM ontology terms by name"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossdata"
+            xml = "./ontology_edam/wossdata_al.xml"
+            desc = "Find programs by EDAM data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossinput"
+            xml = "./ontology_edam/wossinput_al.xml"
+            desc = "Find programs by EDAM input data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossoperation"
+            xml = "./ontology_edam/wossoperation_al.xml"
+            desc = "Find programs by EDAM operation"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossoutput"
+            xml = "./ontology_edam/wossoutput_al.xml"
+            desc = "Find programs by EDAM output data"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wossparam"
+            xml = "./ontology_edam/wossparam_al.xml"
+            desc = "Find programs by EDAM parameter"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wosstopic"
+            xml = "./ontology_edam/wosstopic_al.xml"
+            desc = "Find programs by EDAM topic"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "ontology_go"
+        >
+        <app
+            name = "godef"
+            xml = "./ontology_go/godef_al.xml"
+            desc = "Find GO ontology terms by definition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "goname"
+            xml = "./ontology_go/goname_al.xml"
+            desc = "Find GO ontology terms by name"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "ontology_taxonomy"
+        >
+        <app
+            name = "taxget"
+            xml = "./ontology_taxonomy/taxget_al.xml"
+            desc = "Get taxon(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "taxgetdown"
+            xml = "./ontology_taxonomy/taxgetdown_al.xml"
+            desc = "Get descendants of taxon(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "taxgetrank"
+            xml = "./ontology_taxonomy/taxgetrank_al.xml"
+            desc = "Get parents of taxon(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "taxgetspecies"
+            xml = "./ontology_taxonomy/taxgetspecies_al.xml"
+            desc = "Get all species under taxon(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "taxgetup"
+            xml = "./ontology_taxonomy/taxgetup_al.xml"
+            desc = "Get parents of taxon(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "phylogeny_molecular_sequence"
+        >
+        <app
+            name = "distmat"
+            xml = "./phylogeny_molecular_sequence/distmat_al.xml"
+            desc = "Create a distance matrix from a multiple sequence alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_2d_structure"
+        >
+        <app
+            name = "garnier"
+            xml = "./protein_2d_structure/garnier_al.xml"
+            desc = "Predict protein secondary structure using GOR method"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "helixturnhelix"
+            xml = "./protein_2d_structure/helixturnhelix_al.xml"
+            desc = "Identify nucleic acid-binding motifs in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepcoil"
+            xml = "./protein_2d_structure/pepcoil_al.xml"
+            desc = "Predict coiled coil regions in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepnet"
+            xml = "./display/pepnet_al.xml"
+            desc = "Draw a helical net for a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepwheel"
+            xml = "./display/pepwheel_al.xml"
+            desc = "Draw a helical wheel diagram for a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_3d_structure"
+        >
+        <app
+            name = "psiphi"
+            xml = "./protein_3d_structure/psiphi_al.xml"
+            desc = "Calculates phi and psi torsion angles from protein coordinates"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_composition"
+        >
+        <app
+            name = "backtranambig"
+            xml = "./nucleic_translation/backtranambig_al.xml"
+            desc = "Back-translate a protein sequence to ambiguous nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "backtranseq"
+            xml = "./nucleic_translation/backtranseq_al.xml"
+            desc = "Back-translate a protein sequence to a nucleotide sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "compseq"
+            xml = "./nucleic_composition/compseq_al.xml"
+            desc = "Calculate the composition of unique words in sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "emowse"
+            xml = "./protein_composition/emowse_al.xml"
+            desc = "Search protein sequences by digest fragment molecular weight"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "freak"
+            xml = "./nucleic_composition/freak_al.xml"
+            desc = "Generate residue/base frequency table or plot"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "mwcontam"
+            xml = "./protein_composition/mwcontam_al.xml"
+            desc = "Find weights common to multiple molecular weights files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "mwfilter"
+            xml = "./protein_composition/mwfilter_al.xml"
+            desc = "Filter noisy data from molecular weights file"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "oddcomp"
+            xml = "./protein_composition/oddcomp_al.xml"
+            desc = "Identify proteins with specified sequence word composition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepdigest"
+            xml = "./protein_composition/pepdigest_al.xml"
+            desc = "Report on protein proteolytic enzyme or reagent cleavage sites"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepinfo"
+            xml = "./protein_composition/pepinfo_al.xml"
+            desc = "Plot amino acid properties of a protein sequence in parallel."
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepstats"
+            xml = "./protein_composition/pepstats_al.xml"
+            desc = "Calculate statistics of protein properties"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "wordcount"
+            xml = "./nucleic_composition/wordcount_al.xml"
+            desc = "Count and extract unique words in molecular sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_domains"
+        >
+        <app
+            name = "helixturnhelix"
+            xml = "./protein_2d_structure/helixturnhelix_al.xml"
+            desc = "Identify nucleic acid-binding motifs in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepcoil"
+            xml = "./protein_2d_structure/pepcoil_al.xml"
+            desc = "Predict coiled coil regions in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_functional_sites"
+        >
+        <app
+            name = "sigcleave"
+            xml = "./protein_functional_sites/sigcleave_al.xml"
+            desc = "Report on signal cleavage sites in a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "tmap"
+            xml = "./protein_functional_sites/tmap_al.xml"
+            desc = "Predict and plot transmembrane segments in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_motifs"
+        >
+        <app
+            name = "antigenic"
+            xml = "./protein_motifs/antigenic_al.xml"
+            desc = "Find antigenic sites in proteins"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "epestfind"
+            xml = "./protein_motifs/epestfind_al.xml"
+            desc = "Find PEST motifs as potential proteolytic cleavage sites"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "fuzzpro"
+            xml = "./protein_motifs/fuzzpro_al.xml"
+            desc = "Search for patterns in protein sequences"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "fuzztran"
+            xml = "./nucleic_motifs/fuzztran_al.xml"
+            desc = "Search for patterns in protein sequences (translated)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "patmatdb"
+            xml = "./protein_motifs/patmatdb_al.xml"
+            desc = "Search protein sequences with a sequence motif"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "patmatmotifs"
+            xml = "./protein_motifs/patmatmotifs_al.xml"
+            desc = "Scan a protein sequence with motifs from the PROSITE database"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "preg"
+            xml = "./protein_motifs/preg_al.xml"
+            desc = "Regular expression search of protein sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pscan"
+            xml = "./protein_motifs/pscan_al.xml"
+            desc = "Scan protein sequence(s) with fingerprints from the PRINTS database"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "sigcleave"
+            xml = "./protein_functional_sites/sigcleave_al.xml"
+            desc = "Report on signal cleavage sites in a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_mutation"
+        >
+        <app
+            name = "msbar"
+            xml = "./nucleic_mutation/msbar_al.xml"
+            desc = "Mutate a sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "shuffleseq"
+            xml = "./nucleic_mutation/shuffleseq_al.xml"
+            desc = "Shuffle a set of sequences maintaining composition"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_profiles"
+        >
+        <app
+            name = "profit"
+            xml = "./nucleic_profiles/profit_al.xml"
+            desc = "Scan one or more sequences with a simple frequency matrix"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prophecy"
+            xml = "./nucleic_profiles/prophecy_al.xml"
+            desc = "Create frequency matrix or profile from a multiple alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "prophet"
+            xml = "./nucleic_profiles/prophet_al.xml"
+            desc = "Scan one or more sequences with a Gribskov or Henikoff profile"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "protein_properties"
+        >
+        <app
+            name = "charge"
+            xml = "./protein_properties/charge_al.xml"
+            desc = "Draw a protein charge plot"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "hmoment"
+            xml = "./protein_properties/hmoment_al.xml"
+            desc = "Calculate and plot hydrophobic moment for protein sequence(s)"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "iep"
+            xml = "./protein_properties/iep_al.xml"
+            desc = "Calculate the isoelectric point of proteins"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "octanol"
+            xml = "./protein_properties/octanol_al.xml"
+            desc = "Draw a White-Wimley protein hydropathy plot"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepinfo"
+            xml = "./protein_composition/pepinfo_al.xml"
+            desc = "Plot amino acid properties of a protein sequence in parallel."
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepstats"
+            xml = "./protein_composition/pepstats_al.xml"
+            desc = "Calculate statistics of protein properties"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepwindow"
+            xml = "./protein_properties/pepwindow_al.xml"
+            desc = "Draw a hydropathy plot for a protein sequence"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "pepwindowall"
+            xml = "./protein_properties/pepwindowall_al.xml"
+            desc = "Draw Kyte-Doolittle hydropathy plot for a protein alignment"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "utils"
+        >
+        <app
+            name = "embossdata"
+            xml = "./utils/embossdata_al.xml"
+            desc = "Find and retrieve EMBOSS data files"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "embossupdate"
+            xml = "./utils/embossupdate_al.xml"
+            desc = "Check for more recent updates to EMBOSS"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "embossversion"
+            xml = "./utils/embossversion_al.xml"
+            desc = "Report the current EMBOSS version number"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+    <category
+        name = "utils_database_indexing"
+        >
+        <app
+            name = "dbxcompress"
+            xml = "./utils_database_indexing/dbxcompress_al.xml"
+            desc = "Compress an uncompressed dbx index"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbxedam"
+            xml = "./utils_database_indexing/dbxedam_al.xml"
+            desc = "Index the EDAM ontology using b+tree indices"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbxobo"
+            xml = "./utils_database_indexing/dbxobo_al.xml"
+            desc = "Index an obo ontology using b+tree indices"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbxresource"
+            xml = "./utils_database_indexing/dbxresource_al.xml"
+            desc = "Index a data resource catalogue using b+tree indices"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbxtax"
+            xml = "./utils_database_indexing/dbxtax_al.xml"
+            desc = "Index NCBI taxonomy using b+tree indices"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+        <app
+            name = "dbxuncompress"
+            xml = "./utils_database_indexing/dbxuncompress_al.xml"
+            desc = "Uncompress a compressed dbx index"
+            module = "org.soaplab.emboss.EmbossJobFactory"
+            />
+    </category>
+</Analyses>

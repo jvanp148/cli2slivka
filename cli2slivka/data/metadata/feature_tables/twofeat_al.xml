@@ -1,0 +1,1604 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    twofeat_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:48 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "twofeat"
+        type = "Feature tables"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Find neighbouring pairs of features in sequence(s)</description>
+        <input
+            name = "sequence_usa"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sequence_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sformat_sequence"
+            type = "string"
+            mandatory = "false"
+            >
+            <allowed>abi</allowed>
+            <allowed>ace</allowed>
+            <allowed>acedb</allowed>
+            <allowed>bam</allowed>
+            <allowed>biomart</allowed>
+            <allowed>clustal</allowed>
+            <allowed>codata</allowed>
+            <allowed>dbid</allowed>
+            <allowed>embl</allowed>
+            <allowed>ensembl</allowed>
+            <allowed>experiment</allowed>
+            <allowed>fasta</allowed>
+            <allowed>fastq</allowed>
+            <allowed>fastq-illumina</allowed>
+            <allowed>fastq-sanger</allowed>
+            <allowed>fastq-solexa</allowed>
+            <allowed>fitch</allowed>
+            <allowed>gcg</allowed>
+            <allowed>genbank</allowed>
+            <allowed>genpept</allowed>
+            <allowed>gff2</allowed>
+            <allowed>gff3</allowed>
+            <allowed>gifasta</allowed>
+            <allowed>hennig86</allowed>
+            <allowed>ig</allowed>
+            <allowed>igstrict</allowed>
+            <allowed>jackknifer</allowed>
+            <allowed>mase</allowed>
+            <allowed>mega</allowed>
+            <allowed>msf</allowed>
+            <allowed>nbrf</allowed>
+            <allowed>nexus</allowed>
+            <allowed>pdb</allowed>
+            <allowed>pdbnuc</allowed>
+            <allowed>pdbnucseq</allowed>
+            <allowed>pdbseq</allowed>
+            <allowed>pearson</allowed>
+            <allowed>phylip</allowed>
+            <allowed>phylipnon</allowed>
+            <allowed>raw</allowed>
+            <allowed>refseqp</allowed>
+            <allowed>sam</allowed>
+            <allowed>selex</allowed>
+            <allowed>staden</allowed>
+            <allowed>stockholm</allowed>
+            <allowed>strider</allowed>
+            <allowed>swiss</allowed>
+            <allowed>text</allowed>
+            <allowed>treecon</allowed>
+        </input>
+        <input
+            name = "sbegin_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "send_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sprotein_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "snucleotide_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sreverse_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "slower_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "supper_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "atype"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "btype"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "minrange"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "maxrange"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "asource"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "asense"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>0</default>
+            <allowed>0</allowed>  <!-- Any sense -->
+            <allowed>+</allowed>  <!-- Forward sense -->
+            <allowed>-</allowed>  <!-- Reverse sense -->
+        </input>
+        <input
+            name = "aminscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "amaxscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "atag"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "avalue"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "bsource"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "bsense"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>0</default>
+            <allowed>0</allowed>  <!-- Any sense -->
+            <allowed>+</allowed>  <!-- Forward sense -->
+            <allowed>-</allowed>  <!-- Reverse sense -->
+        </input>
+        <input
+            name = "bminscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "bmaxscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "btag"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "bvalue"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "overlap"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>A</default>
+            <allowed>A</allowed>  <!-- Any -->
+            <allowed>O</allowed>  <!-- Overlap required -->
+            <allowed>NO</allowed>  <!-- No overlaps are
+               allowed -->
+            <allowed>NW</allowed>  <!-- Overlap required but not within -->
+            <allowed>AW</allowed>  <!-- A must be all
+               within B -->
+            <allowed>BW</allowed>  <!-- B must be all within A -->
+        </input>
+        <input
+            name = "rangetype"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>N</default>
+            <allowed>N</allowed>  <!-- From nearest ends -->
+            <allowed>L</allowed>  <!-- From left ends -->
+            <allowed>R</allowed>  <!-- From right
+               ends -->
+            <allowed>F</allowed>  <!-- From furthest ends -->
+        </input>
+        <input
+            name = "sense"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>A</default>
+            <allowed>A</allowed>  <!-- Any sense -->
+            <allowed>S</allowed>  <!-- Same sense -->
+            <allowed>O</allowed>  <!-- Opposite sense -->
+        </input>
+        <input
+            name = "order"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>A</default>
+            <allowed>A</allowed>  <!-- Any -->
+            <allowed>AB</allowed>  <!-- Feature A then feature B -->
+            <allowed>BA</allowed>  <!-- Feature B then
+               feature A -->
+        </input>
+        <input
+            name = "twoout"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "typeout"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>misc_feature</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "feature_tables"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/twofeat.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "twofeat"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "sequence"
+                    qualifier = "sequence"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:0849"
+                        value = "Sequence record"
+                        type = "normal"
+                        />
+                    <option
+                        name = "features"
+                        value = "+"
+                        type = "normal"
+                        />
+                    <option
+                        name = "seq_type"
+                        value = "any"
+                        type = "normal"
+                        />
+                    <option
+                        name = "server_class"
+                        value = "org.soaplab.emboss.SeqParameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    >
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "abi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ace"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "acedb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "bam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "biomart"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "clustal"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "codata"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dbid"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "embl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ensembl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "experiment"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-illumina"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-sanger"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-solexa"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fitch"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gcg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genbank"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genpept"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff3"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gifasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hennig86"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "igstrict"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jackknifer"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mase"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mega"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "msf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nbrf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nexus"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnuc"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnucseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pearson"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylip"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylipnon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "raw"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "refseqp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "sam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "selex"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "staden"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "stockholm"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "strider"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "swiss"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "text"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "treecon"
+                            level = "0"
+                            />
+                    </list>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "atype"
+                    qualifier = "atype"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Type of first feature</prompt>
+                    <help>By default every feature in the feature table is allowed.
+             You can set this to be any feature type you wish to allow. 
+             See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the
+             EMBL feature types and see Appendix A of the Swissprot user
+             manual in http://www.expasy.org/sprot/userman.html
+             for a list of the Swissprot feature types. 
+             The type may be wildcarded by using '*'. 
+             If you wish to allow more than one type, separate their names
+             with the character '|', eg: 
+             *UTR | intron</help>
+                    <option
+                        name = "EDAM_data:1020"
+                        value = "Sequence feature key"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature key list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "14"
+                    name = "btype"
+                    qualifier = "btype"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Type of second feature</prompt>
+                    <help>By default every feature in the feature table is allowed.
+             You can set this to be any feature type you wish to allow. 
+             See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the
+             EMBL feature types and see Appendix A of the Swissprot user
+             manual in http://www.expasy.org/sprot/userman.html
+             for a list of the Swissprot feature types. 
+             The type may be wildcarded by using '*'. 
+             If you wish to allow more than one type, separate their names
+             with the character '|', eg: 
+             *UTR | intron</help>
+                    <option
+                        name = "EDAM_data:1020"
+                        value = "Sequence feature key"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature key list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "23"
+                    name = "minrange"
+                    qualifier = "minrange"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>The minimum distance between the features</prompt>
+                    <help>If this is greater or equal to 'maxrange', then no min or
+             max range is specified</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "24"
+                    name = "maxrange"
+                    qualifier = "maxrange"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>The maximum distance between the features</prompt>
+                    <help>If this is less than or equal to 'minrange', then no min
+             or max range is specified</help>
+                    <option
+                        name = "EDAM_data:1249"
+                        value = "Sequence length"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "33"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:1255"
+                        value = "Feature record"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "asource"
+                    qualifier = "asource"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Source of first feature</prompt>
+                    <help>By default any feature source in the feature table is
+             allowed. You can set this to match any feature source you wish
+             to allow. 
+             The source name is usually either the name of the program that
+             detected the feature or it is the feature table (eg: EMBL) that
+             the feature came from. 
+             The source may be wildcarded by using '*'. 
+             If you wish to allow more than one source, separate their names
+             with the character '|', eg: 
+             gene* | embl</help>
+                    <option
+                        name = "EDAM_data:0856"
+                        value = "Sequence feature source"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature source list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "6"
+                    name = "asense"
+                    qualifier = "asense"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>0</default>
+                    <prompt>Sense of first feature</prompt>
+                    <help>By default any feature sense is allowed. You can set this
+             to match the required sense.</help>
+                    <option
+                        name = "EDAM_data:0853"
+                        value = "DNA sense specification"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Sense of first feature"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "0"
+                            shown_as = "Any sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "+"
+                            shown_as = "Forward sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "-"
+                            shown_as = "Reverse sense"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "7"
+                    name = "aminscore"
+                    qualifier = "aminscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Minimum score of first feature</prompt>
+                    <help>If this is greater than or equal to the maximum score,
+             then any score is allowed.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "8"
+                    name = "amaxscore"
+                    qualifier = "amaxscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Maximum score of first feature</prompt>
+                    <help>If this is less than or equal to the maximum score, then
+             any score is permitted.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "9"
+                    name = "atag"
+                    qualifier = "atag"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Tag of first feature</prompt>
+                    <help>Tags are the types of extra values that a feature may
+             have. For example in the EMBL feature table, a 'CDS' type of
+             feature may have the tags '/codon', '/codon_start', '/db_xref',
+             '/EC_number', '/evidence', '/exception', '/function', '/gene',
+             '/label', '/map', '/note', '/number', '/partial', '/product',
+             '/protein_id', '/pseudo', '/standard_name', '/translation',
+             '/transl_except', '/transl_table', or '/usedin'. Some of these
+             tags also have values, for example '/gene' can have the value of
+             the gene name. 
+             By default any feature tag in the feature table is allowed. You
+             can set this to match any feature tag you wish to allow. 
+             The tag may be wildcarded by using '*'. 
+             If you wish to allow more than one tag, separate their names
+             with the character '|', eg: 
+             gene | label</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tag list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "10"
+                    name = "avalue"
+                    qualifier = "avalue"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Value of first feature's tags</prompt>
+                    <help>Tag values are the values associated with a feature tag.
+             Tags are the types of extra values that a feature may have. For
+             example in the EMBL feature table, a 'CDS' type of feature may
+             have the tags '/codon', '/codon_start', '/db_xref',
+             '/EC_number', '/evidence', '/exception', '/function', '/gene',
+             '/label', '/map', '/note', '/number', '/partial', '/product',
+             '/protein_id', '/pseudo', '/standard_name', '/translation',
+             '/transl_except', '/transl_table', or '/usedin'. Only some of
+             these tags can have values, for example '/gene' can have the
+             value of the gene name. By default any feature tag value in the
+             feature table is allowed. You can set this to match any feature
+             tag value you wish to allow. 
+             The tag value may be wildcarded by using '*'. 
+             If you wish to allow more than one tag value, separate their
+             names with the character '|', eg: 
+             pax* | 10</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tagvalue list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "13"
+                    name = "bsource"
+                    qualifier = "bsource"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Source of second feature</prompt>
+                    <help>By default any feature source in the feature table is
+             allowed. You can set this to match any feature source you wish
+             to allow. 
+             The source name is usually either the name of the program that
+             detected the feature or it is the feature table (eg: EMBL) that
+             the feature came from. 
+             The source may be wildcarded by using '*'. 
+             If you wish to allow more than one source, separate their names
+             with the character '|', eg: 
+             gene* | embl</help>
+                    <option
+                        name = "EDAM_data:0856"
+                        value = "Sequence feature source"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature source list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "15"
+                    name = "bsense"
+                    qualifier = "bsense"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>0</default>
+                    <prompt>Sense of second feature</prompt>
+                    <help>By default any feature sense is allowed. You can set this
+             to match the required sense.</help>
+                    <option
+                        name = "EDAM_data:0853"
+                        value = "DNA sense specification"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Sense of second feature"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "0"
+                            shown_as = "Any sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "+"
+                            shown_as = "Forward sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "-"
+                            shown_as = "Reverse sense"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "16"
+                    name = "bminscore"
+                    qualifier = "bminscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Minimum score of second feature</prompt>
+                    <help>If this is greater than or equal to the maximum score,
+             then any score is allowed.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "17"
+                    name = "bmaxscore"
+                    qualifier = "bmaxscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Maximum score of second feature</prompt>
+                    <help>If this is less than or equal to the maximum score, then
+             any score is permitted.</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "18"
+                    name = "btag"
+                    qualifier = "btag"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Tag of second feature</prompt>
+                    <help>Tags are the types of extra values that a feature may
+             have. For example in the EMBL feature table, a 'CDS' type of
+             feature may have the tags '/codon', '/codon_start', '/db_xref',
+             '/EC_number', '/evidence', '/exception', '/function', '/gene',
+             '/label', '/map', '/note', '/number', '/partial', '/product',
+             '/protein_id', '/pseudo', '/standard_name', '/translation',
+             '/transl_except', '/transl_table', or '/usedin'. Some of these
+             tags also have values, for example '/gene' can have the value of
+             the gene name. 
+             By default any feature tag in the feature table is allowed. You
+             can set this to match any feature tag you wish to allow. 
+             The tag may be wildcarded by using '*'. 
+             If you wish to allow more than one tag, separate their names
+             with the character '|', eg: 
+             gene | label</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tag list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "19"
+                    name = "bvalue"
+                    qualifier = "bvalue"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Value of second feature's tags</prompt>
+                    <help>Tag values are the values associated with a feature tag.
+             Tags are the types of extra values that a feature may have. For
+             example in the EMBL feature table, a 'CDS' type of feature may
+             have the tags '/codon', '/codon_start', '/db_xref',
+             '/EC_number', '/evidence', '/exception', '/function', '/gene',
+             '/label', '/map', '/note', '/number', '/partial', '/product',
+             '/protein_id', '/pseudo', '/standard_name', '/translation',
+             '/transl_except', '/transl_table', or '/usedin'. Only some of
+             these tags can have values, for example '/gene' can have the
+             value of the gene name. By default any feature tag value in the
+             feature table is allowed. You can set this to match any feature
+             tag value you wish to allow. 
+             The tag value may be wildcarded by using '*'. 
+             If you wish to allow more than one tag value, separate their
+             names with the character '|', eg: 
+             pax* | 10</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tagvalue list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "22"
+                    name = "overlap"
+                    qualifier = "overlap"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>A</default>
+                    <prompt>Type of overlap required</prompt>
+                    <help>This allows you to specify the allowed overlaps of the
+             features A and B. 
+             You can allow any or no overlaps, specify that they must or must
+             not overlap, that one must or must not be wholly enclosed
+             within another feature.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Type of overlap required"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "A"
+                            shown_as = "Any"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "O"
+                            shown_as = "Overlap required"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "NO"
+                            shown_as = "No overlaps are
+               allowed"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "NW"
+                            shown_as = "Overlap required but not within"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "AW"
+                            shown_as = "A must be all
+               within B"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "BW"
+                            shown_as = "B must be all within A"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "25"
+                    name = "rangetype"
+                    qualifier = "rangetype"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>N</default>
+                    <prompt>Positions from which to measure the distance</prompt>
+                    <help>This allows you to specify the positions from which the
+             allowed minimum or maximum distance between the features is
+             measured</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Positions from which to measure the distance"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "N"
+                            shown_as = "From nearest ends"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "L"
+                            shown_as = "From left ends"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "R"
+                            shown_as = "From right
+               ends"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "F"
+                            shown_as = "From furthest ends"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "26"
+                    name = "sense"
+                    qualifier = "sense"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>A</default>
+                    <prompt>Sense of the features</prompt>
+                    <help>This allows you to specify the required sense that the
+             two features must be on. This is ignored (always 'Any') when
+             looking at protein sequence features.</help>
+                    <option
+                        name = "EDAM_data:0853"
+                        value = "DNA sense specification"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Sense of the features"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "A"
+                            shown_as = "Any sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "S"
+                            shown_as = "Same sense"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "O"
+                            shown_as = "Opposite sense"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "27"
+                    name = "order"
+                    qualifier = "order"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>A</default>
+                    <prompt>Order of the features</prompt>
+                    <help>This allows you to specify the required order of the two
+             features. The order is measured from the start positions of the
+             features. This criterion is always applied despite the specified
+             overlap type required.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Order of the features"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "A"
+                            shown_as = "Any"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "AB"
+                            shown_as = "Feature A then feature B"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "BA"
+                            shown_as = "Feature B then
+               feature A"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "31"
+                    name = "twoout"
+                    qualifier = "twoout"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Do you want the two features written out
+                  individually</prompt>
+                    <help>If you set this to be true, then the two features
+           themselves will be written out. If it is left as false, then a
+           single feature will be written out covering the two features you
+           found.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "32"
+                    name = "typeout"
+                    qualifier = "typeout"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>misc_feature</default>
+                    <prompt>Name of the output new feature</prompt>
+                    <help>If you have specified that the pairs of features that are
+           found should be reported as one feature in the ouput, then you can
+           specify the 'type' name of the new feature here. By default every
+           feature in the feature table is allowed. See
+           http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL
+           feature types and see Appendix A of the Swissprot user manual in
+           http://www.expasy.org/sprot/userman.html for a list of the Swissprot
+           feature types. If you specify an invalid feature type name, then
+           the default name 'misc_feature' is used.</help>
+                    <option
+                        name = "EDAM_data:1020"
+                        value = "Sequence feature key"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature key"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0255"
+                value = "Feature table query"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0160"
+                value = "Sequence sites and features"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

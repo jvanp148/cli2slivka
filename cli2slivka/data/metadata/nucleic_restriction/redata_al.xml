@@ -1,0 +1,268 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    redata_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:47 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "redata"
+        type = "Nucleic Restriction"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Retrieve information from REBASE restriction enzyme database</description>
+        <input
+            name = "enzyme"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>BamHI</default>
+        </input>
+        <input
+            name = "isoschizomers"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "references"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "suppliers"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "nucleic_restriction"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/redata.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "redata"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "enzyme"
+                    qualifier = "enzyme"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>BamHI</default>
+                    <prompt>Restriction enzyme name</prompt>
+                    <help>Enter the name of the restriction enzyme that you wish to
+           get details of. The names often have a 'I' in them - this is a
+           capital 'i', not a '1' or an 'l'. The names are case-independent
+           ('AaeI' is the same as 'aaei')</help>
+                    <option
+                        name = "EDAM_identifier:1013"
+                        value = "Restriction enzyme name"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "enzyme name"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "7"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:1517"
+                        value = "Restriction enzyme property"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "redata output"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "isoschizomers"
+                    qualifier = "isoschizomers"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Show isoschizomers</prompt>
+                    <help>Show other enzymes with this specificity. (Isoschizomers)</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "references"
+                    qualifier = "references"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Show references</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "6"
+                    name = "suppliers"
+                    qualifier = "suppliers"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Show suppliers</prompt>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+
+            <option
+                name = "EDAM_operation:2422"
+                value = "Data retrieval"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0100"
+                value = "Nucleic acid restriction"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

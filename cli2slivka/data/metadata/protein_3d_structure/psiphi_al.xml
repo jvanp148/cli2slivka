@@ -1,0 +1,312 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    psiphi_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:47 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "psiphi"
+        type = "protein 3D structure"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Calculates phi and psi torsion angles from
+                  protein coordinates</description>
+        <input
+            name = "infile_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "infile_url"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "chainnumber"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>1</default>
+        </input>
+        <input
+            name = "startresiduenumber"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>1</default>
+        </input>
+        <input
+            name = "finishresiduenumber"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>1</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "protein_3d_structure"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/psiphi.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "psiphi"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "infile"
+                    qualifier = "infile"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <prompt>Clean protein structure coordinates file</prompt>
+                    <option
+                        name = "EDAM_data:1460"
+                        value = "Protein structure"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "input"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "protein clean coordinates"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    iotype = "input"
+                    ioformat = "unspecified"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "chainnumber"
+                    qualifier = "chainnumber"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>1</default>
+                    <prompt>Number of the chain for which torsion angles
+                  should be calculated</prompt>
+                    <option
+                        name = "EDAM_identifier:1008"
+                        value = "Polypeptide chain ID"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "1"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "startresiduenumber"
+                    qualifier = "startresiduenumber"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>1</default>
+                    <prompt>First residue in chain for which torsion
+                  angles should be calculated</prompt>
+                    <option
+                        name = "EDAM_data:1016"
+                        value = "Sequence position"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "1"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "6"
+                    name = "finishresiduenumber"
+                    qualifier = "finishresiduenumber"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>1</default>
+                    <prompt>Last residue in chain for which torsion
+                  angles should be calculated (1 = last residue)</prompt>
+                    <option
+                        name = "EDAM_data:1016"
+                        value = "Sequence position"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "9"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:1544"
+                        value = "Ramachandran plot"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0249"
+                value = "Torsion angle calculation"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:2814"
+                value = "Protein structure analysis"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

@@ -1,0 +1,480 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    lists_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Mon Mar  3 16:16:04 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "lists"
+        type = "Testing"
+        installation = "Soaplab2 default installation"
+        >
+        <description>How to use lists</description>
+        <input
+            name = "format_canon"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_dot"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_fig"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_gd"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_gif"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_hpgl"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_imap"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_jpg"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_mif"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_mp"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_pcl"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_pic"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_plain"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_png"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "format_ps"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "format_svg"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "menu"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>V</default>
+            <allowed>F</allowed>  <!-- fungi -->
+            <allowed>I</allowed>  <!-- insect -->
+            <allowed>P</allowed>  <!-- plant -->
+            <allowed>V</allowed>  <!-- vertebrate -->
+            <allowed>O</allowed>  <!-- other -->
+            <allowed>C</allowed>  <!-- Custom -->
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "output"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "output_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "testing"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "echo"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "1"
+                    name = "format"
+                    qualifier = "format"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>png</default>
+                    <prompt>Graphical format</prompt>
+                    <option
+                        name = "separator"
+                        value = "|"
+                        type = "normal"
+                        />
+                    <option
+                        name = "columns"
+                        value = "4"
+                        type = "style"
+                        />
+                </base>
+
+                <choice_list
+                    grouptype = "zero_or_more"
+                    separator = ","
+                    >
+                    <base
+                        ordering = "2"
+                        name = "format_canon"
+                        qualifier = "canon"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "3"
+                        name = "format_dot"
+                        qualifier = "dot"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "4"
+                        name = "format_fig"
+                        qualifier = "fig"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "5"
+                        name = "format_gd"
+                        qualifier = "gd"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "6"
+                        name = "format_gif"
+                        qualifier = "gif"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "7"
+                        name = "format_hpgl"
+                        qualifier = "hpgl"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "8"
+                        name = "format_imap"
+                        qualifier = "imap"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "9"
+                        name = "format_jpg"
+                        qualifier = "jpg"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "10"
+                        name = "format_mif"
+                        qualifier = "mif"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "11"
+                        name = "format_mp"
+                        qualifier = "mp"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "12"
+                        name = "format_pcl"
+                        qualifier = "pcl"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "13"
+                        name = "format_pic"
+                        qualifier = "pic"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "14"
+                        name = "format_plain"
+                        qualifier = "plain"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "15"
+                        name = "format_png"
+                        qualifier = "png"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                    </base>
+                    <base
+                        ordering = "16"
+                        name = "format_ps"
+                        qualifier = "ps"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                    <base
+                        ordering = "17"
+                        name = "format_svg"
+                        qualifier = "svg"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>false</default>
+                    </base>
+                </choice_list>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "18"
+                    name = "menu"
+                    qualifier = "menu"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>V</default>
+                    <prompt>Select class</prompt>
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "F"
+                            shown_as = "fungi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "I"
+                            shown_as = "insect"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "P"
+                            shown_as = "plant"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "V"
+                            shown_as = "vertebrate"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "O"
+                            shown_as = "other"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "C"
+                            shown_as = "Custom"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "19"
+                    name = "output"
+                    qualifier = "output"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>stdout</default>
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "stdout"
+                    >
+                    <result
+                        name = "output"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "output_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+
+            <option
+                name = "emboss"
+                value = "false"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "use_defaults"
+                value = "true"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>

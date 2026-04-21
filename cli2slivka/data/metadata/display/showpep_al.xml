@@ -1,0 +1,1391 @@
+<?xml version = "1.0"?>
+
+
+<!--
+    showpep_al.xml
+
+    Cembalo Generator (ACD -> XML), for Soaplab2
+    Version $Id: acd2xml,v 1.28 2010/08/10 10:55:42 marsenger Exp $
+    Contact: Martin Senger <martin.senger@gmail.com>
+
+    ORIGINATED FROM:
+        This file was generated from a plain config file.
+        Tue Mar  4 10:36:47 CET 2025
+-->
+
+<DsLSRAnalysis>
+    <analysis
+        name = "showpep"
+        type = "Display"
+        version = "6.6.0.0"
+        supplier = "Confosoft Soaplab2 Emboss Docker container"
+        installation = "Soaplab2 default installation"
+        >
+        <description>Display protein sequences with features in pretty format</description>
+        <input
+            name = "sequence_usa"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sequence_direct_data"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sformat_sequence"
+            type = "string"
+            mandatory = "false"
+            >
+            <allowed>abi</allowed>
+            <allowed>ace</allowed>
+            <allowed>acedb</allowed>
+            <allowed>bam</allowed>
+            <allowed>biomart</allowed>
+            <allowed>clustal</allowed>
+            <allowed>codata</allowed>
+            <allowed>dbid</allowed>
+            <allowed>embl</allowed>
+            <allowed>ensembl</allowed>
+            <allowed>experiment</allowed>
+            <allowed>fasta</allowed>
+            <allowed>fastq</allowed>
+            <allowed>fastq-illumina</allowed>
+            <allowed>fastq-sanger</allowed>
+            <allowed>fastq-solexa</allowed>
+            <allowed>fitch</allowed>
+            <allowed>gcg</allowed>
+            <allowed>genbank</allowed>
+            <allowed>genpept</allowed>
+            <allowed>gff2</allowed>
+            <allowed>gff3</allowed>
+            <allowed>gifasta</allowed>
+            <allowed>hennig86</allowed>
+            <allowed>ig</allowed>
+            <allowed>igstrict</allowed>
+            <allowed>jackknifer</allowed>
+            <allowed>mase</allowed>
+            <allowed>mega</allowed>
+            <allowed>msf</allowed>
+            <allowed>nbrf</allowed>
+            <allowed>nexus</allowed>
+            <allowed>pdb</allowed>
+            <allowed>pdbnuc</allowed>
+            <allowed>pdbnucseq</allowed>
+            <allowed>pdbseq</allowed>
+            <allowed>pearson</allowed>
+            <allowed>phylip</allowed>
+            <allowed>phylipnon</allowed>
+            <allowed>raw</allowed>
+            <allowed>refseqp</allowed>
+            <allowed>sam</allowed>
+            <allowed>selex</allowed>
+            <allowed>staden</allowed>
+            <allowed>stockholm</allowed>
+            <allowed>strider</allowed>
+            <allowed>swiss</allowed>
+            <allowed>text</allowed>
+            <allowed>treecon</allowed>
+        </input>
+        <input
+            name = "sbegin_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "send_sequence"
+            type = "long"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sprotein_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "snucleotide_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sreverse_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "slower_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "supper_sequence"
+            type = "boolean"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "format"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>2</default>
+            <allowed>0</allowed>  <!-- Enter your own list of things to display -->
+            <allowed>1</allowed>  <!-- Sequence
+             only -->
+            <allowed>2</allowed>  <!-- Default sequence with features -->
+            <allowed>3</allowed>  <!-- Pretty sequence
+             4 -->
+        </input>
+        <input
+            name = "things_S"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "things_B"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "things_T"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "things_N"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "things_F"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "things_A"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>true</default>
+        </input>
+        <input
+            name = "uppercase"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "highlight"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "annotation"
+            type = "string"
+            mandatory = "false"
+            >
+        </input>
+        <input
+            name = "sourcematch"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "typematch"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "minscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "maxscore"
+            type = "float"
+            mandatory = "false"
+            >
+            <default>0.0</default>
+        </input>
+        <input
+            name = "tagmatch"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "valuematch"
+            type = "string"
+            mandatory = "false"
+            >
+            <default>*</default>
+        </input>
+        <input
+            name = "stricttags"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "threeletter"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "number"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "width"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>60</default>
+        </input>
+        <input
+            name = "length"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>0</default>
+        </input>
+        <input
+            name = "margin"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>10</default>
+        </input>
+        <input
+            name = "name"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "description"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+        <input
+            name = "offset"
+            type = "long"
+            mandatory = "false"
+            >
+            <default>1</default>
+        </input>
+        <input
+            name = "html"
+            type = "boolean"
+            mandatory = "false"
+            >
+            <default>false</default>
+        </input>
+
+        <output
+            name = "report"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "detailed_status"
+            type = "long"
+            >
+        </output>
+        <output
+            name = "outfile"
+            type = "string"
+            >
+        </output>
+        <output
+            name = "outfile_url"
+            type = "string"
+            >
+        </output>
+
+        <analysis_extension>
+            <app_info
+                category = "display"
+                help_URL = "http://emboss.sourceforge.net/apps/release/6.3/emboss/apps/showpep.html"
+                />
+            <event
+                id = "_E_1"
+                >
+                <action
+                    type = "exe"
+                    file = "showpep"
+                    launcher = ""
+                    >
+                </action>
+
+            </event>
+            <parameter>
+                <base
+                    ordering = "2"
+                    name = "sequence"
+                    qualifier = "sequence"
+                    mandatory = "true"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:2886"
+                        value = "Sequence record (protein)"
+                        type = "normal"
+                        />
+                    <option
+                        name = "features"
+                        value = "+"
+                        type = "normal"
+                        />
+                    <option
+                        name = "seq_type"
+                        value = "gapprotein"
+                        type = "normal"
+                        />
+                    <option
+                        name = "server_class"
+                        value = "org.soaplab.emboss.SeqParameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <data
+                    >
+                    <list
+                        type = "full"
+                        >
+                        <list_item
+                            value = "abi"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ace"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "acedb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "bam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "biomart"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "clustal"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "codata"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "dbid"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "embl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ensembl"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "experiment"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-illumina"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-sanger"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fastq-solexa"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "fitch"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gcg"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genbank"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "genpept"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff2"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gff3"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "gifasta"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "hennig86"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "ig"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "igstrict"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "jackknifer"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mase"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "mega"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "msf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nbrf"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "nexus"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdb"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnuc"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbnucseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pdbseq"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "pearson"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylip"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "phylipnon"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "raw"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "refseqp"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "sam"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "selex"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "staden"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "stockholm"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "strider"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "swiss"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "text"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "treecon"
+                            level = "0"
+                            />
+                    </list>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "4"
+                    name = "format"
+                    qualifier = "format"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>2</default>
+                    <prompt>Things to display</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "readonly"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                    <list
+                        name = "Things to display"
+                        type = "full"
+                        >
+                        <list_item
+                            value = "0"
+                            shown_as = "Enter your own list of things to display"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "1"
+                            shown_as = "Sequence
+             only"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "2"
+                            shown_as = "Default sequence with features"
+                            level = "0"
+                            />
+                        <list_item
+                            value = "3"
+                            shown_as = "Pretty sequence
+             4"
+                            level = "0"
+                            />
+                    </list>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "39"
+                    name = "outfile"
+                    qualifier = "outfile"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <option
+                        name = "EDAM_data:1277"
+                        value = "Protein features"
+                        type = "normal"
+                        />
+                    <option
+                        name = "datatype"
+                        value = "outfile"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "showpep output"
+                        type = "normal"
+                        />
+                    <option
+                        name = "nodisplay"
+                        value = "true"
+                        type = "style"
+                        />
+                </base>
+
+                <data
+                    iotype = "output"
+                    >
+                    <result
+                        name = "outfile"
+                        type = "string"
+                        >
+                    </result>
+                    <result
+                        name = "outfile_url"
+                        type = "string"
+                        special_type = "url"
+                        >
+                    </result>
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </data>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "5"
+                    name = "things"
+                    qualifier = "things"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>B,N,T,S,A,F</default>
+                    <prompt>Specify your own things to display</prompt>
+                    <help>Specify a list of one or more code characters in the order
+           in which you wish things to be displayed one above the other down
+           the page. For example if you wish to see things displayed in the
+           order: sequence, ticks line, blank line; then you should enter
+           'S,T,B'.</help>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "columns"
+                        value = "3"
+                        type = "style"
+                        />
+                </base>
+
+                <choice_list
+                    grouptype = "zero_or_more"
+                    separator = ","
+                    >
+                    <base
+                        ordering = "6"
+                        name = "things_S"
+                        qualifier = "S"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Sequence</prompt>
+                    </base>
+                    <base
+                        ordering = "7"
+                        name = "things_B"
+                        qualifier = "B"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Blank line</prompt>
+                    </base>
+                    <base
+                        ordering = "8"
+                        name = "things_T"
+                        qualifier = "T"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Ticks line</prompt>
+                    </base>
+                    <base
+                        ordering = "9"
+                        name = "things_N"
+                        qualifier = "N"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Number ticks line</prompt>
+                    </base>
+                    <base
+                        ordering = "10"
+                        name = "things_F"
+                        qualifier = "F"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Features</prompt>
+                    </base>
+                    <base
+                        ordering = "11"
+                        name = "things_A"
+                        qualifier = "A"
+                        mandatory = "false"
+                        type = "boolean"
+                        >
+                        <default>true</default>
+                        <prompt>Annotation</prompt>
+                    </base>
+                </choice_list>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "14"
+                    name = "uppercase"
+                    qualifier = "uppercase"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Regions to put in uppercase (eg: 4-57,78-94)</prompt>
+                    <help>Regions to put in uppercase. 
+           If this is left blank, then the sequence case is left alone. 
+           A set of regions is specified by a set of pairs of positions. 
+           The positions are integers. 
+           They are separated by any non-digit, non-alpha character. 
+           Examples of region specifications are: 
+           24-45, 56-78 
+           1:45, 67=99;765..888 
+           1,5,8,10,23,45,57,99</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "15"
+                    name = "highlight"
+                    qualifier = "highlight"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Regions to colour in HTML (eg: 4-57 red 78-94
+                  green)</prompt>
+                    <help>Regions to colour if formatting for HTML. 
+           If this is left blank, then the sequence is left alone. 
+           A set of regions is specified by a set of pairs of positions. 
+           The positions are integers. 
+           They are followed by any valid HTML font colour. 
+           Examples of region specifications are: 
+           24-45 blue 56-78 orange 
+           1-100 green 120-156 red 
+           A file of ranges to colour (one range per line) can be specified
+           as '@filename'.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "16"
+                    name = "annotation"
+                    qualifier = "annotation"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <prompt>Regions to mark (eg: 4-57 promoter region
+                  78-94 first exon)</prompt>
+                    <help>Regions to annotate by marking. 
+           If this is left blank, then no annotation is added. 
+           A set of regions is specified by a set of pairs of positions
+           followed by optional text. 
+           The positions are integers. 
+           They are followed by any text (but not digits when on the
+           command-line). 
+           Examples of region specifications are: 
+           24-45 new domain 56-78 match to Mouse 
+           1-100 First part 120-156 oligo 
+           A file of ranges to annotate (one range per line) can be specified
+           as '@filename'.</help>
+                    <option
+                        name = "EDAM_data:1017"
+                        value = "Sequence range"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "18"
+                    name = "sourcematch"
+                    qualifier = "sourcematch"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Source of feature to display</prompt>
+                    <help>By default any feature source in the feature table is
+             shown. You can set this to match any feature source you wish to
+             show. 
+             The source name is usually either the name of the program that
+             detected the feature or it is the feature table (eg: EMBL) that
+             the feature came from. 
+             The source may be wildcarded by using '*'. 
+             If you wish to show more than one source, separate their names
+             with the character '|', eg: 
+             gene* | embl</help>
+                    <option
+                        name = "EDAM_data:0856"
+                        value = "Sequence feature source"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature source list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "19"
+                    name = "typematch"
+                    qualifier = "typematch"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Type of feature to display</prompt>
+                    <help>By default any feature type in the feature table is
+             shown. You can set this to match any feature type you wish to
+             show. 
+             See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the
+             EMBL feature types and see Appendix A of the Swissprot user
+             manual in http://www.expasy.org/sprot/userman.html
+             for a list of the Swissprot feature types. 
+             The type may be wildcarded by using '*'. 
+             If you wish to show more than one type, separate their names
+             with the character '|', eg: 
+             *UTR | intron</help>
+                    <option
+                        name = "EDAM_data:1020"
+                        value = "Sequence feature key"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature key list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "20"
+                    name = "minscore"
+                    qualifier = "minscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Minimum score of feature to display</prompt>
+                    <help>Minimum score of feature to display (see also maxscore)</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "21"
+                    name = "maxscore"
+                    qualifier = "maxscore"
+                    mandatory = "false"
+                    type = "float"
+                    >
+                    <default>0.0</default>
+                    <prompt>Maximum score of feature to display</prompt>
+                    <help>Maximum score of feature to display. 
+             If both minscore and maxscore are zero (the default),
+             then any score is ignored</help>
+                    <option
+                        name = "EDAM_data:1772"
+                        value = "Score or penalty"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%f"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "22"
+                    name = "tagmatch"
+                    qualifier = "tagmatch"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Tag of feature to display</prompt>
+                    <help>Tags are the types of extra values that a feature may
+             have.
+             By default any feature tag in the feature table is shown. You
+             can set this to match any feature tag you wish to show. 
+             The tag may be wildcarded by using '*'. 
+             If you wish to show more than one tag, separate their names with
+             the character '|', eg: 
+             gene | label</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tag list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "23"
+                    name = "valuematch"
+                    qualifier = "valuematch"
+                    mandatory = "false"
+                    type = "string"
+                    >
+                    <default>*</default>
+                    <prompt>Value of feature tags to display</prompt>
+                    <help>Tag values are the values associated with a feature tag.
+             Tags are the types of extra values that a feature may have.
+             By default any feature tag value in the
+             feature table is shown. You can set this to match any feature
+             tag value you wish to show. 
+             The tag value may be wildcarded by using '*'. 
+             If you wish to show more than one tag value, separate their
+             names with the character '|', eg: 
+             pax* | 10</help>
+                    <option
+                        name = "EDAM_data:1021"
+                        value = "Sequence feature qualifier"
+                        type = "normal"
+                        />
+                    <option
+                        name = "knowntype"
+                        value = "feature tagvalue list"
+                        type = "normal"
+                        />
+                </base>
+
+                <standard
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </standard>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "24"
+                    name = "stricttags"
+                    qualifier = "stricttags"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Only display the matching tags</prompt>
+                    <help>By default if any tag/value pair in a feature matches the
+             specified tag and value, then all the tags/value pairs of that
+             feature will be displayed. If this is set to be true, then only
+             those tag/value pairs in a feature that match the specified tag
+             and value will be displayed.</help>
+                    <option
+                        name = "EDAM_data:2527"
+                        value = "Parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "28"
+                    name = "threeletter"
+                    qualifier = "threeletter"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Display protein sequences in three-letter
+                  code</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "29"
+                    name = "number"
+                    qualifier = "number"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Number the sequences</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "30"
+                    name = "width"
+                    qualifier = "width"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>60</default>
+                    <prompt>Width of sequence to display</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                    <option
+                        name = "scalemin"
+                        value = "1"
+                        type = "style"
+                        />
+                </base>
+
+                <range
+                    min = "1"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "31"
+                    name = "length"
+                    qualifier = "length"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>0</default>
+                    <prompt>Line length of page (0 for indefinite)</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "32"
+                    name = "margin"
+                    qualifier = "margin"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>10</default>
+                    <prompt>Margin around sequence for numbering</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    min = "0"
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "33"
+                    name = "name"
+                    qualifier = "name"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Show sequence ID</prompt>
+                    <help>Set this to be false if you do not wish to display the ID
+           name of the sequence</help>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "34"
+                    name = "description"
+                    qualifier = "description"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Show description</prompt>
+                    <help>Set this to be false if you do not wish to display the
+           description of the sequence</help>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "35"
+                    name = "offset"
+                    qualifier = "offset"
+                    mandatory = "false"
+                    type = "long"
+                    >
+                    <default>1</default>
+                    <prompt>Offset to start numbering the sequence from</prompt>
+                    <option
+                        name = "EDAM_data:2145"
+                        value = "Sequence offset"
+                        type = "normal"
+                        />
+                </base>
+
+                <range
+                    format = "%d"
+                    >
+                    <repeatable
+                        min = "0"
+                        max = "0"
+                        >
+                    </repeatable>
+                </range>
+            </parameter>
+            <parameter>
+                <base
+                    ordering = "36"
+                    name = "html"
+                    qualifier = "html"
+                    mandatory = "false"
+                    type = "boolean"
+                    >
+                    <default>false</default>
+                    <prompt>Use HTML formatting</prompt>
+                    <option
+                        name = "EDAM_data:2152"
+                        value = "Rendering parameter"
+                        type = "normal"
+                        />
+                </base>
+
+            </parameter>
+
+            <option
+                name = "EDAM_operation:0564"
+                value = "Sequence rendering"
+                type = "normal"
+                />
+            <option
+                name = "EDAM_topic:0092"
+                value = "Data visualisation"
+                type = "normal"
+                />
+            <option
+                name = "emboss"
+                value = "true"
+                type = "normal"
+                />
+            <option
+                name = "installation"
+                value = "Soaplab2 default installation"
+                type = "normal"
+                />
+            <option
+                name = "supplier"
+                value = "Confosoft Soaplab2 Emboss Docker container"
+                type = "normal"
+                />
+            <option
+                name = "version"
+                value = "6.6.0.0"
+                type = "normal"
+                />
+
+        </analysis_extension>
+
+    </analysis>
+
+</DsLSRAnalysis>
