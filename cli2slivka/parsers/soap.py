@@ -374,7 +374,6 @@ class SoapXMLParser(CLIParser):
                 params.append(FileParameter(
                     slug         = slug,
                     name         = soap_name,
-                    galaxy_name  = soap_name,
                     description  = description,
                     required     = mandatory,
                     symlink_name = f"{soap_name}.dat",
@@ -389,7 +388,6 @@ class SoapXMLParser(CLIParser):
                 params.append(ChoiceParameter(
                     slug        = slug,
                     name        = soap_name,
-                    galaxy_name   = soap_name,
                     description = description,
                     required    = mandatory,
                     choices     = {"yes": "Y", "no": "N"},
@@ -417,7 +415,6 @@ class SoapXMLParser(CLIParser):
                     params.append(ChoiceParameter(
                         slug        = slug,
                         name        = soap_name,
-                        galaxy_name   = soap_name,
                         description = description,
                         required    = mandatory,
                         choices     = {v: v for v in allowed_vals},
@@ -426,7 +423,6 @@ class SoapXMLParser(CLIParser):
                     params.append(TextParameter(
                         slug        = slug,
                         name        = soap_name,
-                        galaxy_name   = soap_name,
                         description = description,
                         required    = mandatory,
                     ))
@@ -436,7 +432,6 @@ class SoapXMLParser(CLIParser):
                 params.append(IntegerParameter(
                     slug        = slug,
                     name        = soap_name,
-                    galaxy_name   = soap_name,
                     description = description,
                     required    = mandatory,
                     min_val     = mn,
@@ -448,7 +443,6 @@ class SoapXMLParser(CLIParser):
                 params.append(DecimalParameter(
                     slug        = slug,
                     name        = soap_name,
-                    galaxy_name   = soap_name,
                     description = description,
                     required    = mandatory,
                     min_val     = mn,
@@ -515,14 +509,14 @@ class SoapXMLParser(CLIParser):
           automatically.
         """
         # Detect all sequence base names (parameters that are FileParameter)
-        seq_bases: list = [p.galaxy_name for p in params if isinstance(p, FileParameter)]
+        seq_bases: list = [p.name for p in params if isinstance(p, FileParameter)]
 
         # Map seq_base → index (1-based)
         seq_index: dict = {base: i + 1 for i, base in enumerate(seq_bases)}
 
         args: list = []
         for p in params:
-            sname = p.galaxy_name  # e.g. "sformat_asequence"
+            sname = p.name  # e.g. "sformat_asequence"
 
             if isinstance(p, FileParameter):
                 # -asequence $(value)  with symlink

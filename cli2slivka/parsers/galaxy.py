@@ -197,7 +197,6 @@ class GalaxyXMLParser(CLIParser):
         gtype    = el.get("type", "text")
         cls      = self.TYPE_MAP.get(gtype, TextParameter) # Format (fmt)
         gname    = el.get("name", "")
-        label    = el.get("label", gname)
         help_    = el.get("help", "")
         value    = el.get("value")
         slug     = slugify(gname)
@@ -206,8 +205,7 @@ class GalaxyXMLParser(CLIParser):
 
         common = dict(
             slug        = slug, # ID
-            name        = label,
-            galaxy_name = gname,
+            name        = gname,
             description = help_,
             required    = required,
         )
@@ -255,7 +253,7 @@ class GalaxyXMLParser(CLIParser):
         return [self._detect_arg(p) for p in params]
 
     def _detect_arg(self, param: SlivkaParameter) -> SlivkaArg:
-        gname = param.galaxy_name
+        gname = param.name
 
         pattern = re.compile( # matches 3 patterns
             r"(-[\w]+\s+['\"]?\$" + re.escape(gname) + r"['\"]?)" # -threshold $threshold

@@ -34,7 +34,7 @@ Describes the base class for every parameter type.
 class SlivkaParameter(ABC):
     """
     Abstract base for all Slivka parameter types.
-    Each parameter has a slug (internal identifier), a name, galaxy_name, 
+    Each parameter has a slug (internal identifier), a name,
     descr, required or not and default properties. 
     """
 
@@ -43,14 +43,12 @@ class SlivkaParameter(ABC):
         slug: str,
         name: str,
         *,
-        galaxy_name: str = "",  #%# soap_name:
         description: str = "",
         required: bool = True,
         default=None,
     ):
         self.slug        = slug
         self.name        = name
-        self.galaxy_name = galaxy_name or slug
         self.description = description
         self.required    = required
         self.default     = default
@@ -89,8 +87,6 @@ class FileParameter(SlivkaParameter):
     # Placing extra properties in the parameter by adding to the dict.
     def extra_fields(self) -> dict:
         extra_field_dict = {}
-        if self.symlink_name:
-            extra_field_dict["symlink_name"] = self.symlink_name
         if self.media_type:
             extra_field_dict["media_type"] = self.media_type
         return extra_field_dict
@@ -238,7 +234,7 @@ class SlivkaService:
     outputs:        list             = field(default_factory=list)
     command:        str              = ""
     slivka_version: str              = "0.8.3"
-    
+
     def add_parameter(self, param: SlivkaParameter) -> "SlivkaService":
         self.parameters.append(param)
         return self
