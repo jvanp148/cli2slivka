@@ -12,8 +12,10 @@ from cli2slivka.utils.xml import slugify
 # run something like python script.py convert --format galaxy file.xml
 
 @click.command()
-@click.option("--format", type=click.Choice(["acd", "galaxy"]))
-@click.argument('inputs', type=click.Path(exists=True, dir_okay=True), required=True, nargs=-1) # accepting one or more paths
+@click.option("--format", type=click.Choice(["acd", "galaxy", "soap"])) # should be required true because if not 
+# set, than there are two different parsers that take suffix .xml as file type... Question: does the detector solve this by using the 
+# can_parse() method ???
+@click.argument('inputs', type=click.Path(exists=True , dir_okay=True), required=True, nargs=-1) # accepting one or more paths
 def convert(format, inputs): # Getting files and parsers
      parser: CLIParser | None = None
      if format:

@@ -29,12 +29,16 @@ class SlivkaYAMLWriter:
         if s.description:
             out.append(f"description: {s.description}")
         out.append(f"version: '{s.version}'")
-        out.append(f"license: {s.license}")
 
+        if s.author:
+            out.append(f"author: {s.author}")
+        
+        out.append(f"license: {s.license}")
+        
         if s.classifiers:
             out.append("classifiers:")
             for c in s.classifiers:
-                out.append(f"  - '{c}'")
+                out.append(f"- '{c}'")
 
         out += ["", "parameters:"]
         for p in s.parameters:
@@ -42,7 +46,7 @@ class SlivkaYAMLWriter:
             for k, v in p.to_dict().items():
                 out += self._render_field(k, v, indent=4)
 
-        out += ["", f"command: {s.command}", "", "args:"]
+        out += ["", f"command: {s.command}", "", "args:"] #%# we want to have command as a list so this is done differently, go to soap python
         for arg in s.args:
             out.append(f"  {arg.slug}:")
             for k, v in arg.to_dict().items():
@@ -63,6 +67,7 @@ class SlivkaYAMLWriter:
             "...",
             "",
         ]
+        #%# also added the thing for tests, but this is unnecessary...
         return "\n".join(out)
 
     def _render_field(self, key: str, value, indent: int = 4) -> list:
@@ -70,7 +75,7 @@ class SlivkaYAMLWriter:
         lines = []
         if isinstance(value, dict):
             lines.append(f"{pad}{key}:")
-            for k, v in value.items():
+            for k, v in value.items():    #%# soapthing also takes into account escape characters.
                 lines.append(f"{pad}  {k}: {v}")
         elif isinstance(value, bool):
             lines.append(f"{pad}{key}: {'true' if value else 'false'}")

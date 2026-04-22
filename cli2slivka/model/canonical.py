@@ -43,7 +43,7 @@ class SlivkaParameter(ABC):
         slug: str,
         name: str,
         *,
-        galaxy_name: str = "",
+        galaxy_name: str = "",  #%# soap_name:
         description: str = "",
         required: bool = True,
         default=None,
@@ -73,23 +73,27 @@ class SlivkaParameter(ABC):
         }
         if self.description:
             d["description"] = self.description
-        if self.default is not None:
-            d["default"] = self.default
+        if self.default is not None:   
+            d["default"] = self.default  
         d.update(self.extra_fields())
         return d
 
 # each subclass inherits the SlivkaParameter class. 
 class FileParameter(SlivkaParameter):
     slivka_type = "file"
-# Adding media_type
-    def __init__(self, *args, media_type: str = "", **kwargs):
+# Adding media_type           
+    def __init__(self, *args, media_type: str = "", symlink_name: str = "", **kwargs):
         super().__init__(*args, **kwargs)
         self.media_type = media_type
+        self.symlink_name = symlink_name
     # Placing extra properties in the parameter by adding to the dict.
     def extra_fields(self) -> dict:
+        extra_field_dict = {}
+        if self.symlink_name:
+            extra_field_dict["symlink_name"] = self.symlink_name
         if self.media_type:
-            return {"media-type": self.media_type}
-        return {}
+            extra_field_dict["media_type"] = self.media_type
+        return extra_field_dict
 
 
 class TextParameter(SlivkaParameter):
@@ -172,13 +176,13 @@ class SlivkaArg:
     slug:    str # which parameter this arg refers to
     arg:     str # the cli flag
     symlink: str | None = None # create symlink before running # if not in there than None
-    join:    str | None = None # join list values with delimiter
+    join:    str | None = None # join list values with delimiter    
     default: str | None = None   # e.g. "present" for constant args
 
     def to_dict(self) -> dict:
         d: dict = {"arg": self.arg}
         if self.symlink is not None: d["symlink"] = self.symlink
-        if self.join    is not None: d["join"]    = self.join
+        if self.join    is not None: d["join"]    = self.join   
         if self.default is not None: d["default"] = self.default
         return d
 
@@ -190,7 +194,7 @@ class SlivkaOutput:
     name:       str
     path:       str
     media_type: str
-    label:      str = ""
+    label:      str = ""    
 
     def to_dict(self) -> dict:
         return {
@@ -226,6 +230,7 @@ class SlivkaService:
     name:           str
     description:    str
     version:        str
+    author:         str              = "EMBOSS"
     license:        str              = "GPL"
     classifiers:    list             = field(default_factory=list)
     parameters:     list             = field(default_factory=list)
@@ -233,7 +238,7 @@ class SlivkaService:
     outputs:        list             = field(default_factory=list)
     command:        str              = ""
     slivka_version: str              = "0.8.3"
-
+    
     def add_parameter(self, param: SlivkaParameter) -> "SlivkaService":
         self.parameters.append(param)
         return self

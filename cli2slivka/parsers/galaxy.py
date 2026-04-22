@@ -30,10 +30,10 @@ class GalaxyXMLParser(CLIParser):
     """
 
     #: short symbolic names (e.g. "galaxy", "acd")
-    formats = ('galaxy', 'galaxy-xml', 'xml')
+    formats = ('galaxy', 'galaxy-xml', 'galaxy_xml')
 
     #: file suffixes this parser understands
-    suffixes = ('.xml',)
+    suffixes = ('.xml',) #%# will be problem when soap also has .xml!
 
 ### This could come into a separate file.
 # Mapping galaxy parameters to slivka parameter classes 
