@@ -1,12 +1,7 @@
 ---
 slivka-version: 0.8.3
-name: Needle
-description: Needle reads two input sequences and writes their optimal global
-  sequence alignment to file. It uses the Needleman-Wunsch alignment algorithm
-  to find the optimum alignment (including gaps) of two sequences along their
-  entire length. The algorithm uses a dynamic programming method to ensure the
-  alignment is optimum, by exploring all possible alignments and choosing the
-  best.
+name: needle
+description: Needleman-Wunsch global alignment of two sequences
 author: EMBOSS
 version: '6.6.0.0'
 license: GPL
@@ -18,23 +13,12 @@ classifiers:
 
 parameters:
   asequence:
-    name: Sequence A (file)
-    description: First input sequence file for global alignment. Accepted formats
-      include fasta, genbank, embl, swissprot, and many more.
+    name: asequence
     type: file
     required: true
 
-  asequence-direct:
-    name: Sequence A (text)
-    description: First input sequence provided as raw text (e.g. pasted FASTA).
-      Use either this or the file input, not both.
-    type: text
-    required: false
-
   sformat-asequence:
-    name: Format of sequence A
-    description: Input format of the first sequence. Leave unset for automatic
-      detection.
+    name: sformat_asequence
     type: choice
     required: false
     choices:
@@ -89,66 +73,64 @@ parameters:
       treecon: treecon
 
   sbegin-asequence:
-    name: Sequence A start position
-    description: Start position in sequence A (1-based). Use 0 to start from
-      the beginning.
+    name: sbegin_asequence
     type: integer
     required: false
     min: 0
 
   send-asequence:
-    name: Sequence A end position
-    description: End position in sequence A (1-based). Use 0 for no limit.
+    name: send_asequence
     type: integer
     required: false
     min: 0
 
   sprotein-asequence:
-    name: Treat sequence A as protein
-    description: Force sequence A to be treated as a protein sequence.
-    type: flag
+    name: sprotein_asequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   snucleotide-asequence:
-    name: Treat sequence A as nucleotide
-    description: Force sequence A to be treated as a nucleotide sequence.
-    type: flag
+    name: snucleotide_asequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   sreverse-asequence:
-    name: Reverse-complement sequence A
-    description: Reverse-complement sequence A before alignment.
-    type: flag
+    name: sreverse_asequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   slower-asequence:
-    name: Lowercase sequence A
-    description: Convert sequence A to lowercase.
-    type: flag
+    name: slower_asequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   supper-asequence:
-    name: Uppercase sequence A
-    description: Convert sequence A to uppercase.
-    type: flag
+    name: supper_asequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   bsequence:
-    name: Sequence B (file)
-    description: Second input sequence file for global alignment.
+    name: bsequence
     type: file
     required: true
 
-  bsequence-direct:
-    name: Sequence B (text)
-    description: Second input sequence provided as raw text (e.g. pasted FASTA).
-    type: text
-    required: false
-
   sformat-bsequence:
-    name: Format of sequence B
-    description: Input format of the second sequence. Leave unset for automatic
-      detection.
+    name: sformat_bsequence
     type: choice
     required: false
     choices:
@@ -203,113 +185,112 @@ parameters:
       treecon: treecon
 
   sbegin-bsequence:
-    name: Sequence B start position
-    description: Start position in sequence B (1-based). Use 0 to start from
-      the beginning.
+    name: sbegin_bsequence
     type: integer
     required: false
     min: 0
 
   send-bsequence:
-    name: Sequence B end position
-    description: End position in sequence B (1-based). Use 0 for no limit.
+    name: send_bsequence
     type: integer
     required: false
     min: 0
 
   sprotein-bsequence:
-    name: Treat sequence B as protein
-    description: Force sequence B to be treated as a protein sequence.
-    type: flag
+    name: sprotein_bsequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   snucleotide-bsequence:
-    name: Treat sequence B as nucleotide
-    description: Force sequence B to be treated as a nucleotide sequence.
-    type: flag
+    name: snucleotide_bsequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   sreverse-bsequence:
-    name: Reverse-complement sequence B
-    description: Reverse-complement sequence B before alignment.
-    type: flag
+    name: sreverse_bsequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   slower-bsequence:
-    name: Lowercase sequence B
-    description: Convert sequence B to lowercase.
-    type: flag
+    name: slower_bsequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   supper-bsequence:
-    name: Uppercase sequence B
-    description: Convert sequence B to uppercase.
-    type: flag
+    name: supper_bsequence
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   gapopen:
-    name: Gap opening penalty
-    description: The score taken away when a gap is created. The best value
-      depends on the comparison matrix. The default assumes EBLOSUM62 for
-      protein and EDNAFULL for nucleotide sequences.
+    name: gapopen
+    description: Gap opening penalty
     type: float
     required: false
-    default: 10.0
     min: 0.0
     max: 100.0
 
   gapextend:
-    name: Gap extension penalty
-    description: The penalty added for each residue in a gap. This penalises
-      longer gaps relative to shorter ones. Usually set lower than the gap
-      opening penalty.
+    name: gapextend
+    description: Gap extension penalty
     type: float
     required: false
-    default: 0.5
     min: 0.0
     max: 10.0
 
   datafile:
-    name: Scoring matrix file
-    description: The scoring matrix file used when comparing sequences. By
-      default EBLOSUM62 (proteins) or EDNAFULL (nucleotides), from the EMBOSS
-      data directory.
+    name: datafile
+    description: Matrix file
     type: text
     required: false
 
   endweight:
-    name: Apply end gap penalties
-    description: Apply end gap penalties, penalising gaps at the ends of the
-      alignment similarly to internal gaps.
-    type: flag
+    name: endweight
+    description: Apply end gap penalties
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
   endopen:
-    name: End gap opening penalty
-    description: The score taken away when an end gap is created. Only active
-      when end gap penalties are enabled.
+    name: endopen
+    description: End gap opening penalty
     type: float
     required: false
-    default: 10.0
     min: 0.0
     max: 100.0
 
   endextend:
-    name: End gap extension penalty
-    description: The penalty added for each residue in an end gap. Only active
-      when end gap penalties are enabled.
+    name: endextend
+    description: End gap extension penalty
     type: float
     required: false
-    default: 0.5
     min: 0.0
     max: 10.0
 
   brief:
-    name: Brief identity and similarity
-    description: Show only the identity and similarity scores in a brief format
-      rather than the full alignment output.
-    type: flag
+    name: brief
+    description: Brief identity and similarity
+    type: choice
     required: false
+    choices:
+      yes: Y
+      no: N
 
 command: needle
 
@@ -317,8 +298,6 @@ args:
   asequence:
     arg: -asequence $(value)
     symlink: asequence.dat
-  asequence-direct:
-    arg: -asequence $(value)
   sformat-asequence:
     arg: -sformat1 $(value)
   sbegin-asequence:
@@ -326,20 +305,18 @@ args:
   send-asequence:
     arg: -send1 $(value)
   sprotein-asequence:
-    arg: -sprotein1
+    arg: -sprotein1 $(value)
   snucleotide-asequence:
-    arg: -snucleotide1
+    arg: -snucleotide1 $(value)
   sreverse-asequence:
-    arg: -sreverse1
+    arg: -sreverse1 $(value)
   slower-asequence:
-    arg: -slower1
+    arg: -slower1 $(value)
   supper-asequence:
-    arg: -supper1
+    arg: -supper1 $(value)
   bsequence:
     arg: -bsequence $(value)
     symlink: bsequence.dat
-  bsequence-direct:
-    arg: -bsequence $(value)
   sformat-bsequence:
     arg: -sformat2 $(value)
   sbegin-bsequence:
@@ -347,15 +324,15 @@ args:
   send-bsequence:
     arg: -send2 $(value)
   sprotein-bsequence:
-    arg: -sprotein2
+    arg: -sprotein2 $(value)
   snucleotide-bsequence:
-    arg: -snucleotide2
+    arg: -snucleotide2 $(value)
   sreverse-bsequence:
-    arg: -sreverse2
+    arg: -sreverse2 $(value)
   slower-bsequence:
-    arg: -slower2
+    arg: -slower2 $(value)
   supper-bsequence:
-    arg: -supper2
+    arg: -supper2 $(value)
   gapopen:
     arg: -gapopen $(value)
   gapextend:
@@ -363,32 +340,26 @@ args:
   datafile:
     arg: -datafile $(value)
   endweight:
-    arg: -endweight
+    arg: -endweight $(value)
   endopen:
     arg: -endopen $(value)
   endextend:
     arg: -endextend $(value)
   brief:
-    arg: -brief
+    arg: -brief $(value)
   _outfile:
     arg: -outfile $(value)
     default: outfile.needle
-  _aformat:
-    arg: -aformat markx0
-    default: present
 
 outputs:
   alignment:
     path: outfile.needle
-    name: Alignment output
     media-type: text/plain
   log:
     path: stdout
-    name: Standard log
     media-type: text/plain
   error-log:
     path: stderr
-    name: Error log
     media-type: text/plain
 
 execution:

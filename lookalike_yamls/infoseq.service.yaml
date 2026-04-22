@@ -1,14 +1,8 @@
 ---
 slivka-version: 0.8.3
 name: Infoseq
-description: Infoseq displays basic information about sequences in a tabular
-  format. For each input sequence it can report fields such as the USA, database
-  name, sequence name, accession number, GI number, sequence version, type
-  (nucleotide or protein), length, percent GC content, organism, and description.
-  Output can be formatted as aligned columns or as delimiter-separated records,
-  and optionally as an HTML table.
-author: EMBOSS
-version: '6.6.0.0'
+description: Display basic information about sequences
+version: 6.6.0.0
 license: GPL
 
 classifiers:
@@ -18,23 +12,12 @@ classifiers:
 
 parameters:
   sequence:
-    name: Input sequence (file)
-    description: One or more sequences to retrieve information about. Common
-      formats include fasta, genbank, embl, and swissprot.
+    name: sequence
     type: file
     required: true
 
-  sequence-direct:
-    name: Input sequence (text)
-    description: Input sequence(s) provided as raw text (e.g. pasted FASTA).
-      Use either this or the file input, not both.
-    type: text
-    required: false
-
   sformat-sequence:
-    name: Sequence input format
-    description: Format of the input sequence file. Leave unset for automatic
-      detection.
+    name: sformat_sequence
     type: choice
     required: false
     choices:
@@ -89,213 +72,255 @@ parameters:
       treecon: treecon
 
   sbegin-sequence:
-    name: Sequence start position
-    description: Start position within the sequence (1-based). Use 0 for the
-      beginning.
+    name: sbegin_sequence
     type: integer
     required: false
     min: 0
 
   send-sequence:
-    name: Sequence end position
-    description: End position within the sequence (1-based). Use 0 for no
-      limit.
+    name: send_sequence
     type: integer
     required: false
     min: 0
 
   sprotein-sequence:
-    name: Treat sequence as protein
-    description: Force the input to be treated as a protein sequence.
-    type: flag
+    name: sprotein_sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   snucleotide-sequence:
-    name: Treat sequence as nucleotide
-    description: Force the input to be treated as a nucleotide sequence.
-    type: flag
+    name: snucleotide_sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   sreverse-sequence:
-    name: Reverse-complement sequence
-    description: Reverse-complement the sequence before processing.
-    type: flag
+    name: sreverse_sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   slower-sequence:
-    name: Lowercase sequence
-    description: Convert the sequence to lowercase before processing.
-    type: flag
+    name: slower_sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   supper-sequence:
-    name: Uppercase sequence
-    description: Convert the sequence to uppercase before processing.
-    type: flag
+    name: supper_sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   columns:
-    name: Print in aligned columns
-    description: Print sequence information in neat, aligned columns. When set,
-      the delimiter option is ignored.
-    type: flag
+    name: columns
+    description: Print information in neat, aligned columns.
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   delimiter:
-    name: Record delimiter
-    description: Character or string used to separate fields in the text output
-      when column mode is off. Default is the pipe character.
+    name: delimiter
+    description: Delimiter of records in text output file
     type: text
     required: false
     default: '|'
 
+
   html:
-    name: Format output as HTML table
-    description: Produce an HTML-formatted table of sequence information
-      instead of plain text.
-    type: flag
+    name: html
+    description: Format output as an HTML table
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   only:
-    name: Display specified columns only
-    description: Suppress all columns by default. Use together with individual
-      column flags (e.g. -length) to show only those fields. This is a
-      shorthand for individually disabling every other column.
-    type: flag
+    name: only
+    description: Display the specified columns
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   heading:
-    name: Display column headings
-    description: Print a header line with column names at the top of the
-      output.
-    type: flag
+    name: heading
+    description: Display column headings
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   usa:
-    name: Display USA column
-    description: Include the Uniform Sequence Address (USA) of each sequence
-      in the output.
-    type: flag
+    name: usa
+    description: Display the USA of the sequence
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   database:
-    name: Display database column
-    description: Include the source database name for each sequence.
-    type: flag
+    name: database
+    description: Display database column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   name:
-    name: Display name column
-    description: Include the sequence name field in the output.
-    type: flag
+    name: name
+    description: Display name column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   accession:
-    name: Display accession column
-    description: Include the accession number for each sequence.
-    type: flag
+    name: accession
+    description: Display accession column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   gi:
-    name: Display GI column
-    description: Include the NCBI GI number for each sequence.
-    type: flag
+    name: gi
+    description: Display GI column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   seqversion:
-    name: Display version column
-    description: Include the sequence version number in the output.
-    type: flag
+    name: seqversion
+    description: Display version column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   type:
-    name: Display type column
-    description: Include the sequence type (nucleotide or protein) in the
-      output.
-    type: flag
+    name: type
+    description: Display type column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   length:
-    name: Display length column
-    description: Include the sequence length (in residues or base pairs) in
-      the output.
-    type: flag
+    name: length
+    description: Display length column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   pgc:
-    name: Display percent GC content column
-    description: Include the percentage GC content for each sequence.
-    type: flag
+    name: pgc
+    description: Display percent GC content column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   organism:
-    name: Display organism column
-    description: Include the source organism name for each sequence.
-    type: flag
+    name: organism
+    description: Display organism column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
   description:
-    name: Display description column
-    description: Include the free-text description line for each sequence.
-    type: flag
+    name: description
+    description: Display description column
+    type: choice
     required: false
+    choices: 
+      yes: Y
+      no: N
 
-command: infoseq
+command: 
+- infoseq
 
 args:
   sequence:
     arg: -sequence $(value)
     symlink: input_sequence.dat
-  sequence-direct:
-    arg: -sequence $(value)
   sformat-sequence:
-    arg: -sformat $(value)
+    arg: -sformat1 $(value)
   sbegin-sequence:
-    arg: -sbegin $(value)
+    arg: -sbegin1 $(value)
   send-sequence:
-    arg: -send $(value)
+    arg: -send1 $(value)
   sprotein-sequence:
-    arg: -sprotein
+    arg: -sprotein1 $(value)
   snucleotide-sequence:
-    arg: -snucleotide
+    arg: -snucleotide1 $(value)
   sreverse-sequence:
-    arg: -sreverse
+    arg: -sreverse1 $(value)
   slower-sequence:
-    arg: -slower
+    arg: -slower1 $(value)
   supper-sequence:
-    arg: -supper
+    arg: -supper1 $(value)
   columns:
-    arg: -columns
+    arg: -columns $(value)
   delimiter:
     arg: -delimiter $(value)
   html:
-    arg: -html
+    arg: -html $(value)
   only:
-    arg: -only
+    arg: -only $(value)
   heading:
-    arg: -heading
+    arg: -heading $(value)
   usa:
-    arg: -usa
+    arg: -usa $(value)
   database:
-    arg: -database
+    arg: -database $(value)
   name:
-    arg: -name
+    arg: -name $(value)
   accession:
-    arg: -accession
+    arg: -accession $(value)
   gi:
-    arg: -gi
+    arg: -gi $(value)
   seqversion:
-    arg: -seqversion
+    arg: -seqversion $(value)
   type:
-    arg: -type
+    arg: -type $(value)
   length:
-    arg: -length
+    arg: -length $(value)
   pgc:
-    arg: -pgc
+    arg: -pgc $(value)
   organism:
-    arg: -organism
+    arg: -organism $(value)
   description:
-    arg: -description
+    arg: -description $(value)
   _outfile:
     arg: -outfile $(value)
     default: outfile.infoseq
@@ -303,15 +328,12 @@ args:
 outputs:
   sequence-info:
     path: outfile.infoseq
-    name: Sequence information table
     media-type: text/plain
   log:
     path: stdout
-    name: Standard log
     media-type: text/plain
   error-log:
     path: stderr
-    name: Error log
     media-type: text/plain
 
 execution:
