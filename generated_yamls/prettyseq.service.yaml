@@ -1,0 +1,242 @@
+---
+slivka-version: 0.8.3
+name: prettyseq
+description: Write a nucleotide sequence and its translation to file
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: DNA translation'
+- 'Operation :: Sequence rendering'
+- 'Topic :: Data visualisation'
+- 'Topic :: Translation'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  range:
+    name: range
+    type: text
+    required: false
+    description: Range(s) to translate
+  table:
+    name: table
+    type: choice
+    required: false
+    description: Genetic codes
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "9": "9"
+      "10": "10"
+      "11": "11"
+      "12": "12"
+      "13": "13"
+      "14": "14"
+      "15": "15"
+      "16": "16"
+      "21": "21"
+      "22": "22"
+      "23": "23"
+  ruler:
+    name: ruler
+    type: choice
+    required: false
+    description: Add a ruler
+    choices:
+      yes: Y
+      no: N
+  plabel:
+    name: plabel
+    type: choice
+    required: false
+    description: Number translations
+    choices:
+      yes: Y
+      no: N
+  nlabel:
+    name: nlabel
+    type: choice
+    required: false
+    description: Number DNA sequence
+    choices:
+      yes: Y
+      no: N
+  width:
+    name: width
+    type: integer
+    required: false
+    description: Width of screen
+    min: 10
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: prettyseq
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  range:
+    arg: -range $(value)
+  table:
+    arg: -table $(value)
+  ruler:
+    arg: -ruler $(value)
+  plabel:
+    arg: -plabel $(value)
+  nlabel:
+    arg: -nlabel $(value)
+  width:
+    arg: -width $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  nucleic-acid-features:
+    name: nucleic-acid-features
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

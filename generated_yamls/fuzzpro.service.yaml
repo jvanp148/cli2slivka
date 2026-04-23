@@ -1,0 +1,177 @@
+---
+slivka-version: 0.8.3
+name: fuzzpro
+description: Search for patterns in protein sequences
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence database search (by motif or pattern)'
+- 'Operation :: Protein site detection'
+- 'Topic :: Sequence motifs'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  pattern:
+    name: pattern
+    type: text
+    required: true
+    description: "Search pattern. The standard IUPAC one-letter codes for the amino acids are used. The symbol 'x' is used for a position where any amino acid is accepted. Ambiguities are indicated by listing the acceptable amino acids for a given position, between square parentheses '[ ]'. For example: [ALT] stands for Ala or Leu or Thr. Ambiguities are also indicated by listing between a pair of curly brackets '{ }' the amino acids that are not accepted at a given position. For example: {AM} stands for any amino acid except Ala and Met. Each element in a pattern is separated from its neighbor by a '-'. (Optional in fuzzpro). Repetition of an element of the pattern can be indicated by following that element with a numerical value or a numerical range between parenthesis. Examples: x(3) corresponds to x-x-x, x(2,4) corresponds to x-x or x-x-x or x-x-x-x. When a pattern is restricted to either the N- or C-terminal of a sequence, that pattern either starts with a '<' symbol or respectively ends with a '>' symbol. A period ends the pattern. (Optional in fuzzpro). For example, [DE](2)HS{P}X(2)PX(2,4)C"
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: fuzzpro
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  pattern:
+    arg: -pattern $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  sequence-features:
+    name: sequence-features
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

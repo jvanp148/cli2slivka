@@ -1,0 +1,354 @@
+---
+slivka-version: 0.8.3
+name: infoalign
+description: Display basic information about a multiple sequence alignment
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence rendering'
+- 'Operation :: Data retrieval'
+- 'Topic :: Data search and retrieval'
+- 'Topic :: Sequence alignment'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+    description: The sequence alignment to be displayed.
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  matrix:
+    name: matrix
+    type: text
+    required: false
+    description: Similarity scoring Matrix file. This is the scoring matrix file used when comparing sequences. By default it is the file 'EBLOSUM62' (for proteins) or the file 'EDNAFULL' (for nucleic sequences). These files are found in the 'data' directory of the EMBOSS installation.
+  refseq:
+    name: refseq
+    type: text
+    required: false
+    description: "The number or the name of the reference sequence. If you give the number in the alignment or the name of a sequence, it will be taken to be the reference sequence. The reference sequence is the one against which all the other sequences are compared. If this is set to 0 then the consensus sequence will be used as the reference sequence. By default the consensus sequence is used as the reference sequence."
+  plurality:
+    name: plurality
+    type: decimal
+    required: false
+    description: Plurality check % for consensus. Set a cut-off for the % of positive scoring matches below which there is no consensus. The default plurality is taken as 50% of the total weight of all the sequences in the alignment.
+    min: 0.0
+    max: 100.0
+  identity:
+    name: identity
+    type: decimal
+    required: false
+    description: "Required % of identities at a position fro consensus. Provides the facility of setting the required number of identities at a position for it to give a consensus. Therefore, if this is set to 100% only columns of identities contribute to the consensus."
+    min: 0.0
+    max: 100.0
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Format output as an HTML table
+    choices:
+      yes: Y
+      no: N
+  only:
+    name: only
+    type: choice
+    required: false
+    description: "Display the specified columns. This is a way of shortening the command line if you only want a few things to be displayed. Instead of specifying: '-nohead -nousa -noname -noalign -nogaps -nogapcount -nosimcount -noidcount -nodiffcount -noweight' to get only the sequence length output, you can specify '-only -seqlength'"
+    choices:
+      yes: Y
+      no: N
+  heading:
+    name: heading
+    type: choice
+    required: false
+    description: Display column headings
+    choices:
+      yes: Y
+      no: N
+  usa:
+    name: usa
+    type: choice
+    required: false
+    description: Display the USA of the sequence
+    choices:
+      yes: Y
+      no: N
+  name:
+    name: name
+    type: choice
+    required: false
+    description: Display 'name' column
+    choices:
+      yes: Y
+      no: N
+  seqlength:
+    name: seqlength
+    type: choice
+    required: false
+    description: Display 'seqlength' column
+    choices:
+      yes: Y
+      no: N
+  alignlength:
+    name: alignlength
+    type: choice
+    required: false
+    description: Display 'alignlength' column
+    choices:
+      yes: Y
+      no: N
+  gaps:
+    name: gaps
+    type: choice
+    required: false
+    description: Display number of gaps
+    choices:
+      yes: Y
+      no: N
+  gapcount:
+    name: gapcount
+    type: choice
+    required: false
+    description: Display number of gap positions
+    choices:
+      yes: Y
+      no: N
+  idcount:
+    name: idcount
+    type: choice
+    required: false
+    description: Display number of identical positions
+    choices:
+      yes: Y
+      no: N
+  simcount:
+    name: simcount
+    type: choice
+    required: false
+    description: Display number of similar positions
+    choices:
+      yes: Y
+      no: N
+  diffcount:
+    name: diffcount
+    type: choice
+    required: false
+    description: Display number of different positions
+    choices:
+      yes: Y
+      no: N
+  change:
+    name: change
+    type: choice
+    required: false
+    description: Display % number of changed positions
+    choices:
+      yes: Y
+      no: N
+  weight:
+    name: weight
+    type: choice
+    required: false
+    description: Display 'weight' column
+    choices:
+      yes: Y
+      no: N
+  description:
+    name: description
+    type: choice
+    required: false
+    description: Display 'description' column
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: infoalign
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  matrix:
+    arg: -matrix $(value)
+  refseq:
+    arg: -refseq $(value)
+  plurality:
+    arg: -plurality $(value)
+  identity:
+    arg: -identity $(value)
+  html:
+    arg: -html $(value)
+  only:
+    arg: -only $(value)
+  heading:
+    arg: -heading $(value)
+  usa:
+    arg: -usa $(value)
+  name:
+    arg: -name $(value)
+  seqlength:
+    arg: -seqlength $(value)
+  alignlength:
+    arg: -alignlength $(value)
+  gaps:
+    arg: -gaps $(value)
+  gapcount:
+    arg: -gapcount $(value)
+  idcount:
+    arg: -idcount $(value)
+  simcount:
+    arg: -simcount $(value)
+  diffcount:
+    arg: -diffcount $(value)
+  change:
+    arg: -change $(value)
+  weight:
+    arg: -weight $(value)
+  description:
+    arg: -description $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  sequence-alignment-metadata:
+    name: sequence-alignment-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

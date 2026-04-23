@@ -1,0 +1,86 @@
+---
+slivka-version: 0.8.3
+name: redata
+description: Retrieve information from REBASE restriction enzyme database
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Nucleic acid restriction'
+
+parameters:
+  enzyme:
+    name: enzyme
+    type: text
+    required: false
+    description: "Restriction enzyme name. Enter the name of the restriction enzyme that you wish to get details of. The names often have a 'I' in them - this is a capital 'i', not a '1' or an 'l'. The names are case-independent ('AaeI' is the same as 'aaei')"
+  isoschizomers:
+    name: isoschizomers
+    type: choice
+    required: false
+    description: Show isoschizomers. Show other enzymes with this specificity. (Isoschizomers)
+    choices:
+      yes: Y
+      no: N
+  references:
+    name: references
+    type: choice
+    required: false
+    description: Show references
+    choices:
+      yes: Y
+      no: N
+  suppliers:
+    name: suppliers
+    type: choice
+    required: false
+    description: Show suppliers
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: redata
+
+args:
+  enzyme:
+    arg: -enzyme $(value)
+  isoschizomers:
+    arg: -isoschizomers $(value)
+  references:
+    arg: -references $(value)
+  suppliers:
+    arg: -suppliers $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  restriction-enzyme-property:
+    name: restriction-enzyme-property
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

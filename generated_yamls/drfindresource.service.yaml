@@ -1,0 +1,77 @@
+---
+slivka-version: 0.8.3
+name: drfindresource
+description: Find public databases by resource
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval (database metadata)'
+- 'Topic :: Data search and retrieval'
+- 'Topic :: Annotation'
+
+parameters:
+  query:
+    name: query
+    type: text
+    required: false
+    description: List of EDAM data keywords
+  sensitive:
+    name: sensitive
+    type: choice
+    required: false
+    description: "Increase sensitivity of search. By default, the query keywords are matched against the EDAM term names (and synonyms) only. This option also matches the keywords against the EDAM term definitions and will therefore (typically) report more matches."
+    choices:
+      yes: Y
+      no: N
+  subclasses:
+    name: subclasses
+    type: choice
+    required: false
+    description: Include subclasses of hits. Extend the query matches to include all terms which are specialisations (EDAM sub-classes) of the matched type.
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: drfindresource
+
+args:
+  query:
+    arg: -query $(value)
+  sensitive:
+    arg: -sensitive $(value)
+  subclasses:
+    arg: -subclasses $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  database-metadata:
+    name: database-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

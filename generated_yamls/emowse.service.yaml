@@ -1,0 +1,251 @@
+---
+slivka-version: 0.8.3
+name: emowse
+description: Search protein sequences by digest fragment molecular weight
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence database search (by molecular weight)'
+- 'Topic :: Sequence composition analysis'
+- 'Topic :: Protein and peptide identification'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  infile:
+    name: infile
+    type: text
+    required: true
+    description: Peptide molecular weight values file
+  weight:
+    name: weight
+    type: integer
+    required: false
+    description: Whole sequence molwt
+  mono:
+    name: mono
+    type: choice
+    required: false
+    description: Use monoisotopic weights
+    choices:
+      yes: Y
+      no: N
+  mwdata:
+    name: mwdata
+    type: text
+    required: false
+    description: Molecular weights data file
+  frequencies:
+    name: frequencies
+    type: text
+    required: false
+    description: Amino acid frequencies data file
+  enzyme:
+    name: enzyme
+    type: choice
+    required: false
+    description: Enzymes and reagents
+    choices:
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "7": "7"
+      "8": "8"
+  pcrange:
+    name: pcrange
+    type: integer
+    required: false
+    description: Allowed whole sequence weight variability
+    min: 0
+    max: 75
+  tolerance:
+    name: tolerance
+    type: decimal
+    required: false
+    description: Tolerance
+    min: 0.1
+    max: 1.0
+  partials:
+    name: partials
+    type: decimal
+    required: false
+    description: Partials factor
+    min: 0.1
+    max: 1.0
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: emowse
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  infile:
+    arg: -infile $(value)
+  weight:
+    arg: -weight $(value)
+  mono:
+    arg: -mono $(value)
+  mwdata:
+    arg: -mwdata $(value)
+  frequencies:
+    arg: -frequencies $(value)
+  enzyme:
+    arg: -enzyme $(value)
+  pcrange:
+    arg: -pcrange $(value)
+  tolerance:
+    arg: -tolerance $(value)
+  partials:
+    arg: -partials $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  peptide-molecular-weight-hits:
+    name: peptide-molecular-weight-hits
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

@@ -1,12 +1,13 @@
 ---
 slivka-version: 0.8.3
-name: needle
-description: Needleman-Wunsch global alignment of two sequences
+name: diffseq
+description: Compare and report features of two similar sequences
 version: '6.6.0.0'
 author: EMBOSS
 license: GPL
 classifiers:
-- 'Operation :: Pairwise sequence alignment construction (global)'
+- 'Operation :: Feature comparison'
+- 'Topic :: Sequence sites and features'
 - 'Topic :: Sequence alignment'
 
 parameters:
@@ -212,55 +213,58 @@ parameters:
     choices:
       yes: Y
       no: N
-  gapopen:
-    name: gapopen
-    type: decimal
+  wordsize:
+    name: wordsize
+    type: integer
     required: false
-    description: "Gap opening penalty. The gap open penalty is the score taken away when a gap is created. The best value depends on the choice of comparison matrix. The default value assumes you are using the EBLOSUM62 matrix for protein sequences, and the EDNAFULL matrix for nucleotide sequences."
-    min: 0.0
-    max: 100.0
-  gapextend:
-    name: gapextend
-    type: decimal
-    required: false
-    description: "Gap extension penalty. The gap extension, penalty is added to the standard gap penalty for each base or residue in the gap. This is how long gaps are penalized. Usually you will expect a few long gaps rather than many short gaps, so the gap extension penalty should be lower than the gap penalty. An exception is where one or both sequences are single reads with possible sequencing errors in which case you would expect many single base gaps. You can get this result by setting the gap open penalty to zero (or very low) and using the gap extension penalty to control gap scoring."
-    min: 0.0
-    max: 10.0
-  datafile:
-    name: datafile
+    description: "Word size. The similar regions between the two sequences are found by creating a hash table of 'wordsize'd subsequences. 10 is a reasonable default. Making this value larger (20?) may speed up the program slightly, but will mean that any two differences within 'wordsize' of each other will be grouped as a single region of difference. This value may be made smaller (4?) to improve the resolution of nearby differences, but the program will go much slower."
+    min: 2
+  aoutfeat:
+    name: aoutfeat
     type: text
     required: false
-    description: Matrix file. This is the scoring matrix file used when comparing sequences. By default it is the file 'EBLOSUM62' (for proteins) or the file 'EDNAFULL' (for nucleic sequences). These files are found in the 'data' directory of the EMBOSS installation.
-  endweight:
-    name: endweight
+    description: File for output of first sequence's features
+  boutfeat:
+    name: boutfeat
+    type: text
+    required: false
+    description: File for output of second sequence's features
+  globaldifferences:
+    name: globaldifferences
     type: choice
     required: false
-    description: Apply end gap penalties
+    description: "Force reporting of differences at the start and end. Normally this program will find regions of identity that are the length of the specified word-size or greater and will then report the regions of difference between these matching regions. This works well and is what most people want if they are working with long overlapping nucleic acid sequences. You are usually not interested in the non-overlapping ends of these sequences. If you have protein sequences or short RNA sequences however, you will be interested in differences at the very ends . It this option is set to be true then the differences at the ends will also be reported."
     choices:
       yes: Y
       no: N
-  endopen:
-    name: endopen
-    type: decimal
-    required: false
-    description: "End gap opening penalty. The end gap open penalty is the score taken away when an end gap is created. The best value depends on the choice of comparison matrix. The default value assumes you are using the EBLOSUM62 matrix for protein sequences, and the EDNAFULL matrix for nucleotide sequences."
-    min: 0.0
-    max: 100.0
-  endextend:
-    name: endextend
-    type: decimal
-    required: false
-    description: "End gap extension penalty. The end gap extension, penalty is added to the end gap penalty for each base or residue in the end gap. This is how long end gaps are penalized."
-    min: 0.0
-    max: 10.0
-  brief:
-    name: brief
+  offormat-aoutfeat:
+    name: offormat_aoutfeat
     type: choice
     required: false
-    description: Brief identity and similarity
+    description: Format of the output features (aoutfeat)
     choices:
-      yes: Y
-      no: N
+      gff: gff
+      gff2: gff2
+      embl: embl
+      genbank: genbank
+      ddbj: ddbj
+      pir: pir
+      swiss: swiss
+      dasgff: dasgff
+  offormat-boutfeat:
+    name: offormat_boutfeat
+    type: choice
+    required: false
+    description: Format of the output features (boutfeat)
+    choices:
+      gff: gff
+      gff2: gff2
+      embl: embl
+      genbank: genbank
+      ddbj: ddbj
+      pir: pir
+      swiss: swiss
+      dasgff: dasgff
   help:
     name: help
     type: choice
@@ -270,7 +274,7 @@ parameters:
       yes: Y
       no: N
 
-command: needle
+command: diffseq
 
 args:
   asequence:
@@ -311,30 +315,28 @@ args:
     arg: -slower2 $(value)
   supper-bsequence:
     arg: -supper2 $(value)
-  gapopen:
-    arg: -gapopen $(value)
-  gapextend:
-    arg: -gapextend $(value)
-  datafile:
-    arg: -datafile $(value)
-  endweight:
-    arg: -endweight $(value)
-  endopen:
-    arg: -endopen $(value)
-  endextend:
-    arg: -endextend $(value)
-  brief:
-    arg: -brief $(value)
+  wordsize:
+    arg: -wordsize $(value)
+  aoutfeat:
+    arg: -aoutfeat $(value)
+  boutfeat:
+    arg: -boutfeat $(value)
+  globaldifferences:
+    arg: -globaldifferences $(value)
+  offormat-aoutfeat:
+    arg: -offormat_aoutfeat $(value)
+  offormat-boutfeat:
+    arg: -offormat_boutfeat $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.needle
+    default: outfile.out
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.needle
+  feature-record:
+    name: feature-record
+    path: outfile.out
     media-type: text/plain
   log:
     name: log

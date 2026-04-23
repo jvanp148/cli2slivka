@@ -1,0 +1,275 @@
+---
+slivka-version: 0.8.3
+name: dbxresource
+description: Index a data resource catalogue using b+tree indices
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data indexing'
+- 'Topic :: Data handling'
+
+parameters:
+  dbname:
+    name: dbname
+    type: text
+    required: false
+    description: Basename for index files
+  standardname:
+    name: standardname
+    type: text
+    required: false
+    description: Standard database name
+  dbresource:
+    name: dbresource
+    type: text
+    required: false
+    description: Resource name
+  filenames:
+    name: filenames
+    type: text
+    required: false
+    description: Wildcard database filename
+  fields:
+    name: fields
+    type: text
+    required: false
+    description: Index fields
+  compressed:
+    name: compressed
+    type: choice
+    required: false
+    description: Compressed index files
+    choices:
+      yes: Y
+      no: N
+  release:
+    name: release
+    type: text
+    required: false
+    description: Release number
+  date:
+    name: date
+    type: text
+    required: false
+    description: Index date
+  exclude:
+    name: exclude
+    type: text
+    required: false
+    description: Wildcard filename(s) to exclude
+  indexoutdir:
+    name: indexoutdir
+    type: text
+    required: false
+    description: Index file output directory
+  fields-id:
+    name: fields_id
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-acc:
+    name: fields_acc
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-nam:
+    name: fields_nam
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-des:
+    name: fields_des
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-cat:
+    name: fields_cat
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-taxid:
+    name: fields_taxid
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-edat:
+    name: fields_edat
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-efmt:
+    name: fields_efmt
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-eid:
+    name: fields_eid
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-etpc:
+    name: fields_etpc
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-xref:
+    name: fields_xref
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-qout:
+    name: fields_qout
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-qfmt:
+    name: fields_qfmt
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-qin:
+    name: fields_qin
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-qurl:
+    name: fields_qurl
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-rest:
+    name: fields_rest
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-soap:
+    name: fields_soap
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: dbxresource
+
+args:
+  dbname:
+    arg: -dbname $(value)
+  standardname:
+    arg: -standardname $(value)
+  dbresource:
+    arg: -dbresource $(value)
+  filenames:
+    arg: -filenames $(value)
+  fields:
+    arg: -fields $(value)
+  compressed:
+    arg: -compressed $(value)
+  release:
+    arg: -release $(value)
+  date:
+    arg: -date $(value)
+  exclude:
+    arg: -exclude $(value)
+  indexoutdir:
+    arg: -indexoutdir $(value)
+  fields-id:
+    arg: -fields_id $(value)
+  fields-acc:
+    arg: -fields_acc $(value)
+  fields-nam:
+    arg: -fields_nam $(value)
+  fields-des:
+    arg: -fields_des $(value)
+  fields-cat:
+    arg: -fields_cat $(value)
+  fields-taxid:
+    arg: -fields_taxid $(value)
+  fields-edat:
+    arg: -fields_edat $(value)
+  fields-efmt:
+    arg: -fields_efmt $(value)
+  fields-eid:
+    arg: -fields_eid $(value)
+  fields-etpc:
+    arg: -fields_etpc $(value)
+  fields-xref:
+    arg: -fields_xref $(value)
+  fields-qout:
+    arg: -fields_qout $(value)
+  fields-qfmt:
+    arg: -fields_qfmt $(value)
+  fields-qin:
+    arg: -fields_qin $(value)
+  fields-qurl:
+    arg: -fields_qurl $(value)
+  fields-rest:
+    arg: -fields_rest $(value)
+  fields-soap:
+    arg: -fields_soap $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  tool-log:
+    name: tool-log
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

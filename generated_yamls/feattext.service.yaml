@@ -1,0 +1,56 @@
+---
+slivka-version: 0.8.3
+name: feattext
+description: Return a feature table original text
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Data handling'
+- 'Topic :: Sequence sites and features'
+
+parameters:
+  features:
+    name: features
+    type: text
+    required: true
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: feattext
+
+args:
+  features:
+    arg: -features $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  feature-record:
+    name: feature-record
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

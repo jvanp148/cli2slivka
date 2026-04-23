@@ -1,0 +1,55 @@
+---
+slivka-version: 0.8.3
+name: taxgetdown
+description: Get descendants of taxon(s)
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Taxonomy'
+
+parameters:
+  taxons:
+    name: taxons
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: taxgetdown
+
+args:
+  taxons:
+    arg: -taxons $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  ontology-concept:
+    name: ontology-concept
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

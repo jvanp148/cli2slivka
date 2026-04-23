@@ -1,0 +1,76 @@
+---
+slivka-version: 0.8.3
+name: tfm
+description: Display full documentation for an application
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval (tool metadata)'
+- 'Topic :: Data handling'
+
+parameters:
+  program:
+    name: program
+    type: text
+    required: false
+    description: Program to search for. Enter the name of an EMBOSS program
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Format the output for HTML. This will format the output for displaying as a WWW document.
+    choices:
+      yes: Y
+      no: N
+  more:
+    name: more
+    type: choice
+    required: false
+    description: "Display a screenful at a time. This uses the standard UNIX utility 'more' to display the text page-by-page, waiting for you to read one screen-full before going on to the next page. When you have finished reading a page, press the SPACE bar to proceed to the next page."
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: tfm
+
+args:
+  program:
+    arg: -program $(value)
+  html:
+    arg: -html $(value)
+  more:
+    arg: -more $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  tool-metadata:
+    name: tool-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

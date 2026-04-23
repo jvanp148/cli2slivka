@@ -1,0 +1,157 @@
+---
+slivka-version: 0.8.3
+name: makenucseq
+description: Create random nucleotide sequences
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Random sequence generation'
+- 'Topic :: Data handling'
+
+parameters:
+  codonfile:
+    name: codonfile
+    type: text
+    required: false
+    description: "Codon usage file (optional). Optional codon usage file. Nucleotide sequences will be created as triplets matching the frequencies in the file, with the end trimmed to be in the correct reading frame."
+  amount:
+    name: amount
+    type: integer
+    required: false
+    description: Number of sequences created
+    min: 1
+  length:
+    name: length
+    type: integer
+    required: false
+    description: Length of each sequence
+    min: 1
+  useinsert:
+    name: useinsert
+    type: choice
+    required: false
+    description: Do you want to make an insert
+    choices:
+      yes: Y
+      no: N
+  insert:
+    name: insert
+    type: text
+    required: false
+    description: Inserted string. String that is inserted into sequence
+  start:
+    name: start
+    type: integer
+    required: false
+    description: Start point of inserted sequence
+    min: 1
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: makenucseq
+
+args:
+  codonfile:
+    arg: -codonfile $(value)
+  amount:
+    arg: -amount $(value)
+  length:
+    arg: -length $(value)
+  useinsert:
+    arg: -useinsert $(value)
+  insert:
+    arg: -insert $(value)
+  start:
+    arg: -start $(value)
+  outseq:
+    arg: -outseq $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

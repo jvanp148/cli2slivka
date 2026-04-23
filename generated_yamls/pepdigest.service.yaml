@@ -1,0 +1,286 @@
+---
+slivka-version: 0.8.3
+name: pepdigest
+description: Report on protein proteolytic enzyme or
+                  reagent cleavage sites
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Protein cleavage site prediction'
+- 'Topic :: Protein cleavage sites and proteolysis'
+
+parameters:
+  seqall:
+    name: seqall
+    type: file
+    required: true
+  sformat-seqall:
+    name: sformat_seqall
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-seqall:
+    name: sbegin_seqall
+    type: integer
+    required: false
+  send-seqall:
+    name: send_seqall
+    type: integer
+    required: false
+  sprotein-seqall:
+    name: sprotein_seqall
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-seqall:
+    name: snucleotide_seqall
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-seqall:
+    name: sreverse_seqall
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-seqall:
+    name: slower_seqall
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-seqall:
+    name: supper_seqall
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  menu:
+    name: menu
+    type: choice
+    required: false
+    description: Enzymes and Reagents
+    choices:
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "7": "7"
+      "8": "8"
+  mono:
+    name: mono
+    type: choice
+    required: false
+    description: Use monoisotopic weights
+    choices:
+      yes: Y
+      no: N
+  mwdata:
+    name: mwdata
+    type: text
+    required: false
+    description: Molecular weights data file. Molecular weight data for amino acids
+  unfavoured:
+    name: unfavoured
+    type: choice
+    required: false
+    description: Allow unfavoured cuts. Trypsin will not normally cut after 'KR' if they are followed by any of 'KRIFLP'. Lys-C will not normally cut after 'K' if it is followed by 'P'. Arg-C will not normally cut after 'R' if it is followed by 'P'. V8-bicarb will not normally cut after 'E' if it is followed by any of 'KREP'. V8-phosph will not normally cut after 'DE' if they are followed by 'P'. Chymotrypsin will not normally cut after 'FYWLM' if they are followed by 'P'. Specifying unfavoured shows these unfavoured cuts as well as the favoured ones.
+    choices:
+      yes: Y
+      no: N
+  ragging:
+    name: ragging
+    type: choice
+    required: false
+    description: Allow ragging. Allows semi-specific and non-specific digestion. This option is particularly useful for generating lists of peptide sequences for protein identification using mass-spectrometry.
+    choices:
+      yes: Y
+      no: N
+  termini:
+    name: termini
+    type: text
+    required: false
+    description: Ragging value
+  overlap:
+    name: overlap
+    type: choice
+    required: false
+    description: "Show overlapping partials. Used for partial digestion. Shows all cuts from favoured cut sites plus 1..3, 2..4, 3..5 etc but not (e.g.) 2..5. Overlaps are therefore fragments with exactly one potential cut site within it."
+    choices:
+      yes: Y
+      no: N
+  allpartials:
+    name: allpartials
+    type: choice
+    required: false
+    description: Show all partials. As for overlap but fragments containing more than one potential cut site are included.
+    choices:
+      yes: Y
+      no: N
+  termini-1:
+    name: termini_1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  termini-2:
+    name: termini_2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  termini-3:
+    name: termini_3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  termini-4:
+    name: termini_4
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: pepdigest
+
+args:
+  seqall:
+    arg: -seqall $(value)
+    symlink: seqall.dat
+  sformat-seqall:
+    arg: -sformat1 $(value)
+  sbegin-seqall:
+    arg: -sbegin1 $(value)
+  send-seqall:
+    arg: -send1 $(value)
+  sprotein-seqall:
+    arg: -sprotein1 $(value)
+  snucleotide-seqall:
+    arg: -snucleotide1 $(value)
+  sreverse-seqall:
+    arg: -sreverse1 $(value)
+  slower-seqall:
+    arg: -slower1 $(value)
+  supper-seqall:
+    arg: -supper1 $(value)
+  menu:
+    arg: -menu $(value)
+  mono:
+    arg: -mono $(value)
+  mwdata:
+    arg: -mwdata $(value)
+  unfavoured:
+    arg: -unfavoured $(value)
+  ragging:
+    arg: -ragging $(value)
+  termini:
+    arg: -termini $(value)
+  overlap:
+    arg: -overlap $(value)
+  allpartials:
+    arg: -allpartials $(value)
+  termini-1:
+    arg: -termini_1 $(value)
+  termini-2:
+    arg: -termini_2 $(value)
+  termini-3:
+    arg: -termini_3 $(value)
+  termini-4:
+    arg: -termini_4 $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  protein-features:
+    name: protein-features
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

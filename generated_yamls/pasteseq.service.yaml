@@ -1,13 +1,13 @@
 ---
 slivka-version: 0.8.3
-name: needle
-description: Needleman-Wunsch global alignment of two sequences
+name: pasteseq
+description: Insert one sequence into another
 version: '6.6.0.0'
 author: EMBOSS
 license: GPL
 classifiers:
-- 'Operation :: Pairwise sequence alignment construction (global)'
-- 'Topic :: Sequence alignment'
+- 'Operation :: Sequence merging'
+- 'Topic :: Data handling'
 
 parameters:
   asequence:
@@ -115,6 +115,7 @@ parameters:
     name: bsequence
     type: file
     required: true
+    description: Sequence to insert
   sformat-bsequence:
     name: sformat_bsequence
     type: choice
@@ -212,55 +213,68 @@ parameters:
     choices:
       yes: Y
       no: N
-  gapopen:
-    name: gapopen
-    type: decimal
+  pos:
+    name: pos
+    type: integer
     required: false
-    description: "Gap opening penalty. The gap open penalty is the score taken away when a gap is created. The best value depends on the choice of comparison matrix. The default value assumes you are using the EBLOSUM62 matrix for protein sequences, and the EDNAFULL matrix for nucleotide sequences."
-    min: 0.0
-    max: 100.0
-  gapextend:
-    name: gapextend
-    type: decimal
-    required: false
-    description: "Gap extension penalty. The gap extension, penalty is added to the standard gap penalty for each base or residue in the gap. This is how long gaps are penalized. Usually you will expect a few long gaps rather than many short gaps, so the gap extension penalty should be lower than the gap penalty. An exception is where one or both sequences are single reads with possible sequencing errors in which case you would expect many single base gaps. You can get this result by setting the gap open penalty to zero (or very low) and using the gap extension penalty to control gap scoring."
-    min: 0.0
-    max: 10.0
-  datafile:
-    name: datafile
+    description: Position to insert after. The position in the main input sequence to insert after. To insert before the start use the position 0.
+    min: 0
+  outseq:
+    name: outseq
     type: text
     required: false
-    description: Matrix file. This is the scoring matrix file used when comparing sequences. By default it is the file 'EBLOSUM62' (for proteins) or the file 'EDNAFULL' (for nucleic sequences). These files are found in the 'data' directory of the EMBOSS installation.
-  endweight:
-    name: endweight
+    description: Returns sequence.
+  osformat-outseq:
+    name: osformat_outseq
     type: choice
     required: false
-    description: Apply end gap penalties
+    description: Format of the output sequence (outseq)
     choices:
-      yes: Y
-      no: N
-  endopen:
-    name: endopen
-    type: decimal
-    required: false
-    description: "End gap opening penalty. The end gap open penalty is the score taken away when an end gap is created. The best value depends on the choice of comparison matrix. The default value assumes you are using the EBLOSUM62 matrix for protein sequences, and the EDNAFULL matrix for nucleotide sequences."
-    min: 0.0
-    max: 100.0
-  endextend:
-    name: endextend
-    type: decimal
-    required: false
-    description: "End gap extension penalty. The end gap extension, penalty is added to the end gap penalty for each base or residue in the end gap. This is how long end gaps are penalized."
-    min: 0.0
-    max: 10.0
-  brief:
-    name: brief
-    type: choice
-    required: false
-    description: Brief identity and similarity
-    choices:
-      yes: Y
-      no: N
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
   help:
     name: help
     type: choice
@@ -270,7 +284,7 @@ parameters:
       yes: Y
       no: N
 
-command: needle
+command: pasteseq
 
 args:
   asequence:
@@ -311,30 +325,22 @@ args:
     arg: -slower2 $(value)
   supper-bsequence:
     arg: -supper2 $(value)
-  gapopen:
-    arg: -gapopen $(value)
-  gapextend:
-    arg: -gapextend $(value)
-  datafile:
-    arg: -datafile $(value)
-  endweight:
-    arg: -endweight $(value)
-  endopen:
-    arg: -endopen $(value)
-  endextend:
-    arg: -endextend $(value)
-  brief:
-    arg: -brief $(value)
+  pos:
+    arg: -pos $(value)
+  outseq:
+    arg: -outseq $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.needle
+    default: outfile.out
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.needle
+  output:
+    name: output
+    path: outfile.out
     media-type: text/plain
   log:
     name: log

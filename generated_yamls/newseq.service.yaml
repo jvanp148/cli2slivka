@@ -1,0 +1,140 @@
+---
+slivka-version: 0.8.3
+name: newseq
+description: Create a sequence file from a typed-in sequence
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence generation'
+- 'Topic :: Data handling'
+
+parameters:
+  name:
+    name: name
+    type: text
+    required: true
+    description: Name of the sequence. The name of of the sequence should be a single word that you will use to identify the sequence. It should have no (or few) punctuation characters in it.
+  description:
+    name: description
+    type: text
+    required: true
+    description: Description of the sequence. Enter any description of the sequence that you require.
+  type:
+    name: type
+    type: choice
+    required: false
+    description: Type of sequence
+    choices:
+      N: N
+      P: P
+  sequence:
+    name: sequence
+    type: text
+    required: true
+    description: "Enter the sequence. The sequence itself. Because of the limitation of the operating system, you will only be able to type in a short sequence of (typically) 250 characters, or so. The keyboard will beep at you when you have reached this limit and you will not be able to press the RETURN/ENTER key until you have deleted a few characters."
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: newseq
+
+args:
+  name:
+    arg: -name $(value)
+  description:
+    arg: -description $(value)
+  type:
+    arg: -type $(value)
+  sequence:
+    arg: -sequence $(value)
+  outseq:
+    arg: -outseq $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

@@ -1,0 +1,70 @@
+---
+slivka-version: 0.8.3
+name: inforesidue
+description: Return information on a given amino acid residue
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Analysis and processing'
+- 'Topic :: Small molecules'
+
+parameters:
+  code:
+    name: code
+    type: text
+    required: false
+    description: "Amino acid residue code. Enter IUPAC amino acids codes, e.g. A, C, D, E etc."
+  aadata:
+    name: aadata
+    type: text
+    required: false
+    description: Amino acids properties and molecular weight data file. Amino acid properties
+  mwdata:
+    name: mwdata
+    type: text
+    required: false
+    description: Molecular weights data file. Molecular weight data for amino acids
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: inforesidue
+
+args:
+  code:
+    arg: -code $(value)
+  aadata:
+    arg: -aadata $(value)
+  mwdata:
+    arg: -mwdata $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  amino-acid-annotation:
+    name: amino-acid-annotation
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

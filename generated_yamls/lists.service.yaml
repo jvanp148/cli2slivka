@@ -1,0 +1,217 @@
+---
+slivka-version: 0.8.3
+name: lists
+description: How to use lists
+version: '1.0'
+author: EMBOSS
+license: GPL
+
+parameters:
+  format:
+    name: format
+    type: text
+    required: false
+    description: Graphical format
+  menu:
+    name: menu
+    type: choice
+    required: false
+    description: Select class
+    choices:
+      F: F
+      I: I
+      P: P
+      V: V
+      O: O
+      C: C
+  output:
+    name: output
+    type: text
+    required: false
+  format-canon:
+    name: format_canon
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-dot:
+    name: format_dot
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-fig:
+    name: format_fig
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-gd:
+    name: format_gd
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-gif:
+    name: format_gif
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-hpgl:
+    name: format_hpgl
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-imap:
+    name: format_imap
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-jpg:
+    name: format_jpg
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-mif:
+    name: format_mif
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-mp:
+    name: format_mp
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-pcl:
+    name: format_pcl
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-pic:
+    name: format_pic
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-plain:
+    name: format_plain
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-png:
+    name: format_png
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-ps:
+    name: format_ps
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format-svg:
+    name: format_svg
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: echo
+
+args:
+  format:
+    arg: -format $(value)
+  menu:
+    arg: -menu $(value)
+  output:
+    arg: -output $(value)
+  format-canon:
+    arg: -format_canon $(value)
+  format-dot:
+    arg: -format_dot $(value)
+  format-fig:
+    arg: -format_fig $(value)
+  format-gd:
+    arg: -format_gd $(value)
+  format-gif:
+    arg: -format_gif $(value)
+  format-hpgl:
+    arg: -format_hpgl $(value)
+  format-imap:
+    arg: -format_imap $(value)
+  format-jpg:
+    arg: -format_jpg $(value)
+  format-mif:
+    arg: -format_mif $(value)
+  format-mp:
+    arg: -format_mp $(value)
+  format-pcl:
+    arg: -format_pcl $(value)
+  format-pic:
+    arg: -format_pic $(value)
+  format-plain:
+    arg: -format_plain $(value)
+  format-png:
+    arg: -format_png $(value)
+  format-ps:
+    arg: -format_ps $(value)
+  format-svg:
+    arg: -format_svg $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

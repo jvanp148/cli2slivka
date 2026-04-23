@@ -1,0 +1,324 @@
+---
+slivka-version: 0.8.3
+name: taxgetrank
+description: Get parents of taxon(s)
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Taxonomy'
+
+parameters:
+  taxons:
+    name: taxons
+    type: text
+    required: false
+  rank:
+    name: rank
+    type: text
+    required: false
+    description: "Taxonomic rank(s). Multiple ranks can be specified, or '*' for all"
+  hidden:
+    name: hidden
+    type: choice
+    required: false
+    description: Show taxons hidden in GenBank
+    choices:
+      yes: Y
+      no: N
+  rank-kingdom:
+    name: rank_kingdom
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-phylum:
+    name: rank_phylum
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-class:
+    name: rank_class
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-order:
+    name: rank_order
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-family:
+    name: rank_family
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-genus:
+    name: rank_genus
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-species:
+    name: rank_species
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-tribe:
+    name: rank_tribe
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-varietas:
+    name: rank_varietas
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-species-group:
+    name: rank_species_group
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-species-subgroup:
+    name: rank_species_subgroup
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-no-rank:
+    name: rank_no_rank
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-superkingdom:
+    name: rank_superkingdom
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-superphylum:
+    name: rank_superphylum
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-superclass:
+    name: rank_superclass
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-superorder:
+    name: rank_superorder
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-superfamily:
+    name: rank_superfamily
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subkingdom:
+    name: rank_subkingdom
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subphylum:
+    name: rank_subphylum
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subclass:
+    name: rank_subclass
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-suborder:
+    name: rank_suborder
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subfamily:
+    name: rank_subfamily
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subgenus:
+    name: rank_subgenus
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subspecies:
+    name: rank_subspecies
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-subtribe:
+    name: rank_subtribe
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-infraclass:
+    name: rank_infraclass
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-infraorder:
+    name: rank_infraorder
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  rank-parvorder:
+    name: rank_parvorder
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: taxgetrank
+
+args:
+  taxons:
+    arg: -taxons $(value)
+  rank:
+    arg: -rank $(value)
+  hidden:
+    arg: -hidden $(value)
+  rank-kingdom:
+    arg: -rank_kingdom $(value)
+  rank-phylum:
+    arg: -rank_phylum $(value)
+  rank-class:
+    arg: -rank_class $(value)
+  rank-order:
+    arg: -rank_order $(value)
+  rank-family:
+    arg: -rank_family $(value)
+  rank-genus:
+    arg: -rank_genus $(value)
+  rank-species:
+    arg: -rank_species $(value)
+  rank-tribe:
+    arg: -rank_tribe $(value)
+  rank-varietas:
+    arg: -rank_varietas $(value)
+  rank-species-group:
+    arg: -rank_species_group $(value)
+  rank-species-subgroup:
+    arg: -rank_species_subgroup $(value)
+  rank-no-rank:
+    arg: -rank_no_rank $(value)
+  rank-superkingdom:
+    arg: -rank_superkingdom $(value)
+  rank-superphylum:
+    arg: -rank_superphylum $(value)
+  rank-superclass:
+    arg: -rank_superclass $(value)
+  rank-superorder:
+    arg: -rank_superorder $(value)
+  rank-superfamily:
+    arg: -rank_superfamily $(value)
+  rank-subkingdom:
+    arg: -rank_subkingdom $(value)
+  rank-subphylum:
+    arg: -rank_subphylum $(value)
+  rank-subclass:
+    arg: -rank_subclass $(value)
+  rank-suborder:
+    arg: -rank_suborder $(value)
+  rank-subfamily:
+    arg: -rank_subfamily $(value)
+  rank-subgenus:
+    arg: -rank_subgenus $(value)
+  rank-subspecies:
+    arg: -rank_subspecies $(value)
+  rank-subtribe:
+    arg: -rank_subtribe $(value)
+  rank-infraclass:
+    arg: -rank_infraclass $(value)
+  rank-infraorder:
+    arg: -rank_infraorder $(value)
+  rank-parvorder:
+    arg: -rank_parvorder $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  ontology-concept:
+    name: ontology-concept
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

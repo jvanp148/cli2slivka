@@ -36,15 +36,24 @@ def is_hidden(path: Path) -> bool:
 
 # ACTUALLY CREATING SERVICE
 def process(parser: CLIParser, input: Path):
-     parser = parser or ParserRegistry.detect(input) # if there was no parser with get_by_format then parser will be none but 
-     # here a parser can be detected automatically.
-     service = parser.parse(input)
-     if service is not None:
-          yaml_path = f"generated_yamls/{slugify(service.name)}.service.yaml"
-          writer = SlivkaYAMLWriter(service)
-          writer.write(yaml_path)
-     else:
-          click.secho(f"Parsing of {input} failed", fg="red")
-
+     try:
+          parser = parser or ParserRegistry.detect(input) # if there was no parser with get_by_format then parser will be none but 
+           # here a parser can be detected automatically.
+          if parser.can_parse(input) is False:
+               raise ValueError
+     except:
+          click.secho(f"Invalid file {input}", fg="red")
+          return
+     try:
+          service = parser.parse(input)
+          if service is not None:
+               yaml_path = f"generated_yamls/{slugify(service.name)}.service.yaml"
+               writer = SlivkaYAMLWriter(service)
+               writer.write(yaml_path)
+          else:
+               click.secho(f"Parsing of {input} failed", fg="red")
+     except Exception as e:
+          click.secho(f"Could not parse {input}", fg="red", err=True)
+          return
 if __name__ == "__main__":
      convert()

@@ -69,19 +69,56 @@ class SlivkaYAMLWriter:
         ]
         #%# also added the thing for tests, but this is unnecessary...
         return "\n".join(out)
-
+    @staticmethod
+    def _needs_quoting(s: str) -> bool:
+        """
+        Return True when a YAML plain scalar would be ambiguous or invalid.
+        Applies to both keys and values inside a mapping.
+ 
+        Rules:
+        - Empty string
+        - Starts with a YAML indicator: - + ? : & * ! | > ' " % @ `
+        - Would be parsed as a non-string scalar (number, bool, null)
+        - Contains structurally significant characters: : # { } [ ] ,
+        """
+        if not s:
+            return True
+        YAML_INDICATORS = set('-+?:&*!|>\'"%@`')
+        if s[0] in YAML_INDICATORS:
+            return True
+        YAML_RESERVED = {'~', '.inf', '-.inf', '.nan'}   # {'true', 'false', 'yes', 'no', 'on', 'off', 'null', '~', '.inf', '-.inf', '.nan'}
+        if s.lower() in YAML_RESERVED:
+            return True
+        try:
+            float(s)
+            return True
+        except ValueError:
+            pass
+        if any(c in s for c in ':{}[]|>#,\\'):
+            return True
+        return False
+ 
+    @staticmethod
+    def _quote(s: str) -> str:
+        """Wrap string in double quotes, escaping any internal double quotes."""
+        escaped = s.replace('"', '\\"')
+        return '"' + escaped + '"'
+ 
     def _render_field(self, key: str, value, indent: int = 4) -> list:
-        pad   = " " * indent
+        pad   = ' ' * indent
         lines = []
         if isinstance(value, dict):
-            lines.append(f"{pad}{key}:")
-            for k, v in value.items():    #%# soapthing also takes into account escape characters.
-                lines.append(f"{pad}  {k}: {v}")
+            lines.append(f'{pad}{key}:')
+            for k, v in value.items():
+                k_str = str(k)
+                v_str = str(v)
+                k_out = self._quote(k_str) if self._needs_quoting(k_str) else k_str
+                v_out = self._quote(v_str) if self._needs_quoting(v_str) else v_str
+                lines.append(f'{pad}  {k_out}: {v_out}')
         elif isinstance(value, bool):
             lines.append(f"{pad}{key}: {'true' if value else 'false'}")
-        elif isinstance(value, str) and any(c in value for c in ':{}[]|>&*!,%@`"\'#\\'):
-            escaped = value.replace('"', '\\"')
-            lines.append(f'{pad}{key}: "{escaped}"')
+        elif isinstance(value, str) and self._needs_quoting(value):
+            lines.append(f'{pad}{key}: {self._quote(value)}')
         else:
-            lines.append(f"{pad}{key}: {value}")
+            lines.append(f'{pad}{key}: {value}')
         return lines

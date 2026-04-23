@@ -1,0 +1,173 @@
+---
+slivka-version: 0.8.3
+name: inputtypes
+description: Testing various types of inputs
+version: '1.0'
+author: EMBOSS
+license: GPL
+
+parameters:
+  text-no-default:
+    name: text_no_default
+    type: text
+    required: true
+    description: "A mandatory string input. This is not really a useful help. Its purpose is to <b>test</b> the tooltips mechanism. <p> A mechanism that allows to include <font color='blue'>colors</font>, <font size='+3'>sizes</font> etc."
+  text:
+    name: text
+    type: text
+    required: false
+    description: An optional string with a default value
+  number-int:
+    name: number_int
+    type: integer
+    required: false
+  number-float:
+    name: number_float
+    type: decimal
+    required: false
+  bool-false:
+    name: bool_false
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  bool-true:
+    name: bool_true
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  bool-no-default:
+    name: bool_no_default
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format:
+    name: format
+    type: choice
+    required: false
+    description: Output format
+    choices:
+      canon: canon
+      dot: dot
+      fig: fig
+      gd: gd
+      gif: gif
+      hpgl: hpgl
+      imap: imap
+      jpg: jpg
+      mif: mif
+      mp: mp
+      pcl: pcl
+      pic: pic
+      plain: plain
+      png: png
+      ps: ps
+      ps2: ps2
+      svg: svg
+      vrml: vrml
+      vtx: vtx
+      wbmp: wbmp
+  format-no-default:
+    name: format_no_default
+    type: choice
+    required: false
+    description: Output format
+    choices:
+      canon: canon
+      dot: dot
+      fig: fig
+      gd: gd
+      gif: gif
+      hpgl: hpgl
+      imap: imap
+      jpg: jpg
+      mif: mif
+      mp: mp
+      pcl: pcl
+      pic: pic
+      plain: plain
+      png: png
+      ps: ps
+      ps2: ps2
+      svg: svg
+      vrml: vrml
+      vtx: vtx
+      wbmp: wbmp
+  input:
+    name: input
+    type: text
+    required: false
+  input-only-direct:
+    name: input_only_direct
+    type: text
+    required: false
+  result:
+    name: result
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: echo
+
+args:
+  text-no-default:
+    arg: -text_no_default $(value)
+  text:
+    arg: -text $(value)
+  number-int:
+    arg: -number_int $(value)
+  number-float:
+    arg: -number_float $(value)
+  bool-false:
+    arg: -bool_false $(value)
+  bool-true:
+    arg: -bool_true $(value)
+  bool-no-default:
+    arg: -bool_no_default $(value)
+  format:
+    arg: -format $(value)
+  format-no-default:
+    arg: -format_no_default $(value)
+  input:
+    arg: -input $(value)
+  input-only-direct:
+    arg: -input_only_direct $(value)
+  result:
+    arg: -result $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

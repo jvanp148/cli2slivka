@@ -1,0 +1,249 @@
+---
+slivka-version: 0.8.3
+name: skipseq
+description: Read and write (return) sequences,
+                  skipping first few
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence retrieval'
+- 'Operation :: Sequence file processing'
+- 'Topic :: Data search and retrieval'
+- 'Topic :: Data handling'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  skip:
+    name: skip
+    type: integer
+    required: false
+    description: Number of sequences to skip at start
+  feature:
+    name: feature
+    type: choice
+    required: false
+    description: Use feature information
+    choices:
+      yes: Y
+      no: N
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: skipseq
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  skip:
+    arg: -skip $(value)
+  feature:
+    arg: -feature $(value)
+  outseq:
+    arg: -outseq $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

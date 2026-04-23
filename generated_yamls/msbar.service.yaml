@@ -1,0 +1,594 @@
+---
+slivka-version: 0.8.3
+name: msbar
+description: Mutate a sequence
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence mutation and randomization'
+- 'Topic :: Data handling'
+- 'Topic :: Genetic variation'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  count:
+    name: count
+    type: integer
+    required: false
+    description: Number of times to perform the mutation operations
+    min: 0
+  point:
+    name: point
+    type: text
+    required: false
+    description: Point mutation operations
+  block:
+    name: block
+    type: text
+    required: false
+    description: Block mutation operations
+  othersequence:
+    name: othersequence
+    type: file
+    required: false
+    description: "Other sequences that the mutated result should not match. If you require that the resulting mutated sequence should not match a set of other sequences, then you can specify that set of sequences here. For example, if you require that the mutated sequence should not be the same as the input sequence, enter the input sequence here. If you want the result to be different to previous results of this program, specify the previous result sequences here. The program will check that the result does not match the sequences specified here before writing it out. If a match is found, then the mutation is started again with a fresh copy of the input sequence. If, after 10 such retries, there is still a match to the set of sequence given here, then the matching mutated sequence is written with a warning message."
+  sformat-othersequence:
+    name: sformat_othersequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-othersequence:
+    name: sbegin_othersequence
+    type: integer
+    required: false
+  send-othersequence:
+    name: send_othersequence
+    type: integer
+    required: false
+  sprotein-othersequence:
+    name: sprotein_othersequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-othersequence:
+    name: snucleotide_othersequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-othersequence:
+    name: sreverse_othersequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-othersequence:
+    name: slower_othersequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-othersequence:
+    name: supper_othersequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon:
+    name: codon
+    type: text
+    required: false
+    description: Codon mutation operations. Types of codon mutations to perform. These are only done if the sequence is nucleic.
+  inframe:
+    name: inframe
+    type: choice
+    required: false
+    description: Do 'codon' and 'block' operations in frame
+    choices:
+      yes: Y
+      no: N
+  minimum:
+    name: minimum
+    type: integer
+    required: false
+    description: Minimum size for a block mutation
+    min: 0
+  maximum:
+    name: maximum
+    type: integer
+    required: false
+    description: Maximum size for a block mutation
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  point-0:
+    name: point_0
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-1:
+    name: point_1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-2:
+    name: point_2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-3:
+    name: point_3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-4:
+    name: point_4
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-5:
+    name: point_5
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  point-6:
+    name: point_6
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-0:
+    name: block_0
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-1:
+    name: block_1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-2:
+    name: block_2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-3:
+    name: block_3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-4:
+    name: block_4
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-5:
+    name: block_5
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  block-6:
+    name: block_6
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-0:
+    name: codon_0
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-1:
+    name: codon_1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-2:
+    name: codon_2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-3:
+    name: codon_3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-4:
+    name: codon_4
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-5:
+    name: codon_5
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  codon-6:
+    name: codon_6
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: msbar
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  count:
+    arg: -count $(value)
+  point:
+    arg: -point $(value)
+  block:
+    arg: -block $(value)
+  othersequence:
+    arg: -othersequence $(value)
+    symlink: othersequence.dat
+  sformat-othersequence:
+    arg: -sformat2 $(value)
+  sbegin-othersequence:
+    arg: -sbegin2 $(value)
+  send-othersequence:
+    arg: -send2 $(value)
+  sprotein-othersequence:
+    arg: -sprotein2 $(value)
+  snucleotide-othersequence:
+    arg: -snucleotide2 $(value)
+  sreverse-othersequence:
+    arg: -sreverse2 $(value)
+  slower-othersequence:
+    arg: -slower2 $(value)
+  supper-othersequence:
+    arg: -supper2 $(value)
+  codon:
+    arg: -codon $(value)
+  inframe:
+    arg: -inframe $(value)
+  minimum:
+    arg: -minimum $(value)
+  maximum:
+    arg: -maximum $(value)
+  outseq:
+    arg: -outseq $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  point-0:
+    arg: -point_0 $(value)
+  point-1:
+    arg: -point_1 $(value)
+  point-2:
+    arg: -point_2 $(value)
+  point-3:
+    arg: -point_3 $(value)
+  point-4:
+    arg: -point_4 $(value)
+  point-5:
+    arg: -point_5 $(value)
+  point-6:
+    arg: -point_6 $(value)
+  block-0:
+    arg: -block_0 $(value)
+  block-1:
+    arg: -block_1 $(value)
+  block-2:
+    arg: -block_2 $(value)
+  block-3:
+    arg: -block_3 $(value)
+  block-4:
+    arg: -block_4 $(value)
+  block-5:
+    arg: -block_5 $(value)
+  block-6:
+    arg: -block_6 $(value)
+  codon-0:
+    arg: -codon_0 $(value)
+  codon-1:
+    arg: -codon_1 $(value)
+  codon-2:
+    arg: -codon_2 $(value)
+  codon-3:
+    arg: -codon_3 $(value)
+  codon-4:
+    arg: -codon_4 $(value)
+  codon-5:
+    arg: -codon_5 $(value)
+  codon-6:
+    arg: -codon_6 $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

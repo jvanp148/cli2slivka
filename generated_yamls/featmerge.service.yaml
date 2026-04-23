@@ -1,0 +1,84 @@
+---
+slivka-version: 0.8.3
+name: featmerge
+description: Merge two overlapping feature tables
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Data search and retrieval'
+- 'Topic :: Sequence sites and features'
+
+parameters:
+  afeatures:
+    name: afeatures
+    type: text
+    required: true
+  bfeatures:
+    name: bfeatures
+    type: text
+    required: true
+  outfeat:
+    name: outfeat
+    type: text
+    required: false
+  offormat-outfeat:
+    name: offormat_outfeat
+    type: choice
+    required: false
+    description: Format of the output features (outfeat)
+    choices:
+      gff: gff
+      gff2: gff2
+      embl: embl
+      genbank: genbank
+      ddbj: ddbj
+      pir: pir
+      swiss: swiss
+      dasgff: dasgff
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: featmerge
+
+args:
+  afeatures:
+    arg: -afeatures $(value)
+  bfeatures:
+    arg: -bfeatures $(value)
+  outfeat:
+    arg: -outfeat $(value)
+  offormat-outfeat:
+    arg: -offormat_outfeat $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

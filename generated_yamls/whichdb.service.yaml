@@ -1,0 +1,76 @@
+---
+slivka-version: 0.8.3
+name: whichdb
+description: Search all sequence databases for an entry and retrieve it
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence retrieval (by code)'
+- 'Topic :: Data search and retrieval'
+
+parameters:
+  entry:
+    name: entry
+    type: text
+    required: true
+    description: ID or Accession number
+  get:
+    name: get
+    type: choice
+    required: false
+    description: Retrieve sequences
+    choices:
+      yes: Y
+      no: N
+  showall:
+    name: showall
+    type: choice
+    required: false
+    description: Show failed attempts
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: whichdb
+
+args:
+  entry:
+    arg: -entry $(value)
+  get:
+    arg: -get $(value)
+  showall:
+    arg: -showall $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  database-metadata:
+    name: database-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

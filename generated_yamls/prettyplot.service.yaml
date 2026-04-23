@@ -1,0 +1,400 @@
+---
+slivka-version: 0.8.3
+name: prettyplot
+description: Draw a sequence alignment with pretty formatting
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence alignment reformatting'
+- 'Operation :: Sequence rendering'
+- 'Topic :: Data visualisation'
+- 'Topic :: Sequence alignment'
+
+parameters:
+  sequences:
+    name: sequences
+    type: file
+    required: true
+  sformat-sequences:
+    name: sformat_sequences
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequences:
+    name: sbegin_sequences
+    type: integer
+    required: false
+  send-sequences:
+    name: send_sequences
+    type: integer
+    required: false
+  sprotein-sequences:
+    name: sprotein_sequences
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequences:
+    name: snucleotide_sequences
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequences:
+    name: sreverse_sequences
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequences:
+    name: slower_sequences
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequences:
+    name: supper_sequences
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  blocksperline:
+    name: blocksperline
+    type: integer
+    required: false
+    description: Blocks of residues on each line
+    min: 1
+  graph-format:
+    name: graph_format
+    type: choice
+    required: false
+    description: Format of the graphical output
+    choices:
+      png: png
+      colourps: colourps
+  matrixfile:
+    name: matrixfile
+    type: text
+    required: false
+    description: Matrix file. This is the scoring matrix file used when comparing sequences. By default it is the file 'EBLOSUM62' (for proteins) or the file 'EDNAFULL' (for nucleic sequences). These files are found in the 'data' directory of the EMBOSS installation.
+  residuesperline:
+    name: residuesperline
+    type: integer
+    required: false
+    description: Number of residues to be displayed on each line. The number of residues to be displayed on each line
+  ccolours:
+    name: ccolours
+    type: choice
+    required: false
+    description: Colour residues by their consensus value
+    choices:
+      yes: Y
+      no: N
+  cidentity:
+    name: cidentity
+    type: text
+    required: false
+    description: Colour to display identical residues (RED)
+  csimilarity:
+    name: csimilarity
+    type: text
+    required: false
+    description: Colour to display similar residues (GREEN)
+  cother:
+    name: cother
+    type: text
+    required: false
+    description: Colour to display other residues (BLACK)
+  docolour:
+    name: docolour
+    type: choice
+    required: false
+    description: "Colour residues by table oily, amide etc"
+    choices:
+      yes: Y
+      no: N
+  shade:
+    name: shade
+    type: text
+    required: false
+    description: "Shading. Set to BPLW for normal shading (black, pale, light, white) so for pair = 1.5,1.0,0.5 and shade = BPLW Residues score Colour 1.5 or over... BLACK (B) 1.0 to 1.5 ... BROWN (P) 0.5 to 1.0 ... WHEAT (L) under 0.5 .... WHITE (W) The only four letters allowed are BPLW, in any order."
+  pair:
+    name: pair
+    type: text
+    required: false
+    description: Values to represent identical similar related
+  identity:
+    name: identity
+    type: integer
+    required: false
+    description: Only match those which are identical in all sequences
+    min: 0
+  doboxes:
+    name: doboxes
+    type: choice
+    required: false
+    description: Display prettyboxes
+    choices:
+      yes: Y
+      no: N
+  boxcol:
+    name: boxcol
+    type: choice
+    required: false
+    description: Colour the background in the boxes
+    choices:
+      yes: Y
+      no: N
+  boxuse:
+    name: boxuse
+    type: text
+    required: false
+    description: Colour to be used for background. (GREY)
+  name:
+    name: name
+    type: choice
+    required: false
+    description: Display the sequence names
+    choices:
+      yes: Y
+      no: N
+  maxnamelen:
+    name: maxnamelen
+    type: integer
+    required: false
+    description: Margin size for the sequence name
+  number:
+    name: number
+    type: choice
+    required: false
+    description: Display the residue number
+    choices:
+      yes: Y
+      no: N
+  listoptions:
+    name: listoptions
+    type: choice
+    required: false
+    description: Display the date and options used
+    choices:
+      yes: Y
+      no: N
+  ratio:
+    name: ratio
+    type: decimal
+    required: false
+    description: Plurality ratio for a consensus match
+    min: 0.0
+    max: 1.0
+  consensus:
+    name: consensus
+    type: choice
+    required: false
+    description: Display the consensus
+    choices:
+      yes: Y
+      no: N
+  collision:
+    name: collision
+    type: choice
+    required: false
+    description: Allow collisions in calculating consensus
+    choices:
+      yes: Y
+      no: N
+  alternative:
+    name: alternative
+    type: choice
+    required: false
+    description: "Use alternative collisions routine. Values are 0:Normal collision check. (default) 1:Compares identical scores with the max score found. So if any other residue matches the identical score then a collision has occurred. 2:If another residue has a greater than or equal to matching score and these do not match then a collision has occurred. 3:Checks all those not in the current consensus.If any of these give a top score for matching or identical scores then a collision has occured."
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+  showscore:
+    name: showscore
+    type: integer
+    required: false
+    description: Print residue scores
+  portrait:
+    name: portrait
+    type: choice
+    required: false
+    description: Set page to Portrait
+    choices:
+      yes: Y
+      no: N
+  graphics-in-postscript:
+    name: Graphics_in_Postscript
+    type: text
+    required: false
+  graphics-in-png:
+    name: Graphics_in_PNG
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: prettyplot
+
+args:
+  sequences:
+    arg: -sequences $(value)
+    symlink: sequences.dat
+  sformat-sequences:
+    arg: -sformat1 $(value)
+  sbegin-sequences:
+    arg: -sbegin1 $(value)
+  send-sequences:
+    arg: -send1 $(value)
+  sprotein-sequences:
+    arg: -sprotein1 $(value)
+  snucleotide-sequences:
+    arg: -snucleotide1 $(value)
+  sreverse-sequences:
+    arg: -sreverse1 $(value)
+  slower-sequences:
+    arg: -slower1 $(value)
+  supper-sequences:
+    arg: -supper1 $(value)
+  blocksperline:
+    arg: -blocksperline $(value)
+  graph-format:
+    arg: -graph_format $(value)
+  matrixfile:
+    arg: -matrixfile $(value)
+  residuesperline:
+    arg: -residuesperline $(value)
+  ccolours:
+    arg: -ccolours $(value)
+  cidentity:
+    arg: -cidentity $(value)
+  csimilarity:
+    arg: -csimilarity $(value)
+  cother:
+    arg: -cother $(value)
+  docolour:
+    arg: -docolour $(value)
+  shade:
+    arg: -shade $(value)
+  pair:
+    arg: -pair $(value)
+  identity:
+    arg: -identity $(value)
+  doboxes:
+    arg: -doboxes $(value)
+  boxcol:
+    arg: -boxcol $(value)
+  boxuse:
+    arg: -boxuse $(value)
+  name:
+    arg: -name $(value)
+  maxnamelen:
+    arg: -maxnamelen $(value)
+  number:
+    arg: -number $(value)
+  listoptions:
+    arg: -listoptions $(value)
+  ratio:
+    arg: -ratio $(value)
+  consensus:
+    arg: -consensus $(value)
+  collision:
+    arg: -collision $(value)
+  alternative:
+    arg: -alternative $(value)
+  showscore:
+    arg: -showscore $(value)
+  portrait:
+    arg: -portrait $(value)
+  graphics-in-postscript:
+    arg: -Graphics_in_Postscript $(value)
+  graphics-in-png:
+    arg: -Graphics_in_PNG $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

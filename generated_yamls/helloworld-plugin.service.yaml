@@ -1,0 +1,58 @@
+---
+slivka-version: 0.8.3
+name: helloworld_plugin
+description: Classic greeting from the beginning of the UNIX epoch
+version: '1.0'
+author: EMBOSS
+license: GPL
+
+parameters:
+  greeting:
+    name: greeting
+    type: text
+    required: false
+  output:
+    name: output
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: helloworld_plugin
+
+args:
+  greeting:
+    arg: -greeting $(value)
+  output:
+    arg: -output $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

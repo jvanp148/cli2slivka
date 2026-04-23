@@ -1,0 +1,81 @@
+---
+slivka-version: 0.8.3
+name: mwfilter
+description: Filter noisy data from molecular weights file
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Protein molecular weight calculation'
+- 'Topic :: Sequence composition analysis'
+- 'Topic :: Protein and peptide identification'
+
+parameters:
+  infile:
+    name: infile
+    type: text
+    required: true
+    description: Molecular weights file
+  tolerance:
+    name: tolerance
+    type: decimal
+    required: false
+    description: Ppm tolerance
+  datafile:
+    name: datafile
+    type: text
+    required: false
+    description: Molecular weight standards data file
+  showdel:
+    name: showdel
+    type: choice
+    required: false
+    description: Output deleted mwts
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: mwfilter
+
+args:
+  infile:
+    arg: -infile $(value)
+  tolerance:
+    arg: -tolerance $(value)
+  datafile:
+    arg: -datafile $(value)
+  showdel:
+    arg: -showdel $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  amino-acid-index:
+    name: amino-acid-index
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

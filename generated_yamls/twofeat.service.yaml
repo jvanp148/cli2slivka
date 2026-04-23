@@ -1,0 +1,354 @@
+---
+slivka-version: 0.8.3
+name: twofeat
+description: Find neighbouring pairs of features in sequence(s)
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Feature table query'
+- 'Topic :: Sequence sites and features'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  atype:
+    name: atype
+    type: text
+    required: false
+    description: "Type of first feature. By default every feature in the feature table is allowed. You can set this to be any feature type you wish to allow. See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL feature types and see Appendix A of the Swissprot user manual in http://www.expasy.org/sprot/userman.html for a list of the Swissprot feature types. The type may be wildcarded by using '*'. If you wish to allow more than one type, separate their names with the character '|', eg: *UTR | intron"
+  btype:
+    name: btype
+    type: text
+    required: false
+    description: "Type of second feature. By default every feature in the feature table is allowed. You can set this to be any feature type you wish to allow. See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL feature types and see Appendix A of the Swissprot user manual in http://www.expasy.org/sprot/userman.html for a list of the Swissprot feature types. The type may be wildcarded by using '*'. If you wish to allow more than one type, separate their names with the character '|', eg: *UTR | intron"
+  minrange:
+    name: minrange
+    type: integer
+    required: false
+    description: "The minimum distance between the features. If this is greater or equal to 'maxrange', then no min or max range is specified"
+  maxrange:
+    name: maxrange
+    type: integer
+    required: false
+    description: "The maximum distance between the features. If this is less than or equal to 'minrange', then no min or max range is specified"
+  asource:
+    name: asource
+    type: text
+    required: false
+    description: "Source of first feature. By default any feature source in the feature table is allowed. You can set this to match any feature source you wish to allow. The source name is usually either the name of the program that detected the feature or it is the feature table (eg: EMBL) that the feature came from. The source may be wildcarded by using '*'. If you wish to allow more than one source, separate their names with the character '|', eg: gene* | embl"
+  asense:
+    name: asense
+    type: choice
+    required: false
+    description: Sense of first feature. By default any feature sense is allowed. You can set this to match the required sense.
+    choices:
+      "0": "0"
+      "+": "+"
+      "-": "-"
+  aminscore:
+    name: aminscore
+    type: decimal
+    required: false
+    description: "Minimum score of first feature. If this is greater than or equal to the maximum score, then any score is allowed."
+  amaxscore:
+    name: amaxscore
+    type: decimal
+    required: false
+    description: "Maximum score of first feature. If this is less than or equal to the maximum score, then any score is permitted."
+  atag:
+    name: atag
+    type: text
+    required: false
+    description: "Tag of first feature. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Some of these tags also have values, for example '/gene' can have the value of the gene name. By default any feature tag in the feature table is allowed. You can set this to match any feature tag you wish to allow. The tag may be wildcarded by using '*'. If you wish to allow more than one tag, separate their names with the character '|', eg: gene | label"
+  avalue:
+    name: avalue
+    type: text
+    required: false
+    description: "Value of first feature's tags. Tag values are the values associated with a feature tag. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Only some of these tags can have values, for example '/gene' can have the value of the gene name. By default any feature tag value in the feature table is allowed. You can set this to match any feature tag value you wish to allow. The tag value may be wildcarded by using '*'. If you wish to allow more than one tag value, separate their names with the character '|', eg: pax* | 10"
+  bsource:
+    name: bsource
+    type: text
+    required: false
+    description: "Source of second feature. By default any feature source in the feature table is allowed. You can set this to match any feature source you wish to allow. The source name is usually either the name of the program that detected the feature or it is the feature table (eg: EMBL) that the feature came from. The source may be wildcarded by using '*'. If you wish to allow more than one source, separate their names with the character '|', eg: gene* | embl"
+  bsense:
+    name: bsense
+    type: choice
+    required: false
+    description: Sense of second feature. By default any feature sense is allowed. You can set this to match the required sense.
+    choices:
+      "0": "0"
+      "+": "+"
+      "-": "-"
+  bminscore:
+    name: bminscore
+    type: decimal
+    required: false
+    description: "Minimum score of second feature. If this is greater than or equal to the maximum score, then any score is allowed."
+  bmaxscore:
+    name: bmaxscore
+    type: decimal
+    required: false
+    description: "Maximum score of second feature. If this is less than or equal to the maximum score, then any score is permitted."
+  btag:
+    name: btag
+    type: text
+    required: false
+    description: "Tag of second feature. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Some of these tags also have values, for example '/gene' can have the value of the gene name. By default any feature tag in the feature table is allowed. You can set this to match any feature tag you wish to allow. The tag may be wildcarded by using '*'. If you wish to allow more than one tag, separate their names with the character '|', eg: gene | label"
+  bvalue:
+    name: bvalue
+    type: text
+    required: false
+    description: "Value of second feature's tags. Tag values are the values associated with a feature tag. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Only some of these tags can have values, for example '/gene' can have the value of the gene name. By default any feature tag value in the feature table is allowed. You can set this to match any feature tag value you wish to allow. The tag value may be wildcarded by using '*'. If you wish to allow more than one tag value, separate their names with the character '|', eg: pax* | 10"
+  overlap:
+    name: overlap
+    type: choice
+    required: false
+    description: "Type of overlap required. This allows you to specify the allowed overlaps of the features A and B. You can allow any or no overlaps, specify that they must or must not overlap, that one must or must not be wholly enclosed within another feature."
+    choices:
+      A: A
+      O: O
+      NO: NO
+      NW: NW
+      AW: AW
+      BW: BW
+  rangetype:
+    name: rangetype
+    type: choice
+    required: false
+    description: Positions from which to measure the distance. This allows you to specify the positions from which the allowed minimum or maximum distance between the features is measured
+    choices:
+      N: N
+      L: L
+      R: R
+      F: F
+  sense:
+    name: sense
+    type: choice
+    required: false
+    description: Sense of the features. This allows you to specify the required sense that the two features must be on. This is ignored (always 'Any') when looking at protein sequence features.
+    choices:
+      A: A
+      S: S
+      O: O
+  order:
+    name: order
+    type: choice
+    required: false
+    description: Order of the features. This allows you to specify the required order of the two features. The order is measured from the start positions of the features. This criterion is always applied despite the specified overlap type required.
+    choices:
+      A: A
+      AB: AB
+      BA: BA
+  twoout:
+    name: twoout
+    type: choice
+    required: false
+    description: "Do you want the two features written out individually. If you set this to be true, then the two features themselves will be written out. If it is left as false, then a single feature will be written out covering the two features you found."
+    choices:
+      yes: Y
+      no: N
+  typeout:
+    name: typeout
+    type: text
+    required: false
+    description: "Name of the output new feature. If you have specified that the pairs of features that are found should be reported as one feature in the ouput, then you can specify the 'type' name of the new feature here. By default every feature in the feature table is allowed. See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL feature types and see Appendix A of the Swissprot user manual in http://www.expasy.org/sprot/userman.html for a list of the Swissprot feature types. If you specify an invalid feature type name, then the default name 'misc_feature' is used."
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: twofeat
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  atype:
+    arg: -atype $(value)
+  btype:
+    arg: -btype $(value)
+  minrange:
+    arg: -minrange $(value)
+  maxrange:
+    arg: -maxrange $(value)
+  asource:
+    arg: -asource $(value)
+  asense:
+    arg: -asense $(value)
+  aminscore:
+    arg: -aminscore $(value)
+  amaxscore:
+    arg: -amaxscore $(value)
+  atag:
+    arg: -atag $(value)
+  avalue:
+    arg: -avalue $(value)
+  bsource:
+    arg: -bsource $(value)
+  bsense:
+    arg: -bsense $(value)
+  bminscore:
+    arg: -bminscore $(value)
+  bmaxscore:
+    arg: -bmaxscore $(value)
+  btag:
+    arg: -btag $(value)
+  bvalue:
+    arg: -bvalue $(value)
+  overlap:
+    arg: -overlap $(value)
+  rangetype:
+    arg: -rangetype $(value)
+  sense:
+    arg: -sense $(value)
+  order:
+    arg: -order $(value)
+  twoout:
+    arg: -twoout $(value)
+  typeout:
+    arg: -typeout $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.twofeat
+
+outputs:
+  feature-record:
+    name: feature-record
+    path: outfile.twofeat
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

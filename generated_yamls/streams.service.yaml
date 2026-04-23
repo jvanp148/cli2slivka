@@ -1,0 +1,70 @@
+---
+slivka-version: 0.8.3
+name: streams
+description: Filtering stdin into stdout and stderr streams
+version: '1.0'
+author: EMBOSS
+license: GPL
+
+parameters:
+  exitcode:
+    name: exitcode
+    type: integer
+    required: false
+  input:
+    name: input
+    type: text
+    required: false
+  std-output:
+    name: std_output
+    type: text
+    required: false
+  std-errors:
+    name: std_errors
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: all-streams.pl
+
+args:
+  exitcode:
+    arg: -exitcode $(value)
+  input:
+    arg: -input $(value)
+  std-output:
+    arg: -std_output $(value)
+  std-errors:
+    arg: -std_errors $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

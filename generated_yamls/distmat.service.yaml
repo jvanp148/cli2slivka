@@ -1,0 +1,237 @@
+---
+slivka-version: 0.8.3
+name: distmat
+description: Create a distance matrix from a multiple sequence alignment
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence distance matrix generation'
+- 'Topic :: Phylogenetics'
+- 'Topic :: Sequence comparison'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+    description: File containing a sequence alignment.
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  nucmethod:
+    name: nucmethod
+    type: choice
+    required: false
+    description: Multiple substitution correction methods for nucleotides.
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+  protmethod:
+    name: protmethod
+    type: choice
+    required: false
+    description: Multiple substitution correction methods for proteins.
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+  ambiguous:
+    name: ambiguous
+    type: choice
+    required: false
+    description: Use the ambiguous codes in the calculation. Option to use the ambiguous codes in the calculation of the Jukes-Cantor method or if the sequences are proteins.
+    choices:
+      yes: Y
+      no: N
+  gapweight:
+    name: gapweight
+    type: decimal
+    required: false
+    description: Weight given to gaps. Option to weight gaps in the uncorrected (nucleotide) and Jukes-Cantor distance methods.
+  position:
+    name: position
+    type: integer
+    required: false
+    description: "Base position to analyse. Choose base positions to analyse in each codon i.e. 123 (all bases), 12 (the first two bases), 1, 2, or 3 individual bases."
+  calculatea:
+    name: calculatea
+    type: choice
+    required: false
+    description: "Calculate the nucleotide Jin-Nei parameter 'a'. This will force the calculation of parameter 'a' in the Jin-Nei Gamma distance calculation, otherwise the default is 1.0 (see -parametera option)."
+    choices:
+      yes: Y
+      no: N
+  parametera:
+    name: parametera
+    type: decimal
+    required: false
+    description: Nucleotide Jin-Nei parameter 'a'. User defined parameter 'a' to be use in the Jin-Nei Gamma distance calculation. The suggested value to be used is 1.0 (Jin et al.) and this is the default.
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: distmat
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  nucmethod:
+    arg: -nucmethod $(value)
+  protmethod:
+    arg: -protmethod $(value)
+  ambiguous:
+    arg: -ambiguous $(value)
+  gapweight:
+    arg: -gapweight $(value)
+  position:
+    arg: -position $(value)
+  calculatea:
+    arg: -calculatea $(value)
+  parametera:
+    arg: -parametera $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  sequence-distance-matrix:
+    name: sequence-distance-matrix
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

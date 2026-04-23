@@ -1,7 +1,7 @@
 ---
 slivka-version: 0.8.3
-name: needle
-description: Needleman-Wunsch global alignment of two sequences
+name: needleall
+description: Many-to-many pairwise alignments of two sequence sets
 version: '6.6.0.0'
 author: EMBOSS
 license: GPL
@@ -250,9 +250,16 @@ parameters:
     name: endextend
     type: decimal
     required: false
-    description: "End gap extension penalty. The end gap extension, penalty is added to the end gap penalty for each base or residue in the end gap. This is how long end gaps are penalized."
+    description: "End gap extension penalty. The end gap extension, penalty is added to the end gap penalty for each base or residue in the end gap."
     min: 0.0
     max: 10.0
+  minscore:
+    name: minscore
+    type: decimal
+    required: false
+    description: Minimum alignment score to report an alignment.
+    min: -10.0
+    max: 100.0
   brief:
     name: brief
     type: choice
@@ -261,6 +268,11 @@ parameters:
     choices:
       yes: Y
       no: N
+  errfile:
+    name: errfile
+    type: text
+    required: false
+    description: Program needleall errors output file. Error file to be written to
   help:
     name: help
     type: choice
@@ -270,7 +282,7 @@ parameters:
       yes: Y
       no: N
 
-command: needle
+command: needleall
 
 args:
   asequence:
@@ -323,18 +335,22 @@ args:
     arg: -endopen $(value)
   endextend:
     arg: -endextend $(value)
+  minscore:
+    arg: -minscore $(value)
   brief:
     arg: -brief $(value)
+  errfile:
+    arg: -errfile $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.needle
+    default: outfile.out
 
 outputs:
   sequence-alignment:
     name: sequence-alignment
-    path: outfile.needle
+    path: outfile.out
     media-type: text/plain
   log:
     name: log

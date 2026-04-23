@@ -1,0 +1,84 @@
+---
+slivka-version: 0.8.3
+name: alloutputtypes_plugin
+description: Showing how a plugin can create all kinds of outputs
+version: '1.0'
+author: EMBOSS
+license: GPL
+
+parameters:
+  input:
+    name: input
+    type: text
+    required: true
+    description: "This input will be copied to several outputs. <p> For some of outputs, it will be even replicated (how many times, it depends on the parameter <em>count</em>)."
+  count:
+    name: count
+    type: integer
+    required: false
+    description: How many times to replicate input in the array outputs
+  simple-text-output:
+    name: simple_text_output
+    type: text
+    required: false
+  simple-binary-output:
+    name: simple_binary_output
+    type: text
+    required: false
+  array-text-output:
+    name: array_text_output
+    type: text
+    required: false
+  array-binary-output:
+    name: array_binary_output
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: alloutputtypes_plugin
+
+args:
+  input:
+    arg: -input $(value)
+  count:
+    arg: -count $(value)
+  simple-text-output:
+    arg: -simple_text_output $(value)
+  simple-binary-output:
+    arg: -simple_binary_output $(value)
+  array-text-output:
+    arg: -array_text_output $(value)
+  array-binary-output:
+    arg: -array_binary_output $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  output:
+    name: output
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

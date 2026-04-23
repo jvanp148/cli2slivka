@@ -1,0 +1,281 @@
+---
+slivka-version: 0.8.3
+name: sirna
+description: Find siRNA duplexes in mRNA
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: siRNA duplex prediction'
+- 'Topic :: Nucleic acid structure analysis'
+- 'Topic :: Nucleic acid sites and features'
+- 'Topic :: Regulatory RNA'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  poliii:
+    name: poliii
+    type: choice
+    required: false
+    description: Select probes for Pol III expression vectors. This option allows you to select only the 21 base probes that start with a purine and so can be expressed from Pol III expression vectors. This is the NARN(17)YNN pattern that has been suggested by Tuschl et al.
+    choices:
+      yes: Y
+      no: N
+  aa:
+    name: aa
+    type: choice
+    required: false
+    description: "Select only regions that start with AA. This option allows you to select only those 23 base regions that start with AA. If this option is not selected then regions that start with AA will be favoured by giving them a higher score, but regions that do not start with AA will also be reported."
+    choices:
+      yes: Y
+      no: N
+  tt:
+    name: tt
+    type: choice
+    required: false
+    description: "Select only regions that end with TT. This option allows you to select only those 23 base regions that end with TT. If this option is not selected then regions that end with TT will be favoured by giving them a higher score, but regions that do not end with TT will also be reported."
+    choices:
+      yes: Y
+      no: N
+  polybase:
+    name: polybase
+    type: choice
+    required: false
+    description: Allow regions with 4 repeats of a base. If this option is FALSE then only those 23 base regions that have no repeat of 4 or more of any bases in a row will be reported. No regions will ever be reported that have 4 or more G's in a row.
+    choices:
+      yes: Y
+      no: N
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  context:
+    name: context
+    type: choice
+    required: false
+    description: "Show the two bases before the output 21 base probe. The output report file gives the sequences of the 21 base siRNA regions ready to be ordered. This does not give you an indication of the 2 bases before the 21 bases. It is often interesting to see which of the suggested possible probe regions have an 'AA' in front of them (i.e. it is useful to see which of the 23 base regions start with an 'AA'). This option displays the whole 23 bases of the region with the first two bases in brackets, e.g. '(AA)' to give you some context for the probe region. YOU SHOULD NOT INCLUDE THE TWO BASES IN BRACKETS WHEN YOU PLACE AN ORDER FOR THE PROBES."
+    choices:
+      yes: Y
+      no: N
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: sirna
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  poliii:
+    arg: -poliii $(value)
+  aa:
+    arg: -aa $(value)
+  tt:
+    arg: -tt $(value)
+  polybase:
+    arg: -polybase $(value)
+  outseq:
+    arg: -outseq $(value)
+  context:
+    arg: -context $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  nucleic-acid-features:
+    name: nucleic-acid-features
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

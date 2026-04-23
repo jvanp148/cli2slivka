@@ -1,0 +1,672 @@
+---
+slivka-version: 0.8.3
+name: showseq
+description: Display sequences with features in pretty format
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: DNA translation'
+- 'Operation :: Sequence rendering'
+- 'Operation :: Restriction map rendering'
+- 'Topic :: Data visualisation'
+- 'Topic :: Nucleic acid restriction'
+- 'Topic :: Translation'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format:
+    name: format
+    type: choice
+    required: false
+    description: Things to display
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "7": "7"
+      "8": "8"
+  mfile:
+    name: mfile
+    type: text
+    required: false
+    description: Restriction enzyme methylation data file
+  things:
+    name: things
+    type: text
+    required: false
+    description: "Specify your own things to display. Specify a list of one or more code characters in the order in which you wish things to be displayed one above the other down the page. For example if you wish to see things displayed in the order: sequence, complement sequence, ticks line, frame 1 translation, blank line; then you should enter 'S,C,T,1,B'."
+  translate:
+    name: translate
+    type: text
+    required: false
+    description: "Regions to translate (eg: 4-57,78-94). Regions to translate (if translating). If this is left blank the complete sequence is translated. A set of regions is specified by a set of pairs of positions. The positions are integers. They are separated by any non-digit, non-alpha character. Examples of region specifications are: 24-45, 56-78 1:45, 67=99;765..888"
+  revtranslate:
+    name: revtranslate
+    type: text
+    required: false
+    description: "Regions to translate in reverse direction (eg: 78-94,4-57). Regions to translate (if translating). If this is left blank the complete sequence is translated. A set of regions is specified by a set of pairs of positions. The positions are integers. They are separated by any non-digit, non-alpha character. Examples of region specifications are: 78-56, 45-24, 888..765, 99=67; 45:1"
+  uppercase:
+    name: uppercase
+    type: text
+    required: false
+    description: "Regions to put in uppercase (eg: 4-57,78-94). Regions to put in uppercase. If this is left blank, then the sequence case is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are separated by any non-digit, non-alpha character. Examples of region specifications are: 24-45, 56-78 1:45, 67=99;765..888 1,5,8,10,23,45,57,99"
+  highlight:
+    name: highlight
+    type: text
+    required: false
+    description: "Regions to colour in HTML (eg: 4-57 red 78-94 green). Regions to colour if formatting for HTML. If this is left blank, then the sequence is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are followed by any valid HTML font colour. Examples of region specifications are: 24-45 blue 56-78 orange 1-100 green 120-156 red A file of ranges to colour (one range per line) can be specified as '@filename'."
+  annotation:
+    name: annotation
+    type: text
+    required: false
+    description: "Regions to mark (eg: 4-57 promoter region 78-94 first exon). Regions to annotate by marking. If this is left blank, then no annotation is added. A set of regions is specified by a set of pairs of positions followed by optional text. The positions are integers. They are followed by any text (but not digits when on the command-line). Examples of region specifications are: 24-45 new domain 56-78 match to Mouse 1-100 First part 120-156 oligo A file of ranges to annotate (one range per line) can be specified as '@filename'."
+  enzymes:
+    name: enzymes
+    type: text
+    required: false
+    description: "Comma separated restriction enzyme list. The name 'all' reads in all enzyme names from the REBASE database. You can specify enzymes by giving their names with commas between then, such as: 'HincII,hinfI,ppiI,hindiii'. The case of the names is not important. You can specify a file of enzyme names to read in by giving the name of the file holding the enzyme names with a '@' character in front of it, for example, '@enz.list'. Blank lines and lines starting with a hash character or '!' are ignored and all other lines are concatenated together with a comma character ',' and then treated as the list of enzymes to search for. An example of a file of enzyme names is: ! my enzymes HincII, ppiII ! other enzymes hindiii HinfI PpiI"
+  table:
+    name: table
+    type: choice
+    required: false
+    description: Genetic codes
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "9": "9"
+      "10": "10"
+      "11": "11"
+      "12": "12"
+      "13": "13"
+      "14": "14"
+      "15": "15"
+      "16": "16"
+      "21": "21"
+      "22": "22"
+      "23": "23"
+  sourcematch:
+    name: sourcematch
+    type: text
+    required: false
+    description: "Source of feature to display. By default any feature source in the feature table is shown. You can set this to match any feature source you wish to show. The source name is usually either the name of the program that detected the feature or it is the feature table (eg: EMBL) that the feature came from. The source may be wildcarded by using '*'. If you wish to show more than one source, separate their names with the character '|', eg: gene* | embl"
+  typematch:
+    name: typematch
+    type: text
+    required: false
+    description: "Type of feature to display. By default any feature type in the feature table is shown. You can set this to match any feature type you wish to show. See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL feature types and see Appendix A of the Swissprot user manual in http://www.expasy.org/sprot/userman.html for a list of the Swissprot feature types. The type may be wildcarded by using '*'. If you wish to show more than one type, separate their names with the character '|', eg: *UTR | intron"
+  sensematch:
+    name: sensematch
+    type: integer
+    required: false
+    description: "Sense of feature to display. By default any feature type in the feature table is shown. You can set this to match any feature sense you wish to show. 0 - any sense, 1 - forward sense, -1 - reverse sense"
+    min: -1
+    max: 1
+  minscore:
+    name: minscore
+    type: decimal
+    required: false
+    description: Minimum score of feature to display (see also maxscore)
+  maxscore:
+    name: maxscore
+    type: decimal
+    required: false
+    description: "Maximum score of feature to display. If both minscore and maxscore are zero (the default), then any score is ignored"
+  tagmatch:
+    name: tagmatch
+    type: text
+    required: false
+    description: "Tag of feature to display. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Some of these tags also have values, for example '/gene' can have the value of the gene name. By default any feature tag in the feature table is shown. You can set this to match any feature tag you wish to show. The tag may be wildcarded by using '*'. If you wish to show more than one tag, separate their names with the character '|', eg: gene | label"
+  valuematch:
+    name: valuematch
+    type: text
+    required: false
+    description: "Value of feature tags to display. Tag values are the values associated with a feature tag. Tags are the types of extra values that a feature may have. For example in the EMBL feature table, a 'CDS' type of feature may have the tags '/codon', '/codon_start', '/db_xref', '/EC_number', '/evidence', '/exception', '/function', '/gene', '/label', '/map', '/note', '/number', '/partial', '/product', '/protein_id', '/pseudo', '/standard_name', '/translation', '/transl_except', '/transl_table', or '/usedin'. Only some of these tags can have values, for example '/gene' can have the value of the gene name. By default any feature tag value in the feature table is shown. You can set this to match any feature tag value you wish to show. The tag value may be wildcarded by using '*'. If you wish to show more than one tag value, separate their names with the character '|', eg: pax* | 10"
+  stricttags:
+    name: stricttags
+    type: choice
+    required: false
+    description: "Only display the matching tags. By default if any tag/value pair in a feature matches the specified tag and value, then all the tags/value pairs of that feature will be displayed. If this is set to be true, then only those tag/value pairs in a feature that match the specified tag and value will be displayed."
+    choices:
+      yes: Y
+      no: N
+  flatreformat:
+    name: flatreformat
+    type: choice
+    required: false
+    description: "Display RE sites in flat format. This changes the output format to one where the recognition site is indicated by a row of '===' characters and the cut site is pointed to by a '>' character in the forward sense, or a '<' in the reverse sense strand."
+    choices:
+      yes: Y
+      no: N
+  mincuts:
+    name: mincuts
+    type: integer
+    required: false
+    description: Minimum cuts per RE. This sets the minimum number of cuts for any restriction enzyme that will be considered. Any enzymes that cut fewer times than this will be ignored.
+    min: 1
+    max: 1000
+  maxcuts:
+    name: maxcuts
+    type: integer
+    required: false
+    description: Maximum cuts per RE. This sets the maximum number of cuts for any restriction enzyme that will be considered. Any enzymes that cut more times than this will be ignored.
+  sitelen:
+    name: sitelen
+    type: integer
+    required: false
+    description: Minimum recognition site length. This sets the minimum length of the restriction enzyme recognition site. Any enzymes with sites shorter than this will be ignored.
+    min: 2
+    max: 20
+  single:
+    name: single
+    type: choice
+    required: false
+    description: Force single RE site only cuts. If this is set then this forces the values of the mincuts and maxcuts qualifiers to both be 1. Any other value you may have set them to will be ignored.
+    choices:
+      yes: Y
+      no: N
+  blunt:
+    name: blunt
+    type: choice
+    required: false
+    description: Allow blunt end RE cutters. This allows those enzymes which cut at the same position on the forward and reverse strands to be considered.
+    choices:
+      yes: Y
+      no: N
+  sticky:
+    name: sticky
+    type: choice
+    required: false
+    description: "Allow sticky end RE cutters. This allows those enzymes which cut at different positions on the forward and reverse strands, leaving an overhang, to be considered."
+    choices:
+      yes: Y
+      no: N
+  ambiguity:
+    name: ambiguity
+    type: choice
+    required: false
+    description: Allow ambiguous RE matches. This allows those enzymes which have one or more 'N' ambiguity codes in their pattern to be considered
+    choices:
+      yes: Y
+      no: N
+  plasmid:
+    name: plasmid
+    type: choice
+    required: false
+    description: Allow circular DNA. If this is set then this allows searches for restriction enzyme recognition site and cut positions that span the end of the sequence to be considered.
+    choices:
+      yes: Y
+      no: N
+  methylation:
+    name: methylation
+    type: choice
+    required: false
+    description: Use methylation data. If this is set then RE recognition sites will not match methylated bases.
+    choices:
+      yes: Y
+      no: N
+  commercial:
+    name: commercial
+    type: choice
+    required: false
+    description: "Only use restriction enzymes with suppliers. If this is set, then only those enzymes with a commercial supplier will be searched for. This qualifier is ignored if you have specified an explicit list of enzymes to search for, rather than searching through 'all' the enzymes in the REBASE database. It is assumed that, if you are asking for an explicit enzyme, then you probably know where to get it from and so all enzymes names that you have asked to be searched for, and which cut, will be reported whether or not they have a commercial supplier."
+    choices:
+      yes: Y
+      no: N
+  limit:
+    name: limit
+    type: choice
+    required: false
+    description: "Limits RE hits to one isoschizomer. This limits the reporting of enzymes to just one enzyme from each group of isoschizomers. The enzyme chosen to represent an isoschizomer group is the prototype indicated in the data file 'embossre.equ', which is created by the program 'rebaseextract'. If you prefer different prototypes to be used, make a copy of embossre.equ in your home directory and edit it. If this value is set to be false then all of the input enzymes will be reported. You might like to set this to false if you are supplying an explicit set of enzymes rather than searching 'all' of them."
+    choices:
+      yes: Y
+      no: N
+  orfminsize:
+    name: orfminsize
+    type: integer
+    required: false
+    description: Minimum size of ORFs. This sets the minimum size of Open Reading Frames (ORFs) to display in the translations. All other translation regions are masked by changing the amino acids to '-' characters.
+    min: 0
+  threeletter:
+    name: threeletter
+    type: choice
+    required: false
+    description: Display protein sequences in three-letter code
+    choices:
+      yes: Y
+      no: N
+  number:
+    name: number
+    type: choice
+    required: false
+    description: Number the sequences
+    choices:
+      yes: Y
+      no: N
+  width:
+    name: width
+    type: integer
+    required: false
+    description: Width of sequence to display
+    min: 1
+  length:
+    name: length
+    type: integer
+    required: false
+    description: Line length of page (0 for indefinite)
+    min: 0
+  margin:
+    name: margin
+    type: integer
+    required: false
+    description: Margin around sequence for numbering
+    min: 0
+  name:
+    name: name
+    type: choice
+    required: false
+    description: Show sequence ID. Set this to be false if you do not wish to display the ID name of the sequence
+    choices:
+      yes: Y
+      no: N
+  description:
+    name: description
+    type: choice
+    required: false
+    description: Show description. Set this to be false if you do not wish to display the description of the sequence
+    choices:
+      yes: Y
+      no: N
+  offset:
+    name: offset
+    type: integer
+    required: false
+    description: Offset to start numbering the sequence from
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Use HTML formatting
+    choices:
+      yes: Y
+      no: N
+  things-s:
+    name: things_S
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-b:
+    name: things_B
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-1:
+    name: things_1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-2:
+    name: things_2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-3:
+    name: things_3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things--1:
+    name: things_-1
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things--2:
+    name: things_-2
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things--3:
+    name: things_-3
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-t:
+    name: things_T
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-n:
+    name: things_N
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-c:
+    name: things_C
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-f:
+    name: things_F
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-r:
+    name: things_R
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things--r:
+    name: things_-R
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-a:
+    name: things_A
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: showseq
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  format:
+    arg: -format $(value)
+  mfile:
+    arg: -mfile $(value)
+  things:
+    arg: -things $(value)
+  translate:
+    arg: -translate $(value)
+  revtranslate:
+    arg: -revtranslate $(value)
+  uppercase:
+    arg: -uppercase $(value)
+  highlight:
+    arg: -highlight $(value)
+  annotation:
+    arg: -annotation $(value)
+  enzymes:
+    arg: -enzymes $(value)
+  table:
+    arg: -table $(value)
+  sourcematch:
+    arg: -sourcematch $(value)
+  typematch:
+    arg: -typematch $(value)
+  sensematch:
+    arg: -sensematch $(value)
+  minscore:
+    arg: -minscore $(value)
+  maxscore:
+    arg: -maxscore $(value)
+  tagmatch:
+    arg: -tagmatch $(value)
+  valuematch:
+    arg: -valuematch $(value)
+  stricttags:
+    arg: -stricttags $(value)
+  flatreformat:
+    arg: -flatreformat $(value)
+  mincuts:
+    arg: -mincuts $(value)
+  maxcuts:
+    arg: -maxcuts $(value)
+  sitelen:
+    arg: -sitelen $(value)
+  single:
+    arg: -single $(value)
+  blunt:
+    arg: -blunt $(value)
+  sticky:
+    arg: -sticky $(value)
+  ambiguity:
+    arg: -ambiguity $(value)
+  plasmid:
+    arg: -plasmid $(value)
+  methylation:
+    arg: -methylation $(value)
+  commercial:
+    arg: -commercial $(value)
+  limit:
+    arg: -limit $(value)
+  orfminsize:
+    arg: -orfminsize $(value)
+  threeletter:
+    arg: -threeletter $(value)
+  number:
+    arg: -number $(value)
+  width:
+    arg: -width $(value)
+  length:
+    arg: -length $(value)
+  margin:
+    arg: -margin $(value)
+  name:
+    arg: -name $(value)
+  description:
+    arg: -description $(value)
+  offset:
+    arg: -offset $(value)
+  html:
+    arg: -html $(value)
+  things-s:
+    arg: -things_S $(value)
+  things-b:
+    arg: -things_B $(value)
+  things-1:
+    arg: -things_1 $(value)
+  things-2:
+    arg: -things_2 $(value)
+  things-3:
+    arg: -things_3 $(value)
+  things--1:
+    arg: -things_-1 $(value)
+  things--2:
+    arg: -things_-2 $(value)
+  things--3:
+    arg: -things_-3 $(value)
+  things-t:
+    arg: -things_T $(value)
+  things-n:
+    arg: -things_N $(value)
+  things-c:
+    arg: -things_C $(value)
+  things-f:
+    arg: -things_F $(value)
+  things-r:
+    arg: -things_R $(value)
+  things--r:
+    arg: -things_-R $(value)
+  things-a:
+    arg: -things_A $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.showseq
+
+outputs:
+  nucleic-acid-features:
+    name: nucleic-acid-features
+    path: outfile.showseq
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

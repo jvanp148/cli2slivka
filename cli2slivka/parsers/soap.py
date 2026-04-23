@@ -97,7 +97,7 @@ class SoapXMLParser(CLIParser):
     def can_parse(cls, path):
         try:    
             with open(path, "rb") as fh:
-                line = fh.readline(1024)  # limit read size
+                line = fh.read(1024)  # limit read size
                 return b"<analysis" in line
         except OSError:
             return False
@@ -125,6 +125,15 @@ class SoapXMLParser(CLIParser):
         )
 
         params = self._parse_parameters()
+        params.append(ChoiceParameter(
+                        slug        = "help",
+                        name        = "help",
+                        description = "Help documentation of the tool.",
+                        required    = False,
+                        choices     = {
+                            "yes": "Y", "no": "N"
+                        },
+                    ))
         for p in params:
             service.add_parameter(p)
         service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]

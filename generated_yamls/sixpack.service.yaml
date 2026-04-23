@@ -1,0 +1,393 @@
+---
+slivka-version: 0.8.3
+name: sixpack
+description: Display a DNA sequence with 6-frame
+                  translation and ORFs
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: DNA translation'
+- 'Operation :: Coding region prediction'
+- 'Operation :: Sequence rendering'
+- 'Topic :: Data visualisation'
+- 'Topic :: Translation'
+- 'Topic :: Gene finding'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  table:
+    name: table
+    type: choice
+    required: false
+    description: Genetic codes. Genetics code used for the translation
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+      "4": "4"
+      "5": "5"
+      "6": "6"
+      "9": "9"
+      "10": "10"
+      "11": "11"
+      "12": "12"
+      "13": "13"
+      "14": "14"
+      "15": "15"
+      "16": "16"
+      "21": "21"
+      "22": "22"
+      "23": "23"
+  firstorf:
+    name: firstorf
+    type: choice
+    required: false
+    description: "ORF at the beginning of the sequence. Count the beginning of a sequence as a possible ORF, even if it is inferior to the minimal ORF size."
+    choices:
+      yes: Y
+      no: N
+  lastorf:
+    name: lastorf
+    type: choice
+    required: false
+    description: "ORF at the end of the sequence. Count the end of a sequence as a possible ORF, even if it is not finishing with a STOP, or inferior to the minimal ORF size."
+    choices:
+      yes: Y
+      no: N
+  mstart:
+    name: mstart
+    type: choice
+    required: false
+    description: ORF start with an M. Displays only ORFs starting with an M.
+    choices:
+      yes: Y
+      no: N
+  outseq:
+    name: outseq
+    type: text
+    required: false
+    description: Returns sequence.
+  reverse:
+    name: reverse
+    type: choice
+    required: false
+    description: Display translation of reverse sense. Display also the translation of the DNA sequence in the 3 reverse frames
+    choices:
+      yes: Y
+      no: N
+  orfminsize:
+    name: orfminsize
+    type: integer
+    required: false
+    description: Minimum size of ORFs (aa). Minimum protein size of Open Reading Frames (ORFs) to display in the translations.
+    min: 1
+  uppercase:
+    name: uppercase
+    type: text
+    required: false
+    description: "Regions to put in uppercase (eg: 4-57,78-94). Regions to put in uppercase. If this is left blank, then the sequence case is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are separated by any non-digit, non-alpha character. Examples of region specifications are: 24-45, 56-78 1:45, 67=99;765..888 1,5,8,10,23,45,57,99"
+  highlight:
+    name: highlight
+    type: text
+    required: false
+    description: "Regions to colour in HTML (eg: 4-57 red 78-94 green). Regions to colour if formatting for HTML. If this is left blank, then the sequence is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are followed by any valid HTML font colour. Examples of region specifications are: 24-45 blue 56-78 orange 1-100 green 120-156 red A file of ranges to colour (one range per line) can be specified as '@filename'."
+  number:
+    name: number
+    type: choice
+    required: false
+    description: Number the sequences. Number the sequence at the beginning and the end of each line.
+    choices:
+      yes: Y
+      no: N
+  width:
+    name: width
+    type: integer
+    required: false
+    description: Width of sequence to display. Number of nucleotides displayed on each line
+    min: 1
+  length:
+    name: length
+    type: integer
+    required: false
+    description: Line length of page (0 for indefinite)
+    min: 0
+  margin:
+    name: margin
+    type: integer
+    required: false
+    description: Margin around sequence for numbering
+    min: 0
+  name:
+    name: name
+    type: choice
+    required: false
+    description: Display sequence ID. Set this to be false if you do not wish to display the ID name of the sequence.
+    choices:
+      yes: Y
+      no: N
+  description:
+    name: description
+    type: choice
+    required: false
+    description: Display description. Set this to be false if you do not wish to display the description of the sequence.
+    choices:
+      yes: Y
+      no: N
+  offset:
+    name: offset
+    type: integer
+    required: false
+    description: Offset to start numbering the sequence from. Number from which you want the DNA sequence to be numbered.
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Use HTML formatting
+    choices:
+      yes: Y
+      no: N
+  osformat-outseq:
+    name: osformat_outseq
+    type: choice
+    required: false
+    description: Format of the output sequence (outseq)
+    choices:
+      acedb: acedb
+      asn1: asn1
+      bam: bam
+      clustal: clustal
+      codata: codata
+      das: das
+      dasdna: dasdna
+      embl: embl
+      experiment: experiment
+      fasta: fasta
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      jackknifer: jackknifer
+      jackknifernon: jackknifernon
+      mase: mase
+      mega: mega
+      meganon: meganon
+      msf: msf
+      nbrf: nbrf
+      ncbi: ncbi
+      nexus: nexus
+      nexusnon: nexusnon
+      phylip: phylip
+      phylipnon: phylipnon
+      pir: pir
+      raw: raw
+      refseq: refseq
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: sixpack
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  table:
+    arg: -table $(value)
+  firstorf:
+    arg: -firstorf $(value)
+  lastorf:
+    arg: -lastorf $(value)
+  mstart:
+    arg: -mstart $(value)
+  outseq:
+    arg: -outseq $(value)
+  reverse:
+    arg: -reverse $(value)
+  orfminsize:
+    arg: -orfminsize $(value)
+  uppercase:
+    arg: -uppercase $(value)
+  highlight:
+    arg: -highlight $(value)
+  number:
+    arg: -number $(value)
+  width:
+    arg: -width $(value)
+  length:
+    arg: -length $(value)
+  margin:
+    arg: -margin $(value)
+  name:
+    arg: -name $(value)
+  description:
+    arg: -description $(value)
+  offset:
+    arg: -offset $(value)
+  html:
+    arg: -html $(value)
+  osformat-outseq:
+    arg: -osformat_outseq $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.sixpack
+
+outputs:
+  nucleic-acid-features:
+    name: nucleic-acid-features
+    path: outfile.sixpack
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

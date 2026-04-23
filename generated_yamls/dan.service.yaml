@@ -1,0 +1,310 @@
+---
+slivka-version: 0.8.3
+name: dan
+description: Calculate nucleic acid melting temperature
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Nucleic acid thermodynamic property calculation'
+- 'Topic :: Nucleic acid thermodynamics'
+- 'Topic :: Sequence composition analysis'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  windowsize:
+    name: windowsize
+    type: integer
+    required: false
+    description: Enter window size. The values of melting point and other thermodynamic properties of the sequence are determined by taking a short length of sequence known as a window and determining the properties of the sequence in that window. The window is incrementally moved along the sequence with the properties being calculated at each new position.
+    min: 1
+    max: 100
+  dnaconc:
+    name: dnaconc
+    type: decimal
+    required: false
+    description: Enter DNA concentration (nM)
+    min: 1.0
+    max: 100000.0
+  saltconc:
+    name: saltconc
+    type: decimal
+    required: false
+    description: Enter salt concentration (mM)
+    min: 1.0
+    max: 1000.0
+  graph-format:
+    name: graph_format
+    type: choice
+    required: false
+    description: Format of the graphical output
+    choices:
+      png: png
+      colourps: colourps
+  shiftincrement:
+    name: shiftincrement
+    type: integer
+    required: false
+    description: Enter shift increment. This is the amount by which the window is moved at each increment in order to find the melting point and other properties along the sequence.
+    min: 1
+  product:
+    name: product
+    type: choice
+    required: false
+    description: "Prompt for product values. This prompts for percent formamide, percent of mismatches allowed and product length."
+    choices:
+      yes: Y
+      no: N
+  formamide:
+    name: formamide
+    type: decimal
+    required: false
+    description: Enter percentage of formamide. This specifies the percent formamide to be used in calculations (it is ignored unless -product is used).
+    min: 0.0
+    max: 100.0
+  mismatch:
+    name: mismatch
+    type: decimal
+    required: false
+    description: Enter percent mismatch. This specifies the percent mismatch to be used in calculations (it is ignored unless -product is used).
+    min: 0.0
+    max: 100.0
+  prodlen:
+    name: prodlen
+    type: integer
+    required: false
+    description: Enter the product length. This specifies the product length to be used in calculations (it is ignored unless -product is used).
+  thermo:
+    name: thermo
+    type: choice
+    required: false
+    description: "Thermodynamic calculations. Output the DeltaG, DeltaH and DeltaS values of the sequence windows to the output data file."
+    choices:
+      yes: Y
+      no: N
+  temperature:
+    name: temperature
+    type: decimal
+    required: false
+    description: "Enter temperature. If -thermo has been specified then this specifies the temperature at which to calculate the DeltaG, DeltaH and DeltaS values."
+    min: 0.0
+    max: 100.0
+  rna:
+    name: rna
+    type: choice
+    required: false
+    description: Use RNA data values. This specifies that the sequence is an RNA sequence and not a DNA sequence.
+    choices:
+      yes: Y
+      no: N
+  plot:
+    name: plot
+    type: choice
+    required: false
+    description: "Produce a plot. If this is not specified then the file of output data is produced, else a plot of the melting point along the sequence is produced."
+    choices:
+      yes: Y
+      no: N
+  mintemp:
+    name: mintemp
+    type: decimal
+    required: false
+    description: Enter minimum temperature. Enter a minimum value for the temperature scale (y-axis) of the plot.
+    min: 0.0
+    max: 150.0
+  graphics-in-postscript:
+    name: Graphics_in_Postscript
+    type: text
+    required: false
+  graphics-in-png:
+    name: Graphics_in_PNG
+    type: text
+    required: false
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: dan
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  windowsize:
+    arg: -windowsize $(value)
+  dnaconc:
+    arg: -dnaconc $(value)
+  saltconc:
+    arg: -saltconc $(value)
+  graph-format:
+    arg: -graph_format $(value)
+  shiftincrement:
+    arg: -shiftincrement $(value)
+  product:
+    arg: -product $(value)
+  formamide:
+    arg: -formamide $(value)
+  mismatch:
+    arg: -mismatch $(value)
+  prodlen:
+    arg: -prodlen $(value)
+  thermo:
+    arg: -thermo $(value)
+  temperature:
+    arg: -temperature $(value)
+  rna:
+    arg: -rna $(value)
+  plot:
+    arg: -plot $(value)
+  mintemp:
+    arg: -mintemp $(value)
+  graphics-in-postscript:
+    arg: -Graphics_in_Postscript $(value)
+  graphics-in-png:
+    arg: -Graphics_in_PNG $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  nucleic-acid-melting-profile:
+    name: nucleic-acid-melting-profile
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

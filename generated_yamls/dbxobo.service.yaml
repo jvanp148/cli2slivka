@@ -1,0 +1,176 @@
+---
+slivka-version: 0.8.3
+name: dbxobo
+description: Index an obo ontology using b+tree indices
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data indexing'
+- 'Topic :: Data handling'
+
+parameters:
+  dbname:
+    name: dbname
+    type: text
+    required: true
+    description: Basename for index files
+  standardname:
+    name: standardname
+    type: text
+    required: false
+    description: Standard database name
+  dbresource:
+    name: dbresource
+    type: text
+    required: false
+    description: Resource name
+  filenames:
+    name: filenames
+    type: text
+    required: false
+    description: Wildcard database filename
+  fields:
+    name: fields
+    type: text
+    required: false
+    description: Index fields
+  compressed:
+    name: compressed
+    type: choice
+    required: false
+    description: Compressed index files
+    choices:
+      yes: Y
+      no: N
+  release:
+    name: release
+    type: text
+    required: false
+    description: Release number
+  date:
+    name: date
+    type: text
+    required: false
+    description: Index date
+  exclude:
+    name: exclude
+    type: text
+    required: false
+    description: Wildcard filename(s) to exclude
+  indexoutdir:
+    name: indexoutdir
+    type: text
+    required: false
+    description: Index file output directory
+  fields-id:
+    name: fields_id
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-acc:
+    name: fields_acc
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-nam:
+    name: fields_nam
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-isa:
+    name: fields_isa
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-des:
+    name: fields_des
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  fields-ns:
+    name: fields_ns
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: dbxobo
+
+args:
+  dbname:
+    arg: -dbname $(value)
+  standardname:
+    arg: -standardname $(value)
+  dbresource:
+    arg: -dbresource $(value)
+  filenames:
+    arg: -filenames $(value)
+  fields:
+    arg: -fields $(value)
+  compressed:
+    arg: -compressed $(value)
+  release:
+    arg: -release $(value)
+  date:
+    arg: -date $(value)
+  exclude:
+    arg: -exclude $(value)
+  indexoutdir:
+    arg: -indexoutdir $(value)
+  fields-id:
+    arg: -fields_id $(value)
+  fields-acc:
+    arg: -fields_acc $(value)
+  fields-nam:
+    arg: -fields_nam $(value)
+  fields-isa:
+    arg: -fields_isa $(value)
+  fields-des:
+    arg: -fields_des $(value)
+  fields-ns:
+    arg: -fields_ns $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  tool-log:
+    name: tool-log
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

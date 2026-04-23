@@ -1,0 +1,66 @@
+---
+slivka-version: 0.8.3
+name: ontogetdown
+description: Get ontology term(s) by parent id
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval'
+- 'Topic :: Ontology'
+- 'Topic :: Data search and retrieval'
+
+parameters:
+  oboterms:
+    name: oboterms
+    type: text
+    required: false
+  obsolete:
+    name: obsolete
+    type: choice
+    required: false
+    description: Include obsolete terms. The default behaviour is to not use or return obsolete terms. This option if set will include all terms.
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: ontogetdown
+
+args:
+  oboterms:
+    arg: -oboterms $(value)
+  obsolete:
+    arg: -obsolete $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  ontology-term:
+    name: ontology-term
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

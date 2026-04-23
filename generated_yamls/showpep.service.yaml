@@ -1,0 +1,396 @@
+---
+slivka-version: 0.8.3
+name: showpep
+description: Display protein sequences with features in pretty format
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Sequence rendering'
+- 'Topic :: Data visualisation'
+
+parameters:
+  sequence:
+    name: sequence
+    type: file
+    required: true
+  sformat-sequence:
+    name: sformat_sequence
+    type: choice
+    required: false
+    choices:
+      abi: abi
+      ace: ace
+      acedb: acedb
+      bam: bam
+      biomart: biomart
+      clustal: clustal
+      codata: codata
+      dbid: dbid
+      embl: embl
+      ensembl: ensembl
+      experiment: experiment
+      fasta: fasta
+      fastq: fastq
+      fastq-illumina: fastq-illumina
+      fastq-sanger: fastq-sanger
+      fastq-solexa: fastq-solexa
+      fitch: fitch
+      gcg: gcg
+      genbank: genbank
+      genpept: genpept
+      gff2: gff2
+      gff3: gff3
+      gifasta: gifasta
+      hennig86: hennig86
+      ig: ig
+      igstrict: igstrict
+      jackknifer: jackknifer
+      mase: mase
+      mega: mega
+      msf: msf
+      nbrf: nbrf
+      nexus: nexus
+      pdb: pdb
+      pdbnuc: pdbnuc
+      pdbnucseq: pdbnucseq
+      pdbseq: pdbseq
+      pearson: pearson
+      phylip: phylip
+      phylipnon: phylipnon
+      raw: raw
+      refseqp: refseqp
+      sam: sam
+      selex: selex
+      staden: staden
+      stockholm: stockholm
+      strider: strider
+      swiss: swiss
+      text: text
+      treecon: treecon
+  sbegin-sequence:
+    name: sbegin_sequence
+    type: integer
+    required: false
+  send-sequence:
+    name: send_sequence
+    type: integer
+    required: false
+  sprotein-sequence:
+    name: sprotein_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  snucleotide-sequence:
+    name: snucleotide_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  sreverse-sequence:
+    name: sreverse_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  slower-sequence:
+    name: slower_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  supper-sequence:
+    name: supper_sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  format:
+    name: format
+    type: choice
+    required: false
+    description: Things to display
+    choices:
+      "0": "0"
+      "1": "1"
+      "2": "2"
+      "3": "3"
+  things:
+    name: things
+    type: text
+    required: false
+    description: "Specify your own things to display. Specify a list of one or more code characters in the order in which you wish things to be displayed one above the other down the page. For example if you wish to see things displayed in the order: sequence, ticks line, blank line; then you should enter 'S,T,B'."
+  uppercase:
+    name: uppercase
+    type: text
+    required: false
+    description: "Regions to put in uppercase (eg: 4-57,78-94). Regions to put in uppercase. If this is left blank, then the sequence case is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are separated by any non-digit, non-alpha character. Examples of region specifications are: 24-45, 56-78 1:45, 67=99;765..888 1,5,8,10,23,45,57,99"
+  highlight:
+    name: highlight
+    type: text
+    required: false
+    description: "Regions to colour in HTML (eg: 4-57 red 78-94 green). Regions to colour if formatting for HTML. If this is left blank, then the sequence is left alone. A set of regions is specified by a set of pairs of positions. The positions are integers. They are followed by any valid HTML font colour. Examples of region specifications are: 24-45 blue 56-78 orange 1-100 green 120-156 red A file of ranges to colour (one range per line) can be specified as '@filename'."
+  annotation:
+    name: annotation
+    type: text
+    required: false
+    description: "Regions to mark (eg: 4-57 promoter region 78-94 first exon). Regions to annotate by marking. If this is left blank, then no annotation is added. A set of regions is specified by a set of pairs of positions followed by optional text. The positions are integers. They are followed by any text (but not digits when on the command-line). Examples of region specifications are: 24-45 new domain 56-78 match to Mouse 1-100 First part 120-156 oligo A file of ranges to annotate (one range per line) can be specified as '@filename'."
+  sourcematch:
+    name: sourcematch
+    type: text
+    required: false
+    description: "Source of feature to display. By default any feature source in the feature table is shown. You can set this to match any feature source you wish to show. The source name is usually either the name of the program that detected the feature or it is the feature table (eg: EMBL) that the feature came from. The source may be wildcarded by using '*'. If you wish to show more than one source, separate their names with the character '|', eg: gene* | embl"
+  typematch:
+    name: typematch
+    type: text
+    required: false
+    description: "Type of feature to display. By default any feature type in the feature table is shown. You can set this to match any feature type you wish to show. See http://www.ebi.ac.uk/embl/WebFeat/ for a list of the EMBL feature types and see Appendix A of the Swissprot user manual in http://www.expasy.org/sprot/userman.html for a list of the Swissprot feature types. The type may be wildcarded by using '*'. If you wish to show more than one type, separate their names with the character '|', eg: *UTR | intron"
+  minscore:
+    name: minscore
+    type: decimal
+    required: false
+    description: Minimum score of feature to display (see also maxscore)
+  maxscore:
+    name: maxscore
+    type: decimal
+    required: false
+    description: "Maximum score of feature to display. If both minscore and maxscore are zero (the default), then any score is ignored"
+  tagmatch:
+    name: tagmatch
+    type: text
+    required: false
+    description: "Tag of feature to display. Tags are the types of extra values that a feature may have. By default any feature tag in the feature table is shown. You can set this to match any feature tag you wish to show. The tag may be wildcarded by using '*'. If you wish to show more than one tag, separate their names with the character '|', eg: gene | label"
+  valuematch:
+    name: valuematch
+    type: text
+    required: false
+    description: "Value of feature tags to display. Tag values are the values associated with a feature tag. Tags are the types of extra values that a feature may have. By default any feature tag value in the feature table is shown. You can set this to match any feature tag value you wish to show. The tag value may be wildcarded by using '*'. If you wish to show more than one tag value, separate their names with the character '|', eg: pax* | 10"
+  stricttags:
+    name: stricttags
+    type: choice
+    required: false
+    description: "Only display the matching tags. By default if any tag/value pair in a feature matches the specified tag and value, then all the tags/value pairs of that feature will be displayed. If this is set to be true, then only those tag/value pairs in a feature that match the specified tag and value will be displayed."
+    choices:
+      yes: Y
+      no: N
+  threeletter:
+    name: threeletter
+    type: choice
+    required: false
+    description: Display protein sequences in three-letter code
+    choices:
+      yes: Y
+      no: N
+  number:
+    name: number
+    type: choice
+    required: false
+    description: Number the sequences
+    choices:
+      yes: Y
+      no: N
+  width:
+    name: width
+    type: integer
+    required: false
+    description: Width of sequence to display
+    min: 1
+  length:
+    name: length
+    type: integer
+    required: false
+    description: Line length of page (0 for indefinite)
+    min: 0
+  margin:
+    name: margin
+    type: integer
+    required: false
+    description: Margin around sequence for numbering
+    min: 0
+  name:
+    name: name
+    type: choice
+    required: false
+    description: Show sequence ID. Set this to be false if you do not wish to display the ID name of the sequence
+    choices:
+      yes: Y
+      no: N
+  description:
+    name: description
+    type: choice
+    required: false
+    description: Show description. Set this to be false if you do not wish to display the description of the sequence
+    choices:
+      yes: Y
+      no: N
+  offset:
+    name: offset
+    type: integer
+    required: false
+    description: Offset to start numbering the sequence from
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Use HTML formatting
+    choices:
+      yes: Y
+      no: N
+  things-s:
+    name: things_S
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-b:
+    name: things_B
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-t:
+    name: things_T
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-n:
+    name: things_N
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-f:
+    name: things_F
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  things-a:
+    name: things_A
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: showpep
+
+args:
+  sequence:
+    arg: -sequence $(value)
+    symlink: sequence.dat
+  sformat-sequence:
+    arg: -sformat1 $(value)
+  sbegin-sequence:
+    arg: -sbegin1 $(value)
+  send-sequence:
+    arg: -send1 $(value)
+  sprotein-sequence:
+    arg: -sprotein1 $(value)
+  snucleotide-sequence:
+    arg: -snucleotide1 $(value)
+  sreverse-sequence:
+    arg: -sreverse1 $(value)
+  slower-sequence:
+    arg: -slower1 $(value)
+  supper-sequence:
+    arg: -supper1 $(value)
+  format:
+    arg: -format $(value)
+  things:
+    arg: -things $(value)
+  uppercase:
+    arg: -uppercase $(value)
+  highlight:
+    arg: -highlight $(value)
+  annotation:
+    arg: -annotation $(value)
+  sourcematch:
+    arg: -sourcematch $(value)
+  typematch:
+    arg: -typematch $(value)
+  minscore:
+    arg: -minscore $(value)
+  maxscore:
+    arg: -maxscore $(value)
+  tagmatch:
+    arg: -tagmatch $(value)
+  valuematch:
+    arg: -valuematch $(value)
+  stricttags:
+    arg: -stricttags $(value)
+  threeletter:
+    arg: -threeletter $(value)
+  number:
+    arg: -number $(value)
+  width:
+    arg: -width $(value)
+  length:
+    arg: -length $(value)
+  margin:
+    arg: -margin $(value)
+  name:
+    arg: -name $(value)
+  description:
+    arg: -description $(value)
+  offset:
+    arg: -offset $(value)
+  html:
+    arg: -html $(value)
+  things-s:
+    arg: -things_S $(value)
+  things-b:
+    arg: -things_B $(value)
+  things-t:
+    arg: -things_T $(value)
+  things-n:
+    arg: -things_N $(value)
+  things-f:
+    arg: -things_F $(value)
+  things-a:
+    arg: -things_A $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  protein-features:
+    name: protein-features
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

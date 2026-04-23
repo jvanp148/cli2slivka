@@ -1,0 +1,56 @@
+---
+slivka-version: 0.8.3
+name: cacheebeyesearch
+description: Generate server cache file for EB-eye search domains
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval (database metadata)'
+- 'Topic :: Data handling'
+
+parameters:
+  cachefile:
+    name: cachefile
+    type: text
+    required: false
+    description: Server cache output file
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: cacheebeyesearch
+
+args:
+  cachefile:
+    arg: -cachefile $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  report:
+    name: report
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

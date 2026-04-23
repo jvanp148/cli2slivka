@@ -1,0 +1,369 @@
+---
+slivka-version: 0.8.3
+name: showserver
+description: Display information on configured servers
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval (database metadata)'
+- 'Topic :: Data handling'
+
+parameters:
+  servername:
+    name: servername
+    type: text
+    required: false
+    description: Name of a single server to give information on
+  showtypes:
+    name: showtypes
+    type: text
+    required: false
+    description: Server types
+  html:
+    name: html
+    type: choice
+    required: false
+    description: Format output as an HTML table
+    choices:
+      yes: Y
+      no: N
+  full:
+    name: full
+    type: choice
+    required: false
+    description: Display all columns
+    choices:
+      yes: Y
+      no: N
+  methods:
+    name: methods
+    type: choice
+    required: false
+    description: "Display 'methods' column. This displays the access methods that can be used on this server, for all, query or ID access"
+    choices:
+      yes: Y
+      no: N
+  count:
+    name: count
+    type: choice
+    required: false
+    description: Display 'count' column
+    choices:
+      yes: Y
+      no: N
+  cachefile:
+    name: cachefile
+    type: choice
+    required: false
+    description: Display 'cachefile' column
+    choices:
+      yes: Y
+      no: N
+  url:
+    name: url
+    type: choice
+    required: false
+    description: Display 'URL' column
+    choices:
+      yes: Y
+      no: N
+  fields:
+    name: fields
+    type: choice
+    required: false
+    description: "Display 'fields' column. This displays the search fields that can be used on this server, other than the standard 'id' or 'acc' fields."
+    choices:
+      yes: Y
+      no: N
+  defined:
+    name: defined
+    type: choice
+    required: false
+    description: Display 'defined' column. This displays a short name for the file containing the server definition
+    choices:
+      yes: Y
+      no: N
+  serverversion:
+    name: serverversion
+    type: choice
+    required: false
+    description: Display 'version' column
+    choices:
+      yes: Y
+      no: N
+  sortby:
+    name: sortby
+    type: choice
+    required: false
+    description: Sort options
+    choices:
+      defined: defined
+      type: type
+  only:
+    name: only
+    type: choice
+    required: false
+    description: "Display the specified columns. This is a way of shortening the command line if you only want a few standard columns to be displayed. Instead of specifying: '-nohead -notype -noid -noquery -noall' to get only the comment output, you can specify '-only -comment'"
+    choices:
+      yes: Y
+      no: N
+  heading:
+    name: heading
+    type: choice
+    required: false
+    description: Display column headings
+    choices:
+      yes: Y
+      no: N
+  scope:
+    name: scope
+    type: choice
+    required: false
+    description: Display 'scope' column
+    choices:
+      yes: Y
+      no: N
+  type:
+    name: type
+    type: choice
+    required: false
+    description: Display 'type' column
+    choices:
+      yes: Y
+      no: N
+  id:
+    name: id
+    type: choice
+    required: false
+    description: Display 'id' column
+    choices:
+      yes: Y
+      no: N
+  query:
+    name: query
+    type: choice
+    required: false
+    description: Display 'qry' column
+    choices:
+      yes: Y
+      no: N
+  all:
+    name: all
+    type: choice
+    required: false
+    description: Display 'all' column
+    choices:
+      yes: Y
+      no: N
+  comment:
+    name: comment
+    type: choice
+    required: false
+    description: Display 'comment' column
+    choices:
+      yes: Y
+      no: N
+  showtypes-protein:
+    name: showtypes_Protein
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-nucleic:
+    name: showtypes_Nucleic
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-sequence:
+    name: showtypes_Sequence
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-protfeatures:
+    name: showtypes_Protfeatures
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-nucfeatures:
+    name: showtypes_Nucfeatures
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-features:
+    name: showtypes_Features
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-obo:
+    name: showtypes_Obo
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-resource:
+    name: showtypes_Resource
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-taxonomy:
+    name: showtypes_Taxonomy
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-assembly:
+    name: showtypes_Assembly
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-text:
+    name: showtypes_Text
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-html:
+    name: showtypes_Html
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-xml:
+    name: showtypes_Xml
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  showtypes-unknown:
+    name: showtypes_Unknown
+    type: choice
+    required: false
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: showserver
+
+args:
+  servername:
+    arg: -servername $(value)
+  showtypes:
+    arg: -showtypes $(value)
+  html:
+    arg: -html $(value)
+  full:
+    arg: -full $(value)
+  methods:
+    arg: -methods $(value)
+  count:
+    arg: -count $(value)
+  cachefile:
+    arg: -cachefile $(value)
+  url:
+    arg: -url $(value)
+  fields:
+    arg: -fields $(value)
+  defined:
+    arg: -defined $(value)
+  serverversion:
+    arg: -serverversion $(value)
+  sortby:
+    arg: -sortby $(value)
+  only:
+    arg: -only $(value)
+  heading:
+    arg: -heading $(value)
+  scope:
+    arg: -scope $(value)
+  type:
+    arg: -type $(value)
+  id:
+    arg: -id $(value)
+  query:
+    arg: -query $(value)
+  all:
+    arg: -all $(value)
+  comment:
+    arg: -comment $(value)
+  showtypes-protein:
+    arg: -showtypes_Protein $(value)
+  showtypes-nucleic:
+    arg: -showtypes_Nucleic $(value)
+  showtypes-sequence:
+    arg: -showtypes_Sequence $(value)
+  showtypes-protfeatures:
+    arg: -showtypes_Protfeatures $(value)
+  showtypes-nucfeatures:
+    arg: -showtypes_Nucfeatures $(value)
+  showtypes-features:
+    arg: -showtypes_Features $(value)
+  showtypes-obo:
+    arg: -showtypes_Obo $(value)
+  showtypes-resource:
+    arg: -showtypes_Resource $(value)
+  showtypes-taxonomy:
+    arg: -showtypes_Taxonomy $(value)
+  showtypes-assembly:
+    arg: -showtypes_Assembly $(value)
+  showtypes-text:
+    arg: -showtypes_Text $(value)
+  showtypes-html:
+    arg: -showtypes_Html $(value)
+  showtypes-xml:
+    arg: -showtypes_Xml $(value)
+  showtypes-unknown:
+    arg: -showtypes_Unknown $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  database-metadata:
+    name: database-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...

@@ -1,0 +1,123 @@
+---
+slivka-version: 0.8.3
+name: seealso
+description: Find programs with similar function to a specified program
+version: '6.6.0.0'
+author: EMBOSS
+license: GPL
+classifiers:
+- 'Operation :: Data retrieval (tool metadata)'
+- 'Topic :: Data handling'
+
+parameters:
+  search:
+    name: search
+    type: text
+    required: false
+    description: Program to search for. Enter the name of an EMBOSS program
+  explode:
+    name: explode
+    type: choice
+    required: false
+    description: "Use the expanded group names. The groups that EMBOSS applications belong to have two forms, exploded and not exploded. The exploded group names are more numerous and often vaguely phrased than the non-exploded ones. The exploded names are formed from definitions of the group names that start like NAME1:NAME2 and which are then expanded into many combinations of the names as: 'NAME1', 'NAME2', 'NAME1 NAME2', NAME2 NAME1'. The non-expanded names are simply like: 'NAME1 NAME2'. Using expanded group names will find many more programs which share at least some of the expanded names than using the non-exploded names and so you will get more programs reported as sharing a similar function than you will if you specify that you wish to use non-exploded names"
+    choices:
+      yes: Y
+      no: N
+  emboss:
+    name: emboss
+    type: choice
+    required: false
+    description: "Search the EMBOSS programs. If you use this option then EMBOSS program documentation will be searched. If this option is set to be false, then only the EMBASSY programs will be searched (if the -embassy option is true). EMBASSY programs are not strictly part of EMBOSS, but use the same code libraries and share the same look and feel, but are generally developed by people who wish the programs to be outside of the GNU Public Licence scheme"
+    choices:
+      yes: Y
+      no: N
+  embassy:
+    name: embassy
+    type: choice
+    required: false
+    description: "Search the EMBASSY programs. If you use this option then EMBASSY program documentation will be searched. If this option is set to be false, then only the EMBOSS programs will be searched (if the -emboss option is true). EMBASSY programs are not strictly part of EMBOSS, but use the same code libraries and share the same look and feel, but are generally developed by people who wish the programs to be outside of the GNU Public Licence scheme"
+    choices:
+      yes: Y
+      no: N
+  showembassy:
+    name: showembassy
+    type: text
+    required: false
+    description: "Show programs in one EMBASSY package. If you use this option then this EMBASSY package program documentation will be searched. EMBASSY programs are not strictly part of EMBOSS, but use the same code libraries and share the same look and feel, but are generally developed by people who wish the programs to be outside of the GNU Public Licence scheme"
+  html:
+    name: html
+    type: choice
+    required: false
+    description: "Format the output for HTML. If you are sending the output to a file, this will format it for displaying as a table in a WWW document."
+    choices:
+      yes: Y
+      no: N
+  groups:
+    name: groups
+    type: choice
+    required: false
+    description: "Output only the group names. If you use this option, then only the group names will output to the file"
+    choices:
+      yes: Y
+      no: N
+  colon:
+    name: colon
+    type: choice
+    required: false
+    description: "Put a colon in the group name between two levels. The groups that EMBOSS applications belong to have up to two levels, for example the primary group 'ALIGNMENT' has several sub-groups, or second-level groups, e.g.: CONSENSUS, DIFFERENCES, DOT PLOTS, GLOBAL, LOCAL, MULTIPLE. To aid programs that parse the output of seealso that require the names of these subgroups, a colon ':' will be placed between the first and second level of the group name if this option is true."
+    choices:
+      yes: Y
+      no: N
+  help:
+    name: help
+    type: choice
+    required: false
+    description: Help documentation of the tool.
+    choices:
+      yes: Y
+      no: N
+
+command: seealso
+
+args:
+  search:
+    arg: -search $(value)
+  explode:
+    arg: -explode $(value)
+  emboss:
+    arg: -emboss $(value)
+  embassy:
+    arg: -embassy $(value)
+  showembassy:
+    arg: -showembassy $(value)
+  html:
+    arg: -html $(value)
+  groups:
+    arg: -groups $(value)
+  colon:
+    arg: -colon $(value)
+  help:
+    arg: -help $(value)
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.out
+
+outputs:
+  tool-metadata:
+    name: tool-metadata
+    path: outfile.out
+    media-type: text/plain
+  log:
+    name: log
+    path: stdout
+    media-type: text/plain
+  error-log:
+    name: error-log
+    path: stderr
+    media-type: text/plain
+
+execution:
+  runners:
+    default:
+      type: SlivkaQueueRunner
+...
