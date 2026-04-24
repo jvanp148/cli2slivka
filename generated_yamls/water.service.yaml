@@ -301,12 +301,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.water
+    default: outfile.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.water
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

@@ -192,14 +192,14 @@ args:
     arg: -format_svg $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _output:
+    arg: -output $(value)
+    default: output.txt
 
 outputs:
   output:
     name: output
-    path: outfile.out
+    path: output.txt
     media-type: text/plain
   log:
     name: log

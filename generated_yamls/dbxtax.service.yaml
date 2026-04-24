@@ -43,11 +43,6 @@ parameters:
     type: text
     required: false
     description: Index date
-  indexoutdir:
-    name: indexoutdir
-    type: text
-    required: false
-    description: Index file output directory
   fields-id:
     name: fields_id
     type: choice
@@ -121,8 +116,6 @@ args:
     arg: -release $(value)
   date:
     arg: -date $(value)
-  indexoutdir:
-    arg: -indexoutdir $(value)
   fields-id:
     arg: -fields_id $(value)
   fields-acc:
@@ -141,12 +134,19 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _indexoutdir:
+    arg: -indexoutdir $(value)
+    default: indexoutdir.txt
 
 outputs:
-  tool-log:
-    name: tool-log
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  indexoutdir:
+    name: indexoutdir
+    path: indexoutdir.txt
     media-type: text/plain
   log:
     name: log

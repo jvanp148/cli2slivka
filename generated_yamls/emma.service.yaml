@@ -111,11 +111,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  dendoutfile:
-    name: dendoutfile
-    type: text
-    required: false
-    description: Dendrogram (tree file) from clustalw output file
   onlydend:
     name: onlydend
     type: choice
@@ -294,11 +289,6 @@ parameters:
     description: "Cut-off to delay the alignment of the most divergent sequences. This switch, delays the alignment of the most distantly related sequences until after the most closely related sequences have been aligned. The setting shows the percent identity level required to delay the addition of a sequence; sequences that are less identical than this level to any other sequences will be aligned later."
     min: 0
     max: 100
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -381,8 +371,6 @@ args:
     arg: -slower1 $(value)
   supper-sequence:
     arg: -supper1 $(value)
-  dendoutfile:
-    arg: -dendoutfile $(value)
   onlydend:
     arg: -onlydend $(value)
   dendreuse:
@@ -433,20 +421,25 @@ args:
     arg: -nohgap $(value)
   maxdiv:
     arg: -maxdiv $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _dendoutfile:
+    arg: -dendoutfile $(value)
+    default: dendoutfile.dnd
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.aln
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  dendoutfile:
+    name: dendoutfile
+    path: dendoutfile.dnd
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.aln
     media-type: text/plain
   log:
     name: log

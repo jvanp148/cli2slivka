@@ -135,16 +135,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
-  overlapfile:
-    name: overlapfile
-    type: text
-    required: false
-    description: Sequence overlaps output file (optional)
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -233,22 +223,25 @@ args:
     arg: -source $(value)
   findoverlap:
     arg: -findoverlap $(value)
-  outseq:
-    arg: -outseq $(value)
-  overlapfile:
-    arg: -overlapfile $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.overlaps
+  _overlapfile:
+    arg: -overlapfile $(value)
+    default: overlapfile.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.overlaps
+    media-type: text/plain
+  overlapfile:
+    name: overlapfile
+    path: overlapfile.txt
     media-type: text/plain
   log:
     name: log

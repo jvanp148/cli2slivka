@@ -116,16 +116,6 @@ parameters:
     type: text
     required: true
     description: "Sequence names to exclude. Enter a list of sequence names or accession numbers to exclude from the sequences read in. The excluded sequences will be written to the file specified in the 'junkout' parameter. The remainder will be written out to the file specified in the 'outseq' parameter. The list of sequence names can be separated by either spaces or commas. The sequence names can be wildcarded. The sequence names are case independent. An example of a list of sequences to be excluded is: myseq, hs*, one two three a file containing a list of sequence names can be specified by giving the file name preceeded by a '@', eg: '@names.dat'"
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
-  junkoutseq:
-    name: junkoutseq
-    type: text
-    required: false
-    description: File of excluded sequences. Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -261,24 +251,27 @@ args:
     arg: -supper1 $(value)
   exclude:
     arg: -exclude $(value)
-  outseq:
-    arg: -outseq $(value)
-  junkoutseq:
-    arg: -junkoutseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   osformat-junkoutseq:
     arg: -osformat_junkoutseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
+  _junkoutseq:
+    arg: -junkoutseq $(value)
+    default: junkoutseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
+    media-type: text/plain
+  junkoutseq:
+    name: junkoutseq
+    path: junkoutseq.txt
     media-type: text/plain
   log:
     name: log

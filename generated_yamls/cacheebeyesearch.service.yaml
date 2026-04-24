@@ -10,11 +10,6 @@ classifiers:
 - 'Topic :: Data handling'
 
 parameters:
-  cachefile:
-    name: cachefile
-    type: text
-    required: false
-    description: Server cache output file
   help:
     name: help
     type: choice
@@ -27,18 +22,16 @@ parameters:
 command: cacheebeyesearch
 
 args:
-  cachefile:
-    arg: -cachefile $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _cachefile:
+    arg: -cachefile $(value)
+    default: cachefile.txt
 
 outputs:
-  report:
-    name: report
-    path: outfile.out
+  cachefile:
+    name: cachefile
+    path: cachefile.txt
     media-type: text/plain
   log:
     name: log

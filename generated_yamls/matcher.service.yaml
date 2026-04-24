@@ -297,12 +297,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.matcher
+    default: outfile.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.matcher
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

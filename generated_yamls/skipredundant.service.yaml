@@ -163,16 +163,6 @@ parameters:
     type: decimal
     required: false
     description: The percentage sequence identity redundancy threshold (upper limit). This option specifies the percentage sequence identity redundancy threshold (upper limit). The percentage sequence identity redundancy threshold determines the redundancy calculation. If a pair of proteins have a percentage sequence similarity that lies outside an acceptable range the shortest sequence is discarded.
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
-  redundantoutseq:
-    name: redundantoutseq
-    type: text
-    required: false
-    description: Redundant sequences (optional). Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -322,24 +312,27 @@ args:
     arg: -minthreshold $(value)
   maxthreshold:
     arg: -maxthreshold $(value)
-  outseq:
-    arg: -outseq $(value)
-  redundantoutseq:
-    arg: -redundantoutseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   osformat-redundantoutseq:
     arg: -osformat_redundantoutseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.keep
+  _redundantoutseq:
+    arg: -redundantoutseq $(value)
+    default: redundantoutseq.redundant
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.keep
+    media-type: text/plain
+  redundantoutseq:
+    name: redundantoutseq
+    path: redundantoutseq.redundant
     media-type: text/plain
   log:
     name: log

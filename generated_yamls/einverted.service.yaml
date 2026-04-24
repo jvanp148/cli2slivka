@@ -143,11 +143,6 @@ parameters:
     required: false
     description: Maximum extent of repeats. Maximum separation between the start of repeat and the end of the inverted repeat.
     min: 0
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: File for sequence of regions of inverted repeats. Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -240,20 +235,25 @@ args:
     arg: -mismatch $(value)
   maxrepeat:
     arg: -maxrepeat $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.inv
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  report:
-    name: report
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.inv
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

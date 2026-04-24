@@ -120,14 +120,6 @@ parameters:
     choices:
       png: png
       colourps: colourps
-  graphics-in-postscript:
-    name: Graphics_in_Postscript
-    type: text
-    required: false
-  graphics-in-png:
-    name: Graphics_in_PNG
-    type: text
-    required: false
   help:
     name: help
     type: choice
@@ -161,20 +153,23 @@ args:
     arg: -supper1 $(value)
   graph-format:
     arg: -graph_format $(value)
-  graphics-in-postscript:
-    arg: -Graphics_in_Postscript $(value)
-  graphics-in-png:
-    arg: -Graphics_in_PNG $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _Graphics_in_Postscript:
+    arg: -Graphics_in_Postscript $(value)
+    default: Graphics_in_Postscript.txt
+  _Graphics_in_PNG:
+    arg: -Graphics_in_PNG $(value)
+    default: Graphics_in_PNG.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  Graphics_in_Postscript:
+    name: Graphics_in_Postscript
+    path: Graphics_in_Postscript.txt
+    media-type: text/plain
+  Graphics_in_PNG:
+    name: Graphics_in_PNG
+    path: Graphics_in_PNG.txt
     media-type: text/plain
   log:
     name: log

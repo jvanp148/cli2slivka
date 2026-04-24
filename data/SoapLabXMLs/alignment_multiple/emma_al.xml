@@ -431,7 +431,6 @@
                     launcher = ""
                     >
                 </action>
-
             </event>
             <parameter>
                 <base
@@ -1735,8 +1734,7 @@
                         />
                 </base>
 
-                <standard
-                    >
+                <standard>
                     <repeatable
                         min = "0"
                         max = "0"

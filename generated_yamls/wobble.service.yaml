@@ -130,14 +130,6 @@ parameters:
     type: text
     required: false
     description: Bases used
-  graphics-in-postscript:
-    name: Graphics_in_Postscript
-    type: text
-    required: false
-  graphics-in-png:
-    name: Graphics_in_PNG
-    type: text
-    required: false
   help:
     name: help
     type: choice
@@ -175,20 +167,30 @@ args:
     arg: -window $(value)
   bases:
     arg: -bases $(value)
-  graphics-in-postscript:
-    arg: -Graphics_in_Postscript $(value)
-  graphics-in-png:
-    arg: -Graphics_in_PNG $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _Graphics_in_Postscript:
+    arg: -Graphics_in_Postscript $(value)
+    default: Graphics_in_Postscript.txt
+  _Graphics_in_PNG:
+    arg: -Graphics_in_PNG $(value)
+    default: Graphics_in_PNG.txt
 
 outputs:
-  sequence-composition:
-    name: sequence-composition
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  Graphics_in_Postscript:
+    name: Graphics_in_Postscript
+    path: Graphics_in_Postscript.txt
+    media-type: text/plain
+  Graphics_in_PNG:
+    name: Graphics_in_PNG
+    path: Graphics_in_PNG.txt
     media-type: text/plain
   log:
     name: log

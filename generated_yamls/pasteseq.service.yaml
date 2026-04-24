@@ -219,11 +219,6 @@ parameters:
     required: false
     description: Position to insert after. The position in the main input sequence to insert after. To insert before the start use the position 0.
     min: 0
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -327,20 +322,18 @@ args:
     arg: -supper2 $(value)
   pos:
     arg: -pos $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

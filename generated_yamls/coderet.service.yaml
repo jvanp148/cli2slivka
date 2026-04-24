@@ -115,26 +115,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  cdsoutseq:
-    name: cdsoutseq
-    type: text
-    required: false
-    description: Coding nucleotide output sequence(s) (optional). Returns sequence.
-  mrnaoutseq:
-    name: mrnaoutseq
-    type: text
-    required: false
-    description: Messenger RNA nucleotide output sequence(s) (optional). Returns sequence.
-  translationoutseq:
-    name: translationoutseq
-    type: text
-    required: false
-    description: Translated coding protein output sequence(s) (optional). Returns sequence.
-  restoutseq:
-    name: restoutseq
-    type: text
-    required: false
-    description: Non-coding nucleotide output sequence(s) (optional). Returns sequence.
   osformat-cdsoutseq:
     name: osformat_cdsoutseq
     type: choice
@@ -370,14 +350,6 @@ args:
     arg: -slower1 $(value)
   supper-seqall:
     arg: -supper1 $(value)
-  cdsoutseq:
-    arg: -cdsoutseq $(value)
-  mrnaoutseq:
-    arg: -mrnaoutseq $(value)
-  translationoutseq:
-    arg: -translationoutseq $(value)
-  restoutseq:
-    arg: -restoutseq $(value)
   osformat-cdsoutseq:
     arg: -osformat_cdsoutseq $(value)
   osformat-mrnaoutseq:
@@ -390,12 +362,40 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.coderet
+  _cdsoutseq:
+    arg: -cdsoutseq $(value)
+    default: cdsoutseq.txt
+  _mrnaoutseq:
+    arg: -mrnaoutseq $(value)
+    default: mrnaoutseq.txt
+  _translationoutseq:
+    arg: -translationoutseq $(value)
+    default: translationoutseq.txt
+  _restoutseq:
+    arg: -restoutseq $(value)
+    default: restoutseq.txt
 
 outputs:
-  sequence-record:
-    name: sequence-record
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.coderet
+    media-type: text/plain
+  cdsoutseq:
+    name: cdsoutseq
+    path: cdsoutseq.txt
+    media-type: text/plain
+  mrnaoutseq:
+    name: mrnaoutseq
+    path: mrnaoutseq.txt
+    media-type: text/plain
+  translationoutseq:
+    name: translationoutseq
+    path: translationoutseq.txt
+    media-type: text/plain
+  restoutseq:
+    name: restoutseq
+    path: restoutseq.txt
     media-type: text/plain
   log:
     name: log

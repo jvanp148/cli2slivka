@@ -190,11 +190,6 @@ parameters:
     required: false
     description: Put up to n stars '*' instead of digits 0-9 to indicate level of conservation
     min: 0
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -364,8 +359,6 @@ args:
     arg: -dostars $(value)
   starnum:
     arg: -starnum $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   nucmode-n:
@@ -390,12 +383,19 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

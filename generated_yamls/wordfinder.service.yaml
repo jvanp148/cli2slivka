@@ -269,11 +269,6 @@ parameters:
     required: false
     description: Minimum alignment length (zero for no limit)
     min: 0
-  errfile:
-    name: errfile
-    type: text
-    required: false
-    description: Program wordfinder errors output file. Error file to be written to
   help:
     name: help
     type: choice
@@ -342,18 +337,23 @@ args:
     arg: -lowmatch $(value)
   lowalign:
     arg: -lowalign $(value)
-  errfile:
-    arg: -errfile $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _errfile:
+    arg: -errfile $(value)
+    default: errfile.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  errfile:
+    name: errfile
+    path: errfile.txt
     media-type: text/plain
   log:
     name: log

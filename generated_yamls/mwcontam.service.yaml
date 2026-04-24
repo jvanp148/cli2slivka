@@ -37,8 +37,8 @@ args:
     default: outfile.mwcontam
 
 outputs:
-  amino-acid-index:
-    name: amino-acid-index
+  outfile:
+    name: outfile
     path: outfile.mwcontam
     media-type: text/plain
   log:

@@ -412,12 +412,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.est2genome
+    default: outfile.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.est2genome
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

@@ -122,14 +122,14 @@ args:
     arg: -reject_REBASE $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _output:
+    arg: -output $(value)
+    default: output.txt
 
 outputs:
-  database-metadata:
-    name: database-metadata
-    path: outfile.out
+  output:
+    name: output
+    path: output.txt
     media-type: text/plain
   log:
     name: log

@@ -17,22 +17,6 @@ parameters:
     type: integer
     required: false
     description: How many times to replicate input in the array outputs
-  simple-text-output:
-    name: simple_text_output
-    type: text
-    required: false
-  simple-binary-output:
-    name: simple_binary_output
-    type: text
-    required: false
-  array-text-output:
-    name: array_text_output
-    type: text
-    required: false
-  array-binary-output:
-    name: array_binary_output
-    type: text
-    required: false
   help:
     name: help
     type: choice
@@ -49,24 +33,37 @@ args:
     arg: -input $(value)
   count:
     arg: -count $(value)
-  simple-text-output:
-    arg: -simple_text_output $(value)
-  simple-binary-output:
-    arg: -simple_binary_output $(value)
-  array-text-output:
-    arg: -array_text_output $(value)
-  array-binary-output:
-    arg: -array_binary_output $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _simple_text_output:
+    arg: -simple_text_output $(value)
+    default: simple_text_output.txt
+  _simple_binary_output:
+    arg: -simple_binary_output $(value)
+    default: simple_binary_output.txt
+  _array_text_output:
+    arg: -array_text_output $(value)
+    default: array_text_output.txt
+  _array_binary_output:
+    arg: -array_binary_output $(value)
+    default: array_binary_output.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  simple_text_output:
+    name: simple_text_output
+    path: simple_text_output.txt
+    media-type: text/plain
+  simple_binary_output:
+    name: simple_binary_output
+    path: simple_binary_output.txt
+    media-type: text/plain
+  array_text_output:
+    name: array_text_output
+    path: array_text_output.txt
+    media-type: text/plain
+  array_binary_output:
+    name: array_binary_output
+    path: array_binary_output.txt
     media-type: text/plain
   log:
     name: log

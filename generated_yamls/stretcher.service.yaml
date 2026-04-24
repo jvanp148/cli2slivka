@@ -289,12 +289,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.stretcher
+    default: outfile.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.stretcher
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

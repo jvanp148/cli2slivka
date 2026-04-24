@@ -177,11 +177,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -341,8 +336,6 @@ args:
     arg: -alternative $(value)
   methionine:
     arg: -methionine $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   frame-1:
@@ -365,15 +358,15 @@ args:
     arg: -frame_6 $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.fasta
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.pep
 
 outputs:
-  output:
-    name: output
-    path: outfile.fasta
-    media-type: application/fasta
+  outseq:
+    name: outseq
+    path: outseq.pep
+    media-type: text/plain
   log:
     name: log
     path: stdout

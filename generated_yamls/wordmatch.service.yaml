@@ -218,14 +218,6 @@ parameters:
     required: false
     description: Word size
     min: 2
-  aoutfeat:
-    name: aoutfeat
-    type: text
-    required: false
-  boutfeat:
-    name: boutfeat
-    type: text
-    required: false
   dumpalign:
     name: dumpalign
     type: choice
@@ -234,11 +226,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  logfile:
-    name: logfile
-    type: text
-    required: false
-    description: Wordmatch log output file. Statistics on distribution of kmers and matches
   dumpfeat:
     name: dumpfeat
     type: choice
@@ -327,14 +314,8 @@ args:
     arg: -supper2 $(value)
   wordsize:
     arg: -wordsize $(value)
-  aoutfeat:
-    arg: -aoutfeat $(value)
-  boutfeat:
-    arg: -boutfeat $(value)
   dumpalign:
     arg: -dumpalign $(value)
-  logfile:
-    arg: -logfile $(value)
   dumpfeat:
     arg: -dumpfeat $(value)
   offormat-aoutfeat:
@@ -345,12 +326,33 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _aoutfeat:
+    arg: -aoutfeat $(value)
+    default: aoutfeat.txt
+  _boutfeat:
+    arg: -boutfeat $(value)
+    default: boutfeat.txt
+  _logfile:
+    arg: -logfile $(value)
+    default: logfile.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  aoutfeat:
+    name: aoutfeat
+    path: aoutfeat.txt
+    media-type: text/plain
+  boutfeat:
+    name: boutfeat
+    path: boutfeat.txt
+    media-type: text/plain
+  logfile:
+    name: logfile
+    path: logfile.txt
     media-type: text/plain
   log:
     name: log

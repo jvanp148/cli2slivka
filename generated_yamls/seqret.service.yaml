@@ -128,11 +128,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -219,21 +214,19 @@ args:
     arg: -feature $(value)
   firstonly:
     arg: -firstonly $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.fasta
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  sequence:
-    name: sequence
-    path: outfile.fasta
-    media-type: application/fasta
+  outseq:
+    name: outseq
+    path: outseq.txt
+    media-type: text/plain
   log:
     name: log
     path: stdout

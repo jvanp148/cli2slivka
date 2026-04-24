@@ -76,7 +76,7 @@ class SoapXMLParser(CLIParser):
         "newcpgseek":   "newcpgseek",
     }
 
-    # Output media-type by extension
+    # Output media-type by extension #%# fill with extensions. 
     MEDIA_TYPE_MAP: dict = {
         "needle":   "text/plain",
         "water":    "text/plain",
@@ -86,6 +86,8 @@ class SoapXMLParser(CLIParser):
         "html":     "text/html",
         "pepstats": "text/plain",
         "pepinfo":  "text/plain",
+        "dnd":      "text/plain",
+        "aln":      "text/plain"
     }
     def __init__(self):
         self._tree    = None
@@ -125,7 +127,7 @@ class SoapXMLParser(CLIParser):
         )
 
         params = self._parse_parameters()
-        params.append(ChoiceParameter(
+        params.append(ChoiceParameter( # hardcoded adding the help parameter
                         slug        = "help",
                         name        = "help",
                         description = "Help documentation of the tool.",
@@ -141,7 +143,7 @@ class SoapXMLParser(CLIParser):
         for arg in self._build_args(params, service.command):
             service.add_arg(arg)
 
-        for output in self._build_outputs(service.command):
+        for output in self._build_outputs():
             service.add_output(output)
 
         self.post_process(service)
@@ -218,7 +220,21 @@ class SoapXMLParser(CLIParser):
             if name:
                 ext_map[name] = (base, param_el)  # (base element, full parameter element)
         return ext_map
-
+    
+    def _is_output_param(self) -> list:
+        is_outputs = []
+        ext_map = self._get_ext_param_map()
+        for sname, (_, param_el) in ext_map.items():
+            if param_el is None:
+                continue
+            data = param_el.find("data")
+            if data is None:
+                continue
+            iotype = data.get("iotype")
+            if iotype == "output":
+                is_outputs.append(sname)
+        return is_outputs
+                
     def _parse_parameters(self) -> list:
         """
         Build the parameter list to match the Slivka YAML convention:
@@ -240,10 +256,11 @@ class SoapXMLParser(CLIParser):
         inputs    = self._analysis.findall("input")
         input_map: dict = {el.get("name", ""): el for el in inputs}
 
-        # ---- Identify sequence file base names --------------------------------
+        # ---- Identify sequence file base names: -sequence or -input - asequence, -bsequence...--------------------------------
         # Only promote to FileParameter when analysis_extension marks the parameter
         # with server_class containing "SeqParameter".  This excludes matrix-file
         # parameters (datafile) that share the _direct_data / _url naming pattern.
+        ### Basically making the SKIP_NAMES which is used to skip the _URL and so on nemaes
         file_bases: set = set()
         for sname, (base_el, _) in ext_map.items():
             srv_class = self._get_option_value(base_el, "server_class")
@@ -271,6 +288,10 @@ class SoapXMLParser(CLIParser):
         for name in list(input_map):
             if name.endswith("_url") or name.endswith("_direct_data"):
                 SKIP_NAMES.add(name)
+
+        # Add all outputs to the SKIP_NAMES list, this is every parameter that has data, 
+        for o in self._is_output_param():
+            SKIP_NAMES.add(o) 
 
         # ---- Build a rich ordering -------------------------------------------------
         # Strategy:  use the extension ordering as the primary sequence, then
@@ -311,7 +332,7 @@ class SoapXMLParser(CLIParser):
         order: list = []
         seen_order: set = set()
 
-        for n in ext_order:
+        for n in ext_order:  
             if n in seen_order:
                 continue
             seen_order.add(n)
@@ -344,9 +365,10 @@ class SoapXMLParser(CLIParser):
         # ---- Helper: get enriched metadata for a soap_name ----------------------
         def get_meta(soap_name: str) -> tuple:
             """Returns (mandatory: bool, description: str, base_el, param_el)."""
-            if soap_name in ext_map:
+            if soap_name in ext_map:  # ext_map[name] = (base, param_el) 
                 base_el, param_el = ext_map[soap_name]
                 mandatory  = base_el.get("mandatory", "false").lower() == "true"
+                 # creating description that contains both help and prompt, based on what is present!
                 prompt_el  = base_el.find("prompt")
                 help_el    = base_el.find("help")
                 prompt_text = ""
@@ -372,14 +394,14 @@ class SoapXMLParser(CLIParser):
         # ---- Build parameter objects --------------------------------------------
         params: list = []
         for soap_name in order:
-            if soap_name in SKIP_NAMES:
+            if soap_name in SKIP_NAMES: # all types of outputs needs to be added to skipnames
                 continue
 
             mandatory, description, base_el, param_el = get_meta(soap_name)
             slug = slugify(soap_name)
 
             # ---- Sequence file parameter ----------------------------------------
-            if soap_name in file_bases:
+            if soap_name in file_bases: # if soapname is in de inputs than...
                 params.append(FileParameter(
                     slug         = slug,
                     name         = soap_name,
@@ -505,6 +527,14 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
     # Args
     # ------------------------------------------------------------------
+    def _create_outfile_name(self) -> list:
+        ext       = self._detect_output_extension() # extension list
+        out_name = self._detect_output_name_and_qualifier()[0] # output names
+        outfiles = []
+        for i, name in enumerate(out_name):
+            extension = ext[i] if i < len(ext) else "txt"
+            outfiles.append(f"{name}.{extension}")
+        return outfiles
 
     def _build_args(self, params: list, command: str) -> list:
         """
@@ -561,14 +591,12 @@ class SoapXMLParser(CLIParser):
             args.append(SlivkaArg(slug=p.slug, arg=arg_str))
 
         # Append the _outfile arg (always last, with default filename)
-        ext       = self.OUTFILE_EXT_MAP.get(command, "out")
-        outfile   = f"outfile.{ext}"
-        args.append(SlivkaArg(
-            slug    = "_outfile",
-            arg     = "-outfile $(value)",
-            default = outfile,
-        ))
-
+        for ouf in self._create_outfile_name():
+            args.append(SlivkaArg(
+                    slug    = f"_{ouf.split('.')[0]}",
+                    arg     = f"-{ouf.split('.')[0]} $(value)",
+                    default = ouf,
+                ))
         return args
 
     @staticmethod
@@ -586,60 +614,78 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
     # Outputs
     # ------------------------------------------------------------------
-
-    def _build_outputs(self, command: str) -> list:
+    def _build_outputs(self) -> list:
         """
         Build the standard Slivka outputs section:
-        - main output file  (named after the tool, e.g. outfile.needle)
+        - main output files  (named after the tool, e.g. outfile.needle)
         - stdout log
         - stderr error-log
 
-        The output name (e.g. "alignment" for needle, "sequence-info" for infoseq)
-        is derived from EDAM_data options on the outfile parameter in analysis_extension,
-        falling back to "output".
+        The output name is the same as param base name.
         """
-        output_name  = self._detect_output_name(command)
-        ext          = self.OUTFILE_EXT_MAP.get(command, "out")
-        outfile_path = f"outfile.{ext}"
-        media        = self.MEDIA_TYPE_MAP.get(ext, "text/plain")
+        outputs = []
+        for oun in self._create_outfile_name():
+            name, _, ext = oun.partition(".")
+            path = oun
+            media = self.MEDIA_TYPE_MAP.get(ext, "text/plain")
 
-        return [
-            SlivkaOutput(name=output_name, path=outfile_path, media_type=media),
-            SlivkaOutput(name="log",        path="stdout",     media_type="text/plain"),
-            SlivkaOutput(name="error-log",  path="stderr",     media_type="text/plain"),
-        ]
+            outputs.append(
+                SlivkaOutput(name=name, path=path, media_type=media)
+            )
 
-    def _detect_output_name(self, command: str) -> str:
+        # always include logs
+        outputs.append(SlivkaOutput(name="log", path="stdout", media_type="text/plain"))
+        outputs.append(SlivkaOutput(name="error-log", path="stderr", media_type="text/plain"))
+
+        return outputs
+
+    def _detect_output_name_and_qualifier(self) -> list:
         """
-        Try to derive a meaningful output name from the EDAM_data annotation
-        on the outfile parameter in analysis_extension.
-        e.g. EDAM_data:1381 value="Sequence alignment (pair)" → "alignment"
-        Falls back to command name or "output".
+        Try to derive a meaningful output from parameter data where iotype is "output".
+        When output is found, the name will be base -> name and qualifier both in a list
+        Falls back to "output".
         """
+        output_names = []
+        output_qualifiers = []
         if self._ext is None:
-            return "output"
+            return ["output"], []
         for param_el in self._ext.findall("parameter"):
+            data = param_el.find("data")
+            if data is None:
+                continue
+            if data.get("iotype") != "output":
+                continue
             base = param_el.find("base")
-            if base is None:
+            output_name = base.get("name").strip()
+            output_qualifier = base.get("qualifier")
+            if output_name:
+                output_names.append(output_name)
+            if output_qualifier:
+                output_qualifier = output_qualifier.strip()
+                output_qualifiers.append(output_qualifier)
+        if not output_names:
+            output_names.append("output")
+        return output_names, output_qualifiers
+    
+    def _detect_output_extension(self) -> list:
+        """
+        Try to derive a meaningful output extension from parameter data where extension is set.
+        Falls back to "text".
+        """
+        output_extensions = []
+        if self._ext is None:
+            return ["txt"]
+        for param_el in self._ext.findall("parameter"):
+            data = param_el.find("data")
+            if data is None:
                 continue
-            if base.get("name") != "outfile":
+            if data.get("iotype") != "output":
                 continue
-            # Look for EDAM_data option
-            for opt in base.findall("option"):
-                if opt.get("name", "").startswith("EDAM_data:"):
-                    val = opt.get("value", "")
-                    # Simplify: take first word(s) before parenthesis
-                    simplified = re.sub(r"\s*\(.*?\)", "", val).strip().lower()
-                    simplified = re.sub(r"[^\w\s-]", "", simplified)
-                    simplified = re.sub(r"\s+", "-", simplified)
-                    if simplified:
-                        return simplified
-        # Last-resort fallbacks
-        FALLBACKS = {
-            "needle":   "alignment",
-            "water":    "alignment",
-            "infoseq":  "sequence-info",
-            "pepstats": "protein-stats",
-            "seqret":   "sequence",
-        }
-        return FALLBACKS.get(command, "output")
+            output_extension = data.get("extension")
+            if output_extension:
+                output_extensions.append(output_extension)
+        if output_extensions:
+            return output_extensions
+        else:
+            return ["txt"]
+        

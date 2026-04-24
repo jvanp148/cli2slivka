@@ -121,11 +121,6 @@ parameters:
     type: integer
     required: false
     description: Threshold score
-  origfile:
-    name: origfile
-    type: text
-    required: false
-    description: Sanger Centre program quicktandem output file (optional)
   help:
     name: help
     type: choice
@@ -161,18 +156,23 @@ args:
     arg: -maxrepeat $(value)
   threshold:
     arg: -threshold $(value)
-  origfile:
-    arg: -origfile $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.oldqtan
+  _origfile:
+    arg: -origfile $(value)
+    default: origfile.txt
 
 outputs:
-  sequence-features:
-    name: sequence-features
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.oldqtan
+    media-type: text/plain
+  origfile:
+    name: origfile
+    path: origfile.txt
     media-type: text/plain
   log:
     name: log

@@ -232,11 +232,6 @@ parameters:
     description: Gap extension penalty
     min: 0.0
     max: 10.0
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -344,20 +339,25 @@ args:
     arg: -gapopen $(value)
   gapextend:
     arg: -gapextend $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  sequence-alignment:
-    name: sequence-alignment
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

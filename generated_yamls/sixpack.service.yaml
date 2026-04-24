@@ -164,11 +164,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   reverse:
     name: reverse
     type: choice
@@ -338,8 +333,6 @@ args:
     arg: -lastorf $(value)
   mstart:
     arg: -mstart $(value)
-  outseq:
-    arg: -outseq $(value)
   reverse:
     arg: -reverse $(value)
   orfminsize:
@@ -370,12 +363,19 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.sixpack
+    default: outfile.txt
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.sixpack
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

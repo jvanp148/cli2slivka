@@ -209,12 +209,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.composition
 
 outputs:
-  sequence-composition:
-    name: sequence-composition
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.composition
     media-type: text/plain
   log:
     name: log

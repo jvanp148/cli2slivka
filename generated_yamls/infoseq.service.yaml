@@ -301,14 +301,14 @@ args:
     arg: -description $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.infoseq
+  _output:
+    arg: -output $(value)
+    default: output.txt
 
 outputs:
-  sequence-metadata:
-    name: sequence-metadata
-    path: outfile.infoseq
+  output:
+    name: output
+    path: output.txt
     media-type: text/plain
   log:
     name: log

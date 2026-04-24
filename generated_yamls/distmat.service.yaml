@@ -214,12 +214,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
 
 outputs:
-  sequence-distance-matrix:
-    name: sequence-distance-matrix
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

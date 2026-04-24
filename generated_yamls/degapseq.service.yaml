@@ -111,11 +111,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -198,20 +193,18 @@ args:
     arg: -slower1 $(value)
   supper-sequence:
     arg: -supper1 $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

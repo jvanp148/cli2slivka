@@ -33,11 +33,6 @@ parameters:
     type: text
     required: true
     description: "Enter the sequence. The sequence itself. Because of the limitation of the operating system, you will only be able to type in a short sequence of (typically) 250 characters, or so. The keyboard will beep at you when you have reached this limit and you will not be able to press the RETURN/ENTER key until you have deleted a few characters."
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -109,20 +104,18 @@ args:
     arg: -type $(value)
   sequence:
     arg: -sequence $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

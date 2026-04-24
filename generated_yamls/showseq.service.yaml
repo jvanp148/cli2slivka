@@ -649,12 +649,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.showseq
+    default: outfile.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.showseq
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

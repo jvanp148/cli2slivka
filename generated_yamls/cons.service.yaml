@@ -133,11 +133,6 @@ parameters:
     type: decimal
     required: false
     description: Define a threshold above which the consensus is given in uppercase. Sets the threshold for the positive matches above which the consensus is is upper-case and below which the consensus is in lower-case.
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   name:
     name: name
     type: text
@@ -233,22 +228,20 @@ args:
     arg: -identity $(value)
   setcase:
     arg: -setcase $(value)
-  outseq:
-    arg: -outseq $(value)
   name:
     arg: -name $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

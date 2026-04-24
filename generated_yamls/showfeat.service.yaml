@@ -365,8 +365,8 @@ args:
     default: outfile.showfeat
 
 outputs:
-  feature-record:
-    name: feature-record
+  outfile:
+    name: outfile
     path: outfile.showfeat
     media-type: text/plain
   log:

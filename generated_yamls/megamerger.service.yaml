@@ -227,11 +227,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -337,20 +332,25 @@ args:
     arg: -wordsize $(value)
   prefer:
     arg: -prefer $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.megamerger
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.merged
 
 outputs:
-  tool-log:
-    name: tool-log
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.megamerger
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.merged
     media-type: text/plain
   log:
     name: log

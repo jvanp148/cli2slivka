@@ -131,14 +131,6 @@ parameters:
     required: false
     description: "Space between text and ticks, blocks, and ranges multiplier. Space between text and ticks, blocks, and ranges. Enter a number <1.0 or >1.0 to decrease or increase the size, respectively"
     min: 0.0
-  graphics-in-postscript:
-    name: Graphics_in_Postscript
-    type: text
-    required: false
-  graphics-in-png:
-    name: Graphics_in_PNG
-    type: text
-    required: false
   blocktype-open:
     name: blocktype_Open
     type: choice
@@ -238,10 +230,6 @@ args:
     arg: -gapgroup $(value)
   postext:
     arg: -postext $(value)
-  graphics-in-postscript:
-    arg: -Graphics_in_Postscript $(value)
-  graphics-in-png:
-    arg: -Graphics_in_PNG $(value)
   blocktype-open:
     arg: -blocktype_Open $(value)
   blocktype-filled:
@@ -258,14 +246,21 @@ args:
     arg: -intersymbol_No $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _Graphics_in_Postscript:
+    arg: -Graphics_in_Postscript $(value)
+    default: Graphics_in_Postscript.txt
+  _Graphics_in_PNG:
+    arg: -Graphics_in_PNG $(value)
+    default: Graphics_in_PNG.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  Graphics_in_Postscript:
+    name: Graphics_in_Postscript
+    path: Graphics_in_Postscript.txt
+    media-type: text/plain
+  Graphics_in_PNG:
+    name: Graphics_in_PNG
+    path: Graphics_in_PNG.txt
     media-type: text/plain
   log:
     name: log

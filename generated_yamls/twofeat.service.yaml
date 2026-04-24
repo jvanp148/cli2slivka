@@ -331,12 +331,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.twofeat
+    default: outfile.txt
 
 outputs:
-  feature-record:
-    name: feature-record
-    path: outfile.twofeat
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

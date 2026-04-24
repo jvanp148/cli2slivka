@@ -15,10 +15,6 @@ parameters:
     name: features
     type: text
     required: true
-  outfeat:
-    name: outfeat
-    type: text
-    required: false
   offormat-outfeat:
     name: offormat_outfeat
     type: choice
@@ -47,20 +43,18 @@ command: featcopy
 args:
   features:
     arg: -features $(value)
-  outfeat:
-    arg: -outfeat $(value)
   offormat-outfeat:
     arg: -offormat_outfeat $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outfeat:
+    arg: -outfeat $(value)
+    default: outfeat.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outfeat:
+    name: outfeat
+    path: outfeat.txt
     media-type: text/plain
   log:
     name: log

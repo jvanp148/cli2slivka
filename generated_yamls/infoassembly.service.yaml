@@ -10,16 +10,6 @@ classifiers:
 - 'Topic :: Data search and retrieval'
 
 parameters:
-  gcbiasmetricsoutfile:
-    name: gcbiasmetricsoutfile
-    type: text
-    required: false
-    description: GC bias metrics
-  qualvaluesdistoutfile:
-    name: qualvaluesdistoutfile
-    type: text
-    required: false
-    description: Distribution of quality values for the reads
   refsequence:
     name: refsequence
     type: file
@@ -147,10 +137,6 @@ parameters:
 command: infoassembly
 
 args:
-  gcbiasmetricsoutfile:
-    arg: -gcbiasmetricsoutfile $(value)
-  qualvaluesdistoutfile:
-    arg: -qualvaluesdistoutfile $(value)
   refsequence:
     arg: -refsequence $(value)
     symlink: refsequence.dat
@@ -176,14 +162,21 @@ args:
     arg: -bisulfite $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _gcbiasmetricsoutfile:
+    arg: -gcbiasmetricsoutfile $(value)
+    default: gcbiasmetricsoutfile.txt
+  _qualvaluesdistoutfile:
+    arg: -qualvaluesdistoutfile $(value)
+    default: qualvaluesdistoutfile.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  gcbiasmetricsoutfile:
+    name: gcbiasmetricsoutfile
+    path: gcbiasmetricsoutfile.txt
+    media-type: text/plain
+  qualvaluesdistoutfile:
+    name: qualvaluesdistoutfile
+    path: qualvaluesdistoutfile.txt
     media-type: text/plain
   log:
     name: log

@@ -24,14 +24,14 @@ command: embossupdate
 args:
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _output:
+    arg: -output $(value)
+    default: output.txt
 
 outputs:
-  tool-version-information:
-    name: tool-version-information
-    path: outfile.out
+  output:
+    name: output
+    path: output.txt
     media-type: text/plain
   log:
     name: log

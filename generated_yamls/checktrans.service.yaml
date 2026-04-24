@@ -119,11 +119,6 @@ parameters:
     required: false
     description: Minimum ORF Length to report
     min: 1
-  outfeat:
-    name: outfeat
-    type: text
-    required: false
-    description: File for output features
   addlast:
     name: addlast
     type: choice
@@ -132,11 +127,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -235,12 +225,8 @@ args:
     arg: -supper1 $(value)
   orfml:
     arg: -orfml $(value)
-  outfeat:
-    arg: -outfeat $(value)
   addlast:
     arg: -addlast $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   offormat-outfeat:
@@ -249,12 +235,26 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _outfeat:
+    arg: -outfeat $(value)
+    default: outfeat.txt
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outfeat:
+    name: outfeat
+    path: outfeat.txt
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

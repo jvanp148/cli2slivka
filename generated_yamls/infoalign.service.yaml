@@ -331,12 +331,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.infoalign
 
 outputs:
-  sequence-alignment-metadata:
-    name: sequence-alignment-metadata
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.infoalign
     media-type: text/plain
   log:
     name: log

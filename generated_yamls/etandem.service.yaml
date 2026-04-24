@@ -143,11 +143,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  origfile:
-    name: origfile
-    type: text
-    required: false
-    description: Sanger Centre program tandem output file (optional)
   help:
     name: help
     type: choice
@@ -189,18 +184,23 @@ args:
     arg: -mismatch $(value)
   uniform:
     arg: -uniform $(value)
-  origfile:
-    arg: -origfile $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.oldtan
+  _origfile:
+    arg: -origfile $(value)
+    default: origfile.txt
 
 outputs:
-  sequence-features:
-    name: sequence-features
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.oldtan
+    media-type: text/plain
+  origfile:
+    name: origfile
+    path: origfile.txt
     media-type: text/plain
   log:
     name: log

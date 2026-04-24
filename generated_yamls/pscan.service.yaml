@@ -166,12 +166,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
 
 outputs:
-  sequence-profile-alignment:
-    name: sequence-profile-alignment
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

@@ -145,11 +145,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   context:
     name: context
     type: choice
@@ -248,8 +243,6 @@ args:
     arg: -tt $(value)
   polybase:
     arg: -polybase $(value)
-  outseq:
-    arg: -outseq $(value)
   context:
     arg: -context $(value)
   osformat-outseq:
@@ -258,12 +251,19 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

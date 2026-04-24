@@ -129,11 +129,6 @@ parameters:
     type: text
     required: false
     description: "Character to mask with. Character to use when masking. Default is 'X' for protein sequences, 'N' for nucleic sequences. If the mask character is set to be the SPACE character or a null character, then the sequence is 'masked' by changing it to lower-case, just as with the '-lowercase' flag."
-  outseq:
-    name: outseq
-    type: text
-    required: false
-    description: Returns sequence.
   osformat-outseq:
     name: osformat_outseq
     type: choice
@@ -222,20 +217,18 @@ args:
     arg: -tolower $(value)
   maskchar:
     arg: -maskchar $(value)
-  outseq:
-    arg: -outseq $(value)
   osformat-outseq:
     arg: -osformat_outseq $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _outseq:
+    arg: -outseq $(value)
+    default: outseq.txt
 
 outputs:
-  output:
-    name: output
-    path: outfile.out
+  outseq:
+    name: outseq
+    path: outseq.txt
     media-type: text/plain
   log:
     name: log

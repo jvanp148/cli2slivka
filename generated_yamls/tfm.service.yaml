@@ -51,14 +51,14 @@ args:
     arg: -more $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _output:
+    arg: -output $(value)
+    default: output.txt
 
 outputs:
-  tool-metadata:
-    name: tool-metadata
-    path: outfile.out
+  output:
+    name: output
+    path: output.txt
     media-type: text/plain
   log:
     name: log

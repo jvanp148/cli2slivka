@@ -119,11 +119,6 @@ parameters:
     description: "CpG score. This sets the score for each CG sequence found. A value of 17 is more sensitive, but 28 has also been used with some success."
     min: 1
     max: 200
-  outfeat:
-    name: outfeat
-    type: text
-    required: false
-    description: File for output features
   offormat-outfeat:
     name: offormat_outfeat
     type: choice
@@ -171,20 +166,25 @@ args:
     arg: -supper1 $(value)
   score:
     arg: -score $(value)
-  outfeat:
-    arg: -outfeat $(value)
   offormat-outfeat:
     arg: -offormat_outfeat $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.cpgreport
+    default: outfile.txt
+  _outfeat:
+    arg: -outfeat $(value)
+    default: outfeat.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.cpgreport
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outfeat:
+    name: outfeat
+    path: outfeat.txt
     media-type: text/plain
   log:
     name: log

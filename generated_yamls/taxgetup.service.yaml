@@ -42,12 +42,12 @@ args:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.out
+    default: outfile.txt
 
 outputs:
-  ontology-concept:
-    name: ontology-concept
-    path: outfile.out
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

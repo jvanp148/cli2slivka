@@ -10,11 +10,6 @@ classifiers:
 - 'Topic :: Data handling'
 
 parameters:
-  cachefile:
-    name: cachefile
-    type: text
-    required: false
-    description: Server cache output file
   sequencesourcesonly:
     name: sequencesourcesonly
     type: choice
@@ -55,8 +50,6 @@ parameters:
 command: cachedas
 
 args:
-  cachefile:
-    arg: -cachefile $(value)
   sequencesourcesonly:
     arg: -sequencesourcesonly $(value)
   host:
@@ -69,14 +62,14 @@ args:
     arg: -servername $(value)
   help:
     arg: -help $(value)
-  _outfile:
-    arg: -outfile $(value)
-    default: outfile.out
+  _cachefile:
+    arg: -cachefile $(value)
+    default: cachefile.txt
 
 outputs:
-  report:
-    name: report
-    path: outfile.out
+  cachefile:
+    name: cachefile
+    path: cachefile.txt
     media-type: text/plain
   log:
     name: log

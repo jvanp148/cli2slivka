@@ -139,11 +139,6 @@ parameters:
     choices:
       png: png
       colourps: colourps
-  outfeat:
-    name: outfeat
-    type: text
-    required: false
-    description: File for output features
   minlen:
     name: minlen
     type: integer
@@ -196,14 +191,6 @@ parameters:
       pir: pir
       swiss: swiss
       dasgff: dasgff
-  graphics-in-postscript:
-    name: Graphics_in_Postscript
-    type: text
-    required: false
-  graphics-in-png:
-    name: Graphics_in_PNG
-    type: text
-    required: false
   help:
     name: help
     type: choice
@@ -243,8 +230,6 @@ args:
     arg: -minpc $(value)
   graph-format:
     arg: -graph_format $(value)
-  outfeat:
-    arg: -outfeat $(value)
   minlen:
     arg: -minlen $(value)
   plot:
@@ -257,20 +242,37 @@ args:
     arg: -pc $(value)
   offormat-outfeat:
     arg: -offormat_outfeat $(value)
-  graphics-in-postscript:
-    arg: -Graphics_in_Postscript $(value)
-  graphics-in-png:
-    arg: -Graphics_in_PNG $(value)
   help:
     arg: -help $(value)
   _outfile:
     arg: -outfile $(value)
-    default: outfile.cpgplot
+    default: outfile.txt
+  _outfeat:
+    arg: -outfeat $(value)
+    default: outfeat.txt
+  _Graphics_in_Postscript:
+    arg: -Graphics_in_Postscript $(value)
+    default: Graphics_in_Postscript.txt
+  _Graphics_in_PNG:
+    arg: -Graphics_in_PNG $(value)
+    default: Graphics_in_PNG.txt
 
 outputs:
-  nucleic-acid-features:
-    name: nucleic-acid-features
-    path: outfile.cpgplot
+  outfile:
+    name: outfile
+    path: outfile.txt
+    media-type: text/plain
+  outfeat:
+    name: outfeat
+    path: outfeat.txt
+    media-type: text/plain
+  Graphics_in_Postscript:
+    name: Graphics_in_Postscript
+    path: Graphics_in_Postscript.txt
+    media-type: text/plain
+  Graphics_in_PNG:
+    name: Graphics_in_PNG
+    path: Graphics_in_PNG.txt
     media-type: text/plain
   log:
     name: log
