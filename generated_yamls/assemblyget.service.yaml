@@ -24,15 +24,8 @@ command: assemblyget
 args:
   help:
     arg: -help $(value)
-  _output:
-    arg: -output $(value)
-    default: output.txt
 
 outputs:
-  output:
-    name: output
-    path: output.txt
-    media-type: text/plain
   log:
     name: log
     path: stdout

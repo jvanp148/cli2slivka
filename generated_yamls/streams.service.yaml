@@ -15,10 +15,6 @@ parameters:
     name: input
     type: text
     required: false
-  std-output:
-    name: std_output
-    type: text
-    required: false
   std-errors:
     name: std_errors
     type: text
@@ -39,20 +35,18 @@ args:
     arg: -exitcode $(value)
   input:
     arg: -input $(value)
-  std-output:
-    arg: -std_output $(value)
   std-errors:
     arg: -std_errors $(value)
   help:
     arg: -help $(value)
-  _output:
-    arg: -output $(value)
-    default: output.txt
+  _std_output:
+    arg: -std_output $(value)
+    default: std_output.txt
 
 outputs:
-  output:
-    name: output
-    path: output.txt
+  std_output:
+    name: std_output
+    path: std_output.txt
     media-type: text/plain
   log:
     name: log

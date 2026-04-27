@@ -214,22 +214,8 @@ args:
     arg: -octags $(value)
   help:
     arg: -help $(value)
-  _Graphics_in_Postscript:
-    arg: -Graphics_in_Postscript $(value)
-    default: Graphics_in_Postscript.txt
-  _Graphics_in_PNG:
-    arg: -Graphics_in_PNG $(value)
-    default: Graphics_in_PNG.txt
 
 outputs:
-  Graphics_in_Postscript:
-    name: Graphics_in_Postscript
-    path: Graphics_in_Postscript.txt
-    media-type: text/plain
-  Graphics_in_PNG:
-    name: Graphics_in_PNG
-    path: Graphics_in_PNG.txt
-    media-type: text/plain
   log:
     name: log
     path: stdout

@@ -11,10 +11,6 @@ parameters:
     name: input
     type: text
     required: false
-  output:
-    name: output
-    type: text
-    required: false
   help:
     name: help
     type: choice
@@ -29,8 +25,6 @@ command: copy-files.pl
 args:
   input:
     arg: -input $(value)
-  output:
-    arg: -output $(value)
   help:
     arg: -help $(value)
   _output:

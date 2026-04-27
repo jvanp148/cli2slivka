@@ -51,11 +51,6 @@ parameters:
     choices:
       yes: Y
       no: N
-  resultgraph:
-    name: resultgraph
-    type: text
-    required: false
-    description: Textual or graphical output with a graph
   help:
     name: help
     type: choice
@@ -76,18 +71,16 @@ args:
     arg: -format $(value)
   v:
     arg: -v $(value)
-  resultgraph:
-    arg: -resultgraph $(value)
   help:
     arg: -help $(value)
-  _output:
-    arg: -output $(value)
-    default: output.txt
+  _resultgraph:
+    arg: -resultgraph $(value)
+    default: resultgraph.png
 
 outputs:
-  output:
-    name: output
-    path: output.txt
+  resultgraph:
+    name: resultgraph
+    path: resultgraph.png
     media-type: text/plain
   log:
     name: log

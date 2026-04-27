@@ -97,6 +97,10 @@ class SoapXMLParser(CLIParser):
 
     @classmethod # setting this function completely for the galaxy parser
     def can_parse(cls, path):
+        path = Path(path)
+
+        if path.name == "inputtypes_al.xml":
+            return False
         try:    
             with open(path, "rb") as fh:
                 line = fh.read(1024)  # limit read size
@@ -108,46 +112,46 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def parse(self, xml_path: str | Path) -> SlivkaService:
-        self.xml_path  = xml_path
-        self._tree     = ET.parse(xml_path)
-        self._root     = self._tree.getroot()
-        # Top-level <analysis> element
-        self._analysis = self._root.find("analysis")
-        if self._analysis is None:
-            raise ValueError("No <analysis> element found in SOAP XML.")
-        # <analysis_extension> element (may be None for very simple files)
-        self._ext = self._analysis.find("analysis_extension")
+            self.xml_path  = xml_path
+            self._tree     = ET.parse(xml_path)
+            self._root     = self._tree.getroot()
+            # Top-level <analysis> element
+            self._analysis = self._root.find("analysis")
+            if self._analysis is None:
+                raise ValueError("No <analysis> element found in SOAP XML.")
+            # <analysis_extension> element (may be None for very simple files)
+            self._ext = self._analysis.find("analysis_extension")
 
-        service = SlivkaService(
-            name        = self._parse_name(),
-            description = self._parse_description(),
-            version     = self._parse_version(),
-            command     = self._parse_executable(),
-            classifiers = self._parse_classifiers(),
-        )
+            service = SlivkaService(
+                name        = self._parse_name(),
+                description = self._parse_description(),
+                version     = self._parse_version(),
+                command     = self._parse_executable(),
+                classifiers = self._parse_classifiers(),
+            )
 
-        params = self._parse_parameters()
-        params.append(ChoiceParameter( # hardcoded adding the help parameter
-                        slug        = "help",
-                        name        = "help",
-                        description = "Help documentation of the tool.",
-                        required    = False,
-                        choices     = {
-                            "yes": "Y", "no": "N"
-                        },
-                    ))
-        for p in params:
-            service.add_parameter(p)
-        service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]
+            params = self._parse_parameters()
+            params.append(ChoiceParameter( # hardcoded adding the help parameter
+                            slug        = "help",
+                            name        = "help",
+                            description = "Help documentation of the tool.",
+                            required    = False,
+                            choices     = {
+                                "yes": "Y", "no": "N"
+                            },
+                        ))
+            for p in params:
+                service.add_parameter(p)
+            service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]
 
-        for arg in self._build_args(params, service.command):
-            service.add_arg(arg)
+            for arg in self._build_args(params, service.command):
+                service.add_arg(arg)
 
-        for output in self._build_outputs():
-            service.add_output(output)
+            for output in self._build_outputs():
+                service.add_output(output)
 
-        self.post_process(service)
-        return service
+            self.post_process(service)
+            return service
 
     # ------------------------------------------------------------------
     # Hook: override in subclasses
@@ -231,7 +235,7 @@ class SoapXMLParser(CLIParser):
             if data is None:
                 continue
             iotype = data.get("iotype")
-            if iotype == "output":
+            if iotype in ["output", "stdout"]:
                 is_outputs.append(sname)
         return is_outputs
                 
@@ -556,7 +560,6 @@ class SoapXMLParser(CLIParser):
         args: list = []
         for p in params:
             sname = p.name  # e.g. "sformat_asequence"
-
             if isinstance(p, FileParameter):
                 # -asequence $(value)  with symlink
                 arg_str = f"-{sname} $(value)"
@@ -592,6 +595,8 @@ class SoapXMLParser(CLIParser):
 
         # Append the _outfile arg (always last, with default filename)
         for ouf in self._create_outfile_name():
+            if ouf.split('.')[0] in ["Graphics_in_Postscript", "Graphics_in_PNG"]:
+                continue
             args.append(SlivkaArg(
                     slug    = f"_{ouf.split('.')[0]}",
                     arg     = f"-{ouf.split('.')[0]} $(value)",
@@ -628,10 +633,10 @@ class SoapXMLParser(CLIParser):
             name, _, ext = oun.partition(".")
             path = oun
             media = self.MEDIA_TYPE_MAP.get(ext, "text/plain")
-
-            outputs.append(
-                SlivkaOutput(name=name, path=path, media_type=media)
-            )
+            if name is not None and name not in ["Graphics_in_Postscript", "Graphics_in_PNG"]:
+                outputs.append(
+                    SlivkaOutput(name=name, path=path, media_type=media)
+                )
 
         # always include logs
         outputs.append(SlivkaOutput(name="log", path="stdout", media_type="text/plain"))
@@ -641,19 +646,19 @@ class SoapXMLParser(CLIParser):
 
     def _detect_output_name_and_qualifier(self) -> list:
         """
-        Try to derive a meaningful output from parameter data where iotype is "output".
+        Try to derive a meaningful output from parameter data where iotype is "output" or "stdout".
         When output is found, the name will be base -> name and qualifier both in a list
-        Falls back to "output".
+        Falls back to "outfile".
         """
         output_names = []
         output_qualifiers = []
         if self._ext is None:
-            return ["output"], []
+            return [], []
         for param_el in self._ext.findall("parameter"):
             data = param_el.find("data")
             if data is None:
                 continue
-            if data.get("iotype") != "output":
+            if data.get("iotype") not in ["output", "stdout"]:
                 continue
             base = param_el.find("base")
             output_name = base.get("name").strip()
@@ -664,8 +669,9 @@ class SoapXMLParser(CLIParser):
                 output_qualifier = output_qualifier.strip()
                 output_qualifiers.append(output_qualifier)
         if not output_names:
-            output_names.append("output")
-        return output_names, output_qualifiers
+            return [], []
+        else: 
+            return output_names, output_qualifiers
     
     def _detect_output_extension(self) -> list:
         """
@@ -679,7 +685,7 @@ class SoapXMLParser(CLIParser):
             data = param_el.find("data")
             if data is None:
                 continue
-            if data.get("iotype") != "output":
+            if data.get("iotype") not in ["output", "stdout"]:
                 continue
             output_extension = data.get("extension")
             if output_extension:

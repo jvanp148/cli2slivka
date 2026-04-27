@@ -65,11 +65,18 @@ args:
   _cachefile:
     arg: -cachefile $(value)
     default: cachefile.txt
+  _outfile:
+    arg: -outfile $(value)
+    default: outfile.txt
 
 outputs:
   cachefile:
     name: cachefile
     path: cachefile.txt
+    media-type: text/plain
+  outfile:
+    name: outfile
+    path: outfile.txt
     media-type: text/plain
   log:
     name: log

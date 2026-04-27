@@ -24,10 +24,6 @@ parameters:
       V: V
       O: O
       C: C
-  output:
-    name: output
-    type: text
-    required: false
   format-canon:
     name: format_canon
     type: choice
@@ -156,8 +152,6 @@ args:
     arg: -format $(value)
   menu:
     arg: -menu $(value)
-  output:
-    arg: -output $(value)
   format-canon:
     arg: -format_canon $(value)
   format-dot:
