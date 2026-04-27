@@ -16,3 +16,7 @@ Untitled.ipynb
 
 # vscode folder
 .vscode/
+
+# Data and outputfiles (XML and YAML)
+generated_yamls/
+data/
