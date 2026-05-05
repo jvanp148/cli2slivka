@@ -4,9 +4,7 @@ Convert CLI tool definitions into **Slivka-compatible YAML services**.
 
 `cli2slivka` parses tool definitions (currently SOAP/XML) into a **canonical intermediate model**, and then generates a valid Slivka YAML specification.
 
----
-
-## ✨ Features
+## Features
 
 * Parse **SOAP XML (Soaplab2 / EMBOSS-style)** tool definitions
 * Convert into a structured **canonical model (`SlivkaService`)**
@@ -14,15 +12,13 @@ Convert CLI tool definitions into **Slivka-compatible YAML services**.
 * Extensible parser system (ACD, Galaxy planned)
 * Automatic CLI argument and parameter reconstruction
 
----
+## Core Idea
 
-## 🧠 Core Idea
+Different workflow systems describe CLI tools in different/incompatible formats.
 
-Different workflow systems describe CLI tools in incompatible formats.
+This project solves that by introducing a **canonical intermediate model**. This canonical model is basically a standardized internal representation of a tool definition, independent of the original input format, allowing different formats to be parsed into a single unified structure.
 
-This project solves that by introducing a **canonical intermediate model**:
-
-```
+```bash
 Input Format (SOAP XML, Galaxy XML, ACD, ...)
                 ↓
         Parser (format-specific)
@@ -38,12 +34,12 @@ This separation makes the system:
 * maintainable (logic lives in one place)
 * consistent (all outputs follow the same schema)
 
----
+## Project Structure
 
-## 📁 Project Structure
-
-```
+```bash
 cli2slivka/
+│
+├── __init__.py
 │
 ├── cli.py                 # Entry point (CLI interface)
 │
@@ -51,75 +47,81 @@ cli2slivka/
 │   └── canonical.py       # Core data model (SlivkaService, Parameters, Args)
 │
 ├── parsers/
+│   ├── __init__.py
 │   ├── base.py            # Abstract parser interface
 │   ├── soap_xml.py        # SOAP XML parser (current main implementation)
 │   ├── galaxy.py          # Galaxy XML parser (WIP)
-│   ├── acd.py             # EMBOSS ACD parser (WIP)
 │   └── registry.py        # Parser auto-discovery / selection
 │
 ├── generators/
-│   ├── slivka.py          # YAML writer
-│   └── validators.py
+│   └── slivka.py          # YAML writer
 │
-├── mapping/
-│   ├── *_to_canonical.yaml
-│   └── canonical_to_slivka.yaml
-│
-├── utils/
-│   ├── xml.py
-│   └── yaml.py
-│
-└── exceptions.py
+└── utils/
+    ├── xml.py
+    └── yaml.py
 ```
 
----
+## Installation
 
-## 🚀 Installation
-
-This project is designed to run in a **UV environment**.
+Clone this git repository:
 
 ```bash
-uv sync
+git clone https://github.com/JulieVanPouckeBIT/cli2slivka.git # through https
+git clone git@github.com:JulieVanPouckeBIT/cli2slivka.git # through ssh
 ```
 
-Or with pip:
+This project is designed to run in a **UV environment**. If you do not have uv installed yet, run `sudo dnf install uv`.
 
 ```bash
-pip install -e .
+uv venv
+source ./venv/bin/activate
+uv sync # all packages and dependencies inside uv.lock will be installed
 ```
 
----
-
-## 🛠 Usage
+## Usage
 
 ### Basic command
 
+What do you need:
+
+* The **format**, specified with `--format`, can be soap, galaxy, acd, depending on which parsers are available
+* The **output directory**, specified as `--outdir` which should be a string of the path to a folder (existing or not) where the yaml outputs can be placed
+* **Input**: last argument and can also be multiple files places after one another
+
+Use on one xml file:
+
 ```bash
-python -m cli2slivka.cli --format soap path/to/file.xml
+python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/file.xml
 ```
 
 Or on a directory:
 
 ```bash
-python -m cli2slivka.cli --format soap ./tools/
+python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/xmlfiles/folder/
 ```
 
 ### Without specifying format
 
-The parser registry will attempt **auto-detection**:
+The parser registry will attempt **auto-detection**.
 
 ```bash
-python -m cli2slivka.cli ./tools/
+python -m cli2slivka.cli --outdir path/to/outdir/ path/to/xmlfiles/folder/
 ```
 
----
+### Without specifying outdir
+
+The output directory will by default be `generated_yamls/` and placed in the pwd.
+
+```bash
+python -m cli2slivka.cli --format soap path/to/xmlfiles/folder/
+```
 
 ## 📤 Output
 
 Generated YAML files are written to:
 
-```
-generated_yamls/<tool-name>.service.yaml
+```bash
+outdir/<tool-name>.service.yaml
 ```
 
 Example:
@@ -132,17 +134,13 @@ parameters:
     type: file
 ```
 
----
-
 ## 🔍 Supported Formats
 
 | Format     | Status         |
 | ---------- | -------------- |
-| SOAP XML   | ✅ Implemented  |
+| SOAP XML   | ✅ Implemented |
 | Galaxy XML | 🚧 In progress |
 | EMBOSS ACD | 🚧 Planned     |
-
----
 
 ## ⚙️ How It Works (Deep Dive)
 
@@ -151,8 +149,6 @@ parameters:
 * Handles user input (files / directories)
 * Selects parser via `ParserRegistry`
 * Runs parsing + YAML generation
-
----
 
 ### 2. Parser Layer
 
@@ -182,8 +178,6 @@ class CLIParser:
   * automatic grouping and ordering
   * output detection via `iotype="output"`
 
----
-
 ### 3. Canonical Model (`SlivkaService`)
 
 Central object representing a CLI tool:
@@ -202,8 +196,6 @@ service = SlivkaService(
 )
 ```
 
----
-
 ### 4. YAML Generator
 
 `SlivkaYAMLWriter`:
@@ -212,13 +204,11 @@ service = SlivkaService(
 * Handles quoting, formatting, and structure
 * Produces valid Slivka service specs
 
----
-
-## 🧩 Extending the Project
+## Extending the Project
 
 ### Add a new parser
 
-1. Create a class:
+Create a class:
 
 ```python
 @register_parser
@@ -232,9 +222,7 @@ class MyParser(CLIParser):
         return SlivkaService(...)
 ```
 
-2. Done — it will be auto-registered.
-
----
+Done — it will be auto-registered.
 
 ### Customize a specific tool
 
@@ -248,38 +236,9 @@ class NeedleParser(SoapXMLParser):
             param.max_val = 100.0
 ```
 
----
-
-## ⚠️ Known Limitations
+## Limitations
 
 * SOAP parsing assumes Soaplab2-style structure
 * Some edge-case parameters may be skipped silently
 * Output detection relies on `analysis_extension`
-* No validation against full Slivka schema (yet)
-
----
-
-## 📌 Future Work
-
-* Full Galaxy XML support
-* ACD parser completion
-* Schema validation
-* CLI UX improvements
-* Better error reporting
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome. Focus areas:
-
-* new parsers
-* edge-case handling
-* test coverage
-* documentation improvements
-
----
-
-## 📄 License
-
-GPL (inherited from EMBOSS ecosystem assumptions)
+* The generated YAMLs are specific for the use as Slivka services
