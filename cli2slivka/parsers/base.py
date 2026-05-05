@@ -28,13 +28,25 @@ class CLIParser(ABC):
 
     @abstractmethod
     def parse(self, path: str | Path) -> SlivkaService:
+        """Parse the given CLI definition file into a SlivkaService.
+
+        Args:
+            path: Path to the source tool definition file.
+
+        Returns:
+            A fully populated SlivkaService instance.
+        """
         pass
 
     @classmethod
     def can_parse(cls, path: str | Path) -> bool:
-        """
-        Optional content-based sniffing.
-        Override if needed.
+        """Determine whether this parser can parse the given file.
+
+        Args:
+            path: Path to the candidate file.
+
+        Returns:
+            True if the parser recognizes the file format; False otherwise.
         """
         return False
 
@@ -42,5 +54,9 @@ class CLIParser(ABC):
     # Hook: override in subclasses
     # ------------------------------------------------------------------
     def post_process(self, service: SlivkaService) -> None:
-        """Called after the service is fully built. Override freely."""
+        """Perform any post-processing on a parsed SlivkaService.
+
+        Args:
+            service: The SlivkaService to adjust after parsing.
+        """
         pass

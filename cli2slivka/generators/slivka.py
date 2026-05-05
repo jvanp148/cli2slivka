@@ -12,13 +12,28 @@ class SlivkaYAMLWriter:
     """
 
     def __init__(self, service: SlivkaService):
+        """Create a Slivka YAML writer for the given service.
+
+        Args:
+            service: SlivkaService instance to serialize.
+        """
         self.service = service
 
     def write(self, path: str) -> None:
+        """Write the Slivka YAML serialization to a file.
+
+        Args:
+            path: Output file path where YAML is written.
+        """
         Path(path).write_text(self.to_yaml(), encoding="utf-8")
         print(f"Written: {path}")
 
     def to_yaml(self) -> str:
+        """Serialize the SlivkaService to YAML text.
+
+        Returns:
+            The generated YAML document as a string.
+        """
         s   = self.service
         out = ["---"]
 
@@ -105,6 +120,16 @@ class SlivkaYAMLWriter:
         return '"' + escaped + '"'
  
     def _render_field(self, key: str, value, indent: int = 4) -> list:
+        """Render a YAML mapping field, quoting values when required.
+
+        Args:
+            key: Mapping key.
+            value: Mapping value, which may be a scalar or dict.
+            indent: Number of leading spaces for the rendered lines. By default 4 spaces (2 levels).
+
+        Returns:
+            A list of YAML lines representing the field.
+        """
         pad   = ' ' * indent
         lines = []
         if isinstance(value, dict):

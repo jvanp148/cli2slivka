@@ -40,9 +40,15 @@ class ParserRegistry:
 
     @classmethod # cls is here the same as self!
     def register(cls, parser_cls: Type[CLIParser]) -> None:
-        """
-        Register a parser class. Take this parser class, make sure it is valid and store it so we
-        can find it later.
+        """Register a parser class. The class must be a subclass of CLIParser and declare supported formats.
+        Parsers are registered by their class name and by their supported format names.
+
+        Args:
+            parser_cls: Parser class to register.
+
+        Raises:
+            TypeError: If parser_cls does not subclass CLIParser.
+            ValueError: If a parser is already registered for one of its formats.
         """
         if not issubclass(parser_cls, CLIParser):
             raise TypeError(f"{parser_cls.__name__} must extend CLIParser") # must inherit from CLIParser,
@@ -63,8 +69,16 @@ class ParserRegistry:
 
     @classmethod
     def get_by_format(cls, fmt: str) -> CLIParser:
-        """
-        Get a parser instance by explicit format name.
+        """Get a parser instance by explicit format name.
+
+        Args:
+            fmt: Registered parser format name.
+
+        Returns:
+            An instance of the registered parser.
+
+        Raises:
+            KeyError: If no parser is registered for the given format.
         """
         try:
             parser_cls = cls._parsers_by_format[fmt] # for "galaxy" it gives GalaxyParser
@@ -77,9 +91,16 @@ class ParserRegistry:
 
     @classmethod
     def detect(cls, path: str | Path) -> CLIParser:
-        """
-        Automatically detect the correct parser for a given file.
-        Here is a file, figure it out.
+        """Automatically detect the correct parser for a given file.
+
+        Args:
+            path: Path to the candidate file.
+
+        Returns:
+            An instance of the detected parser.
+
+        Raises:
+            ValueError: If no parser can be detected for the given path.
         """
         path = Path(path)
         suffix = path.suffix.lower()
@@ -101,8 +122,10 @@ class ParserRegistry:
 
     @classmethod
     def available_formats(cls):
-        """
-        Return all supported format names.
+        """Return all supported parser format names.
+
+        Returns:
+            A sorted list of supported format names.
         """
         return sorted(cls._parsers_by_format.keys())
 

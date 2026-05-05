@@ -97,6 +97,14 @@ class SoapXMLParser(CLIParser):
 
     @classmethod # setting this function completely for the galaxy parser
     def can_parse(cls, path):
+        """Determine whether the file is a Soaplab2 SOAP XML definition.
+
+        Args:
+            path: Path to the file to inspect.
+
+        Returns:
+            True if the file appears to contain a SOAP analysis definition.
+        """
         path = Path(path)
 
         if path.name == "inputtypes_al.xml":
@@ -112,46 +120,57 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def parse(self, xml_path: str | Path) -> SlivkaService:
-            self.xml_path  = xml_path
-            self._tree     = ET.parse(xml_path)
-            self._root     = self._tree.getroot()
-            # Top-level <analysis> element
-            self._analysis = self._root.find("analysis")
-            if self._analysis is None:
-                raise ValueError("No <analysis> element found in SOAP XML.")
-            # <analysis_extension> element (may be None for very simple files)
-            self._ext = self._analysis.find("analysis_extension")
+        """Parse a SOAP XML definition into a SlivkaService.
 
-            service = SlivkaService(
-                name        = self._parse_name(),
-                description = self._parse_description(),
-                version     = self._parse_version(),
-                command     = self._parse_executable(),
-                classifiers = self._parse_classifiers(),
-            )
+        Args:
+            xml_path: Path to the SOAP XML file.
 
-            params = self._parse_parameters()
-            params.append(ChoiceParameter( # hardcoded adding the help parameter
-                            slug        = "help",
-                            name        = "help",
-                            description = "Help documentation of the tool.",
-                            required    = False,
-                            choices     = {
-                                "yes": "Y", "no": "N"
-                            },
-                        ))
-            for p in params:
-                service.add_parameter(p)
-            service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]
+        Returns:
+            A populated SlivkaService instance.
 
-            for arg in self._build_args(params, service.command):
-                service.add_arg(arg)
+        Raises:
+            ValueError: If the XML does not contain a top-level <analysis> element.
+        """
+        self.xml_path  = xml_path
+        self._tree     = ET.parse(xml_path)
+        self._root     = self._tree.getroot()
+        # Top-level <analysis> element
+        self._analysis = self._root.find("analysis")
+        if self._analysis is None:
+            raise ValueError("No <analysis> element found in SOAP XML.")
+        # <analysis_extension> element (may be None for very simple files)
+        self._ext = self._analysis.find("analysis_extension")
 
-            for output in self._build_outputs():
-                service.add_output(output)
+        service = SlivkaService(
+            name        = self._parse_name(),
+            description = self._parse_description(),
+            version     = self._parse_version(),
+            command     = self._parse_executable(),
+            classifiers = self._parse_classifiers(),
+        )
 
-            self.post_process(service)
-            return service
+        params = self._parse_parameters()
+        params.append(ChoiceParameter( # hardcoded adding the help parameter
+                        slug        = "help",
+                        name        = "help",
+                        description = "Help documentation of the tool.",
+                        required    = False,
+                        choices     = {
+                            "yes": "Y", "no": "N"
+                        },
+                    ))
+        for p in params:
+            service.add_parameter(p)
+        service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]
+
+        for arg in self._build_args(params, service.command):
+            service.add_arg(arg)
+
+        for output in self._build_outputs():
+            service.add_output(output)
+
+        self.post_process(service)
+        return service
 
     # ------------------------------------------------------------------
     # Hook: override in subclasses
@@ -165,13 +184,28 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def _parse_name(self) -> str:
+        """Extract the analysis name from the SOAP XML definition.
+
+        Returns:
+            The analysis name or the file stem when absent.
+        """
         return self._analysis.get("name", Path(self.xml_path).stem)
 
     def _parse_description(self) -> str:
+        """Extract the analysis description text from the SOAP XML.
+
+        Returns:
+            The stripped description if present, otherwise an empty string.
+        """
         el = self._analysis.find("description")
         return el.text.strip() if el is not None and el.text else ""
 
     def _parse_version(self) -> str:
+        """Extract the analysis version from the SOAP XML.
+
+        Returns:
+            The version string or '1.0' if missing.
+        """
         return self._analysis.get("version", "1.0")
 
     def _parse_executable(self) -> str:
@@ -226,6 +260,11 @@ class SoapXMLParser(CLIParser):
         return ext_map
     
     def _is_output_param(self) -> list:
+        """Find SOAP parameter names that represent output or stdout.
+
+        Returns:
+            A list of SOAP parameter names corresponding to outputs.
+        """
         is_outputs = []
         ext_map = self._get_ext_param_map()
         for sname, (_, param_el) in ext_map.items():
@@ -372,7 +411,7 @@ class SoapXMLParser(CLIParser):
             if soap_name in ext_map:  # ext_map[name] = (base, param_el) 
                 base_el, param_el = ext_map[soap_name]
                 mandatory  = base_el.get("mandatory", "false").lower() == "true"
-                 # creating description that contains both help and prompt, based on what is present!
+                # creating description that contains both help and prompt, based on what is present!
                 prompt_el  = base_el.find("prompt")
                 help_el    = base_el.find("help")
                 prompt_text = ""
@@ -494,7 +533,7 @@ class SoapXMLParser(CLIParser):
     def _get_range(self, base_el, param_el, cast):
         """
         Extract (min, max) from:
-          <option name="scalemin" value="0.0"> / <option name="scalemax" value="100.0">
+        <option name="scalemin" value="0.0"> / <option name="scalemax" value="100.0">
         or from a <range min="0.0" max="100.0"> child of param_el.
         """
         mn = mx = None
@@ -502,22 +541,30 @@ class SoapXMLParser(CLIParser):
             raw_min = self._get_option_value(base_el, "scalemin")
             raw_max = self._get_option_value(base_el, "scalemax")
             if raw_min is not None:
-                try: mn = cast(raw_min)
-                except ValueError: pass
+                try: 
+                    mn = cast(raw_min)
+                except ValueError: 
+                    pass
             if raw_max is not None:
-                try: mx = cast(raw_max)
-                except ValueError: pass
+                try: 
+                    mx = cast(raw_max)
+                except ValueError: 
+                    pass
         if param_el is not None and (mn is None or mx is None):
             range_el = param_el.find("range")
             if range_el is not None:
                 rmin = range_el.get("min")
                 rmax = range_el.get("max")
                 if rmin is not None and mn is None:
-                    try: mn = cast(rmin)
-                    except ValueError: pass
+                    try: 
+                        mn = cast(rmin)
+                    except ValueError: 
+                        pass
                 if rmax is not None and mx is None:
-                    try: mx = cast(rmax)
-                    except ValueError: pass
+                    try: 
+                        mx = cast(rmax)
+                    except ValueError: 
+                        pass
         return mn, mx
 
     @staticmethod
@@ -532,6 +579,11 @@ class SoapXMLParser(CLIParser):
     # Args
     # ------------------------------------------------------------------
     def _create_outfile_name(self) -> list:
+        """Create default output filenames using detected names and extensions.
+
+        Returns:
+            A list of output filenames.
+        """
         ext       = self._detect_output_extension() # extension list
         out_name = self._detect_output_name_and_qualifier()[0] # output names
         outfiles = []
@@ -606,10 +658,16 @@ class SoapXMLParser(CLIParser):
 
     @staticmethod
     def _find_seq_group(sname: str, seq_bases: list, seq_index: dict):
-        """
-        Given a parameter name like 'sformat_asequence', find which
-        seq_base ('asequence') it belongs to and its index.
-        Returns (matched_base, seq_num) or (None, None).
+        """Find the sequence group and its numeric index for a parameter. For example, 
+        sname "sformat_asequence" matches base "asequence" with seq_num 1.
+
+        Args:
+            sname: Parameter name to inspect.
+            seq_bases: Sequence base names.
+            seq_index: Mapping of sequence base to numeric index.
+
+        Returns:
+            A tuple of (matched_base, seq_num) or (None, None) when unmatched.
         """
         for base in seq_bases:
             if sname.endswith("_" + base):
@@ -620,13 +678,10 @@ class SoapXMLParser(CLIParser):
     # Outputs
     # ------------------------------------------------------------------
     def _build_outputs(self) -> list:
-        """
-        Build the standard Slivka outputs section:
-        - main output files  (named after the tool, e.g. outfile.needle)
-        - stdout log
-        - stderr error-log
+        """Build the standard Slivka outputs section being main outpur file(s), log and error log.
 
-        The output name is the same as param base name.
+        Returns:
+            A list of SlivkaOutput instances representing the tool outputs.
         """
         outputs = []
         for oun in self._create_outfile_name():

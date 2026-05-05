@@ -59,11 +59,19 @@ class SlivkaParameter(ABC):
         """The Slivka type string written to YAML."""
 
     def extra_fields(self) -> dict:
-        """Subclasses override this to add type-specific YAML fields."""
+        """Return additional YAML fields for the parameter. Subclasses can override this to add type-specific properties.
+
+        Returns:
+            A dictionary of extra YAML fields for the parameter type.
+        """
         return {}
 
     def to_dict(self) -> dict:
-        """Builds the final dictionary that will appear in the YAML."""
+        """Build the final dictionary representation of the parameter.
+
+        Returns:
+            A dict suitable for YAML serialization.
+        """
         d: dict = {
             "name":     self.name,
             "type":     self.slivka_type,
@@ -86,6 +94,7 @@ class FileParameter(SlivkaParameter):
         self.symlink_name = symlink_name
     # Placing extra properties in the parameter by adding to the dict.
     def extra_fields(self) -> dict:
+        """Return file-specific YAML fields for this parameter."""
         extra_field_dict = {}
         if self.media_type:
             extra_field_dict["media_type"] = self.media_type
@@ -100,6 +109,7 @@ class TextParameter(SlivkaParameter):
         self.max_length = max_length
 
     def extra_fields(self) -> dict:
+        """Return text-specific YAML fields for this parameter."""
         if self.max_length is not None:
             return {"max-length": self.max_length}
         return {}
@@ -114,6 +124,7 @@ class IntegerParameter(SlivkaParameter):
         self.max_val = max_val
 
     def extra_fields(self) -> dict:
+        """Return integer-specific YAML fields for this parameter."""
         d = {}
         if self.min_val is not None:
             d["min"] = self.min_val
@@ -131,6 +142,7 @@ class DecimalParameter(SlivkaParameter):
         self.max_val = max_val
 
     def extra_fields(self) -> dict:
+        """Return decimal-specific YAML fields for this parameter."""
         d = {}
         if self.min_val is not None:
             d["min"] = self.min_val
@@ -155,6 +167,7 @@ class ChoiceParameter(SlivkaParameter):
         self.choices: dict = choices or {}
 
     def extra_fields(self) -> dict:
+        """Return choice-specific YAML fields for this parameter."""
         if self.choices:
             return {"choices": self.choices}
         return {}
@@ -176,10 +189,18 @@ class SlivkaArg:
     default: str | None = None   # e.g. "present" for constant args
 
     def to_dict(self) -> dict:
+        """Return a dictionary representation of the argument mapping.
+
+        Returns:
+            A dictionary with arg metadata suitable for YAML serialization.
+        """
         d: dict = {"arg": self.arg}
-        if self.symlink is not None: d["symlink"] = self.symlink
-        if self.join    is not None: d["join"]    = self.join   
-        if self.default is not None: d["default"] = self.default
+        if self.symlink is not None: 
+            d["symlink"] = self.symlink
+        if self.join    is not None: 
+            d["join"]    = self.join   
+        if self.default is not None: 
+            d["default"] = self.default
         return d
 
 
@@ -193,6 +214,11 @@ class SlivkaOutput:
     label:      str = ""    
 
     def to_dict(self) -> dict:
+        """Return a dictionary representation of the output definition.
+
+        Returns:
+            A dictionary suitable for YAML serialization of an output file.
+        """
         return {
             "name":       self.label or self.name,
             "path":       self.path,
@@ -236,16 +262,48 @@ class SlivkaService:
     slivka_version: str              = "0.8.3"
 
     def add_parameter(self, param: SlivkaParameter) -> "SlivkaService":
+        """Add a parameter to the service.
+
+        Args:
+            param: Parameter object to append.
+
+        Returns:
+            The service instance for chaining.
+        """
         self.parameters.append(param)
         return self
 
     def add_arg(self, arg: SlivkaArg) -> "SlivkaService":
+        """Add an argument mapping to the service.
+
+        Args:
+            arg: Argument mapping to append.
+
+        Returns:
+            The service instance for chaining.
+        """
         self.args.append(arg)
         return self
 
     def add_output(self, output: SlivkaOutput) -> "SlivkaService":
+        """Add an output definition to the service.
+
+        Args:
+            output: Output descriptor to append.
+
+        Returns:
+            The service instance for chaining.
+        """
         self.outputs.append(output)
         return self
 
     def get_parameter(self, slug: str) -> SlivkaParameter | None:
+        """Return a parameter by slug.
+
+        Args:
+            slug: The parameter slug to look up.
+
+        Returns:
+            The matching SlivkaParameter or None if not found.
+        """
         return next((p for p in self.parameters if p.slug == slug), None)

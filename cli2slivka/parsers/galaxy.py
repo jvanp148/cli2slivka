@@ -78,6 +78,14 @@ class GalaxyXMLParser(CLIParser):
 
     @classmethod # setting this function completely for the galaxy parser
     def can_parse(cls, path):
+        """Determine whether the file is a Galaxy XML tool wrapper.
+
+        Args:
+            path: Path to the file to inspect.
+
+        Returns:
+            True if the file appears to be a Galaxy XML tool definition.
+        """
         try:    
             with open(path, "rb") as fh:
                 line = fh.readline(1024)  # limit read size
@@ -90,7 +98,15 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
     # Here you are doing the XML to Python object, and putting this in the SlivkaService to go to YAML.
 
-    def parse(self, xml_path: str | Path) -> SlivkaService: # -> .. is typing, just saying what it will return
+    def parse(self, xml_path: str | Path) -> SlivkaService:
+        """Parse a Galaxy XML tool wrapper into a SlivkaService.
+
+        Args:
+            xml_path: Path to the Galaxy XML file.
+
+        Returns:
+            A populated SlivkaService instance.
+        """
         # Creating an empty slivka service.
         # Loading the XML as a python object tree
         self.xml_path = xml_path
@@ -129,26 +145,49 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def post_process(self, service: SlivkaService) -> None:
-        """Called after the service is fully built. Override freely.
-        If there still is something not right, you can here adapt it"""
+        """Perform additional post-processing after parsing. Override freely.
+
+        Args:
+            service: The parsed SlivkaService instance.
+        """
 
     # ------------------------------------------------------------------
     # Metadata
     # ------------------------------------------------------------------
 
     def _parse_name(self) -> str:
+        """Extract the tool name from the Galaxy XML root.
+
+        Returns:
+            The name attribute or the file stem when absent.
+        """
         return self._root.get("name", Path(self.xml_path).stem)
 
     def _parse_description(self) -> str:
+        """Extract the tool description text from the Galaxy XML.
+
+        Returns:
+            The stripped description if present, otherwise an empty string.
+        """
         el = self._root.find("description")
         return el.text.strip() if el is not None and el.text else ""
 
     def _parse_version(self) -> str:
+        """Extract the version and strip Galaxy macro placeholders.
+
+        Returns:
+            Cleaned version string or '1.0' if missing.
+        """
         raw = self._root.get("version", "1.0")
         v   = strip_macro_placeholders(raw)
         return v or "1.0"
 
     def _parse_classifiers(self) -> list:
+        """Extract classifier strings from Galaxy DOI citations.
+
+        Returns:
+            A list of classifier strings derived from citation tags.
+        """
         classifiers = []
         for cit in self._root.findall(".//citation[@type='doi']"):
             if cit.text:
@@ -156,6 +195,11 @@ class GalaxyXMLParser(CLIParser):
         return classifiers
 
     def _parse_executable(self) -> str:
+        """Extract the executable command from the Galaxy <command> element.
+
+        Returns:
+            The first token of the command string, or an empty string if absent.
+        """
         cmd_el = self._root.find("command")
         if cmd_el is None:
             return ""
@@ -168,6 +212,11 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def _parse_parameters(self) -> list:
+        """Collect all Galaxy <param> declarations from the inputs section.
+
+        Returns:
+            A list of SlivkaParameter objects for the tool.
+        """
         params     = []
         seen_names = set()
 
@@ -194,6 +243,14 @@ class GalaxyXMLParser(CLIParser):
 # -> Returns the attribute (key) value, or default if the attribute was not found.
 
     def _build_parameter(self, el: ET.Element) -> SlivkaParameter | None:
+        """Build a SlivkaParameter from a Galaxy <param> element.
+
+        Args:
+            el: The XML element representing a Galaxy parameter.
+
+        Returns:
+            A SlivkaParameter instance, or None for unsupported definitions.
+        """
         gtype    = el.get("type", "text")
         cls      = self.TYPE_MAP.get(gtype, TextParameter) # Format (fmt)
         gname    = el.get("name", "")
@@ -250,9 +307,25 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def _build_args(self, params: list) -> list:
+        """Build command argument mappings for a list of parameters.
+
+        Args:
+            params: Parsed SlivkaParameter objects.
+
+        Returns:
+            A list of SlivkaArg objects.
+        """
         return [self._detect_arg(p) for p in params]
 
     def _detect_arg(self, param: SlivkaParameter) -> SlivkaArg:
+        """Detect a command-line argument pattern for the given parameter.
+
+        Args:
+            param: The parameter for which to detect the CLI argument.
+
+        Returns:
+            A SlivkaArg describing how the parameter maps into the command.
+        """
         gname = param.name
 
         pattern = re.compile( # matches 3 patterns
@@ -285,6 +358,11 @@ class GalaxyXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def _parse_outputs(self) -> list:
+        """Parse Galaxy <outputs> declarations and convert them to SlivkaOutput objects.
+
+        Returns:
+            A list of SlivkaOutput instances.
+        """
         outputs    = []
         outputs_el = self._root.find("outputs")
         if outputs_el is None:
