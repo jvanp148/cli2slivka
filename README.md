@@ -116,7 +116,7 @@ The output directory will by default be `generated_yamls/` and placed in the pwd
 python -m cli2slivka.cli --format soap path/to/xmlfiles/folder/
 ```
 
-## 📤 Output
+## Output
 
 Generated YAML files are written to:
 
@@ -134,7 +134,7 @@ parameters:
     type: file
 ```
 
-## 🔍 Supported Formats
+## Supported Formats
 
 | Format     | Status         |
 | ---------- | -------------- |
@@ -142,7 +142,7 @@ parameters:
 | Galaxy XML | 🚧 In progress |
 | EMBOSS ACD | 🚧 Planned     |
 
-## ⚙️ How It Works (Deep Dive)
+## How It Works (Deep Dive)
 
 ### 1. CLI Layer (`cli.py`)
 
@@ -221,6 +221,8 @@ class MyParser(CLIParser):
     def parse(self, path):
         return SlivkaService(...)
 ```
+
+Now add the new parser class to `cli2slivka/parsers/__init__.py` by adding a new line to the file with: `from cli2slivka.parsers.parserfilename import MyParser`.
 
 Done — it will be auto-registered.
 
