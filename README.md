@@ -244,3 +244,29 @@ class NeedleParser(SoapXMLParser):
 * Some edge-case parameters may be skipped silently
 * Output detection relies on `analysis_extension`
 * The generated YAMLs are specific for the use as Slivka services
+
+## Docker
+
+A Dockerfile is present to build a Docker image for containerization of the cli2slivka parser application. To build the image, use the following command while being inside the project folder (where the Dockerfile and pyproject.toml are present): `docker build -t cli2slivka:1.0 .`
+
+This Docker image can now be used to run the CLI application to convert files anywhere on your local file system into Slivka YAMLs. To do this, you need to mount your local input and output directories into the container:
+
+```bash
+docker run --rm \
+  -v "/path/to/local/inputs":/inputs \
+  -v "/path/to/local/outputs":/outputs \
+  cli2slivka:1.0 --format soap --outdir /outputs /inputs
+```
+
+**Example usage:**
+
+If you are inside the project root folder and want to parse the XML files inside your local `data` directory and output them to a local folder named `generated_yamls`, run:
+
+```bash
+docker run --rm \
+  -v "$(pwd)"/soapdata:/inputs \
+  -v "$(pwd)"/generated_yamls:/outputs \
+  cli2slivka:1.0 --format soap --outdir /outputs /inputs
+```
+
+A folder named `generated_yamls` should now be present at your pwd, containing the generated YAMLs.
