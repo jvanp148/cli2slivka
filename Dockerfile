@@ -7,4 +7,6 @@ COPY cli2slivka/ ./cli2slivka/
 
 RUN uv pip install --system --no-cache -r requirements.txt
 
+ADD testdata_SOAPLabXMLs.tar.gz /app/testdata_SOAPLabXMLs
+
 ENTRYPOINT ["python", "-m", "cli2slivka.cli"]

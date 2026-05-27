@@ -11,6 +11,7 @@ Convert CLI tool definitions into **Slivka-compatible YAML services**.
 * Generate **Slivka YAML service files**
 * Extensible parser system (ACD, Galaxy planned)
 * Automatic CLI argument and parameter reconstruction
+* Docker containerization of this CLI application
 
 ## Core Idea
 
@@ -61,21 +62,40 @@ cli2slivka/
     └── yaml.py
 ```
 
+## Prerequisites
+
+* [Python 3.10+](https://www.python.org/)
+* [uv](https://docs.astral.sh/uv/) — fast Python package and environment manager (`sudo dnf install uv`)
+* [Git LFS](https://git-lfs.github.com/) — required to download the test data archive (`testdata_SOAPLabXMLs.tar.gz`)
+* [Docker](https://docs.docker.com/get-docker/) — optional, for running the containerized version
+
 ## Installation
 
-Clone this git repository:
+### 1. Clone the repository
+
+Git LFS must be initialized before cloning so the test data archive is downloaded correctly:
 
 ```bash
-git clone https://github.com/JulieVanPouckeBIT/cli2slivka.git # through https
-git clone git@github.com:JulieVanPouckeBIT/cli2slivka.git # through ssh
+git lfs install
+git clone https://github.com/jvanp148/cli2slivka.git   # HTTPS
+# or
+git clone git@github.com:jvanp148/cli2slivka.git       # SSH
 ```
 
-This project is designed to run in a **UV environment**. If you do not have uv installed yet, run `sudo dnf install uv`.
+If you already cloned without Git LFS, pull the LFS-tracked files manually:
+
+```bash
+git lfs pull
+```
+
+### 2. Set up the environment
+
+This project uses [uv](https://docs.astral.sh/uv/) for environment and dependency management.
 
 ```bash
 uv venv
 source ./venv/bin/activate
-uv sync # all packages and dependencies inside uv.lock will be installed
+uv sync   # installs all packages from uv.lock
 ```
 
 ## Usage
@@ -84,11 +104,11 @@ uv sync # all packages and dependencies inside uv.lock will be installed
 
 What do you need:
 
-* The **format**, specified with `--format`, can be soap, galaxy, acd, depending on which parsers are available
-* The **output directory**, specified as `--outdir` which should be a string of the path to a folder (existing or not) where the yaml outputs can be placed
-* **Input**: last argument and can also be multiple files places after one another
+* The **format**, specified with `--format`, can be `soap`, `galaxy`, or `acd`, depending on which parsers are available
+* The **output directory**, specified with `--outdir` — a path to a folder (existing or not) where YAML outputs will be written
+* **Input** — one or more files or a directory, passed as the last argument
 
-Use on one xml file:
+Use on one XML file:
 
 ```bash
 python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/file.xml
@@ -102,7 +122,7 @@ python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/xmlfiles
 
 ### Without specifying format
 
-The parser registry will attempt **auto-detection**.
+The parser registry will attempt **auto-detection**:
 
 ```bash
 python -m cli2slivka.cli --outdir path/to/outdir/ path/to/xmlfiles/folder/
@@ -110,10 +130,19 @@ python -m cli2slivka.cli --outdir path/to/outdir/ path/to/xmlfiles/folder/
 
 ### Without specifying outdir
 
-The output directory will by default be `generated_yamls/` and placed in the pwd.
+The output directory defaults to `generated_yamls/` in the current working directory:
 
 ```bash
 python -m cli2slivka.cli --format soap path/to/xmlfiles/folder/
+```
+
+### Using the included test data
+
+The repository includes a tar archive of Soaplab2 XML files for all EMBOSS tools tracked via Git LFS (`testdata_SOAPLabXMLs.tar.gz`). Extract it first, then run the parser on it:
+
+```bash
+tar -xzf testdata_SOAPLabXMLs.tar.gz
+python -m cli2slivka.cli --format soap --outdir generated_yamls/ testdata_SOAPLabXMLs/
 ```
 
 ## Output
@@ -222,7 +251,11 @@ class MyParser(CLIParser):
         return SlivkaService(...)
 ```
 
-Now add the new parser class to `cli2slivka/parsers/__init__.py` by adding a new line to the file with: `from cli2slivka.parsers.parserfilename import MyParser`.
+Then add it to `cli2slivka/parsers/__init__.py`:
+
+```python
+from cli2slivka.parsers.parserfilename import MyParser
+```
 
 Done — it will be auto-registered.
 
@@ -243,13 +276,17 @@ class NeedleParser(SoapXMLParser):
 * SOAP parsing assumes Soaplab2-style structure
 * Some edge-case parameters may be skipped silently
 * Output detection relies on `analysis_extension`
-* The generated YAMLs are specific for the use as Slivka services
+* Generated YAMLs are specific to use as Slivka services
 
 ## Docker
 
-A Dockerfile is present to build a Docker image for containerization of the cli2slivka parser application. To build the image, use the following command while being inside the project folder (where the Dockerfile and pyproject.toml are present): `docker build -t cli2slivka:1.0 .`
+A `Dockerfile` is included to containerize the `cli2slivka` application. Build the image from inside the project folder:
 
-This Docker image can now be used to run the CLI application to convert files anywhere on your local file system into Slivka YAMLs. To do this, you need to mount your local input and output directories into the container:
+```bash
+docker build -t cli2slivka:1.0 .
+```
+
+Mount your local input and output directories to run the converter:
 
 ```bash
 docker run --rm \
@@ -258,9 +295,7 @@ docker run --rm \
   cli2slivka:1.0 --format soap --outdir /outputs /inputs
 ```
 
-**Example usage:**
-
-If you are inside the project root folder and want to parse the XML files inside your local `data` directory and output them to a local folder named `generated_yamls`, run:
+**Example — parse local XML files:**
 
 ```bash
 docker run --rm \
@@ -269,4 +304,40 @@ docker run --rm \
   cli2slivka:1.0 --format soap --outdir /outputs /inputs
 ```
 
-A folder named `generated_yamls` should now be present at your pwd, containing the generated YAMLs.
+**Example — use the bundled test data (Git LFS):**
+
+The `testdata_SOAPLabXMLs.tar.gz` archive is tracked via Git LFS and is included in the Docker image at `/app/testdata_SOAPLabXMLs`. Make sure you have run `git lfs pull` before building the image so the archive is present locally.
+
+```bash
+docker run --rm \
+  -v "$(pwd)"/generated_yamls:/outputs \
+  cli2slivka:1.0 --format soap --outdir /outputs /app/testdata_SOAPLabXMLs
+```
+
+A `generated_yamls/` folder will appear in your working directory containing the generated YAML files.
+
+## Git LFS
+
+This repository uses [Git LFS](https://git-lfs.github.com/) to track large test data files (currently `testdata_SOAPLabXMLs.tar.gz`).
+
+Install Git LFS and initialize it before cloning:
+
+```bash
+git lfs install
+```
+
+If you cloned without Git LFS, fetch the tracked files afterwards:
+
+```bash
+git lfs pull
+```
+
+Without this step, the tar archive will appear as a small pointer file rather than the actual data.
+
+## Credits
+
+* [Barton Group](https://github.com/bartongroup) — [Slivka](https://github.com/bartongroup/slivka) REST API framework and [slivka-bio-docker](https://github.com/bartongroup/slivka-bio-docker)
+* [Soaplab2](http://soaplab.sourceforge.net/soaplab2/) — SOAP-based web services for EMBOSS, whose XML format is the primary input format supported
+* [EMBOSS](https://emboss.sourceforge.net/) — European Molecular Biology Open Software Suite, the bioinformatics toolkit whose tools this project helps configure
+* [uv](https://docs.astral.sh/uv/) — Python package and environment manager used in this project
+* [Git LFS](https://git-lfs.github.com/) — used for tracking large test data files
