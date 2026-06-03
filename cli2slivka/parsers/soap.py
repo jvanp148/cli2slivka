@@ -1,5 +1,5 @@
 # ===========================================================================
-# SoapXMLParser
+# SoapLabXMLParser
 # ===========================================================================
 
 import re
@@ -11,25 +11,25 @@ from cli2slivka.parsers.base import CLIParser
 from cli2slivka.parsers.registry import register_parser
 
 @register_parser
-class SoapXMLParser(CLIParser):
+class SoapLabXMLParser(CLIParser):
     """
-    Reads a Soaplab2 SOAP XML (DsLSRAnalysis) file and builds a SlivkaService.
+    Reads a Soaplab2 XML (DsLSRAnalysis) file and builds a SlivkaService.
 
     Extend this class and override post_process() to customise behaviour for
     specific tools without modifying the base logic.
 
     Example
     -------
-    class NeedleParser(SoapXMLParser):
+    class NeedleParser(SoapLabXMLParser):
         def post_process(self, service):
             p = service.get_parameter("gapopen")
             if p:
                 p.max_val = 100.0
     """
-    formats = ('soap', 'soap-xml', 'soap_xml')
+    formats = ('soap', 'soap-xml', 'soap_xml', 'soaplab', 'SoapLab', "soaplab_xml", "soaplab-xml")
     suffixes = ('.xml',)
     
-    # Maps SOAP type strings → SlivkaParameter subclass
+    # Maps SoapLab type strings → SlivkaParameter subclass
     TYPE_MAP: dict = {
         "string":  None,          # resolved contextually (choice or text)
         "long":    IntegerParameter,
@@ -103,7 +103,7 @@ class SoapXMLParser(CLIParser):
             path: Path to the file to inspect.
 
         Returns:
-            True if the file appears to contain a SOAP analysis definition.
+            True if the file appears to contain a SoapLab analysis definition.
         """
         path = Path(path)
 
@@ -120,10 +120,10 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def parse(self, xml_path: str | Path) -> SlivkaService:
-        """Parse a SOAP XML definition into a SlivkaService.
+        """Parse a SoapLab XML definition into a SlivkaService.
 
         Args:
-            xml_path: Path to the SOAP XML file.
+            xml_path: Path to the SoapLab XML file.
 
         Returns:
             A populated SlivkaService instance.
@@ -137,7 +137,7 @@ class SoapXMLParser(CLIParser):
         # Top-level <analysis> element
         self._analysis = self._root.find("analysis")
         if self._analysis is None:
-            raise ValueError("No <analysis> element found in SOAP XML.")
+            raise ValueError("No <analysis> element found in SoapLab XML.")
         # <analysis_extension> element (may be None for very simple files)
         self._ext = self._analysis.find("analysis_extension")
 
@@ -193,7 +193,7 @@ class SoapXMLParser(CLIParser):
     # ------------------------------------------------------------------
 
     def _parse_name(self) -> str:
-        """Extract the analysis name from the SOAP XML definition.
+        """Extract the analysis name from the SoapLab XML definition.
 
         Returns:
             The analysis name or the file stem when absent.
@@ -201,7 +201,7 @@ class SoapXMLParser(CLIParser):
         return self._analysis.get("name", Path(self.xml_path).stem)
 
     def _parse_description(self) -> str:
-        """Extract the analysis description text from the SOAP XML.
+        """Extract the analysis description text from the SoapLab XML.
 
         Returns:
             The stripped description if present, otherwise an empty string.
@@ -210,7 +210,7 @@ class SoapXMLParser(CLIParser):
         return el.text.strip() if el is not None and el.text else ""
 
     def _parse_version(self) -> str:
-        """Extract the analysis version from the SOAP XML.
+        """Extract the analysis version from the SoapLab XML.
 
         Returns:
             The version string or '1.0' if missing.
@@ -269,10 +269,10 @@ class SoapXMLParser(CLIParser):
         return ext_map
     
     def _is_output_param(self) -> list:
-        """Find SOAP parameter names that represent output or stdout.
+        """Find SoapLab parameter names that represent output or stdout.
 
         Returns:
-            A list of SOAP parameter names corresponding to outputs.
+            A list of SoapLab parameter names corresponding to outputs.
         """
         is_outputs = []
         ext_map = self._get_ext_param_map()
