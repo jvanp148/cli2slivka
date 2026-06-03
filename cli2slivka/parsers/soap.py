@@ -159,6 +159,15 @@ class SoapXMLParser(CLIParser):
                             "yes": "Y", "no": "N"
                         },
                     ))
+        params.append(ChoiceParameter( # hardcoded adding the auto parameter
+                        slug        = "auto",
+                        name        = "auto",
+                        description = "Suppresses all interactive prompts and uses defaults.",
+                        required    = False,
+                        choices     = {
+                            "yes": "Y", "no": "N"
+                        },
+                    ))
         for p in params:
             service.add_parameter(p)
         service.file_params = [p for p in params if isinstance(p, FileParameter) and p.required]
