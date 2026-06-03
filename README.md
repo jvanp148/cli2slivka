@@ -2,14 +2,16 @@
 
 Convert CLI tool definitions into **Slivka-compatible YAML services**.
 
-`cli2slivka` parses tool definitions (currently SOAP/XML) into a **canonical intermediate model**, and then generates a valid Slivka YAML specification.
+`cli2slivka` parses tool definitions (currently SoapLab XML and Galaxy XML) into a **canonical intermediate model**, and then generates a valid Slivka YAML specification.
+
+This tool was initially developed to convert SoapLab XML files for all EMBOSS tools to Slivka YAML files. These YAMLs can be used inside the [SlivkaEMBOSS](https://github.com/jvanp148/SlivkaEMBOSS) which extends the original [slivka-bio-docker](https://github.com/bartongroup/slivka-bio-docker) from [The Barton Group](https://github.com/bartongroup) with these bioinformatics tools. Note that the SoapLab XML and Galaxy XML parser might need some adjustments for parsing other tools (beside EMBOSS) as this was never tested.
 
 ## Features
 
-* Parse **SOAP XML (Soaplab2 / EMBOSS-style)** tool definitions
+* Parse **SoapLab XML (Soaplab2 / EMBOSS-style)** tool definitions
 * Convert into a structured **canonical model (`SlivkaService`)**
 * Generate **Slivka YAML service files**
-* Extensible parser system (ACD, Galaxy planned)
+* Extensible parser system
 * Automatic CLI argument and parameter reconstruction
 * Docker containerization of this CLI application
 
@@ -20,7 +22,7 @@ Different workflow systems describe CLI tools in different/incompatible formats.
 This project solves that by introducing a **canonical intermediate model**. This canonical model is basically a standardized internal representation of a tool definition, independent of the original input format, allowing different formats to be parsed into a single unified structure.
 
 ```bash
-Input Format (SOAP XML, Galaxy XML, ACD, ...)
+Input Format (SoapLab XML, Galaxy XML, ...)
                 ↓
         Parser (format-specific)
                 ↓
@@ -50,7 +52,7 @@ cli2slivka/
 ├── parsers/
 │   ├── __init__.py
 │   ├── base.py            # Abstract parser interface
-│   ├── soap_xml.py        # SOAP XML parser (current main implementation)
+│   ├── soaplab.py         # SoapLab XML parser (current main implementation)
 │   ├── galaxy.py          # Galaxy XML parser (WIP)
 │   └── registry.py        # Parser auto-discovery / selection
 │
@@ -104,20 +106,20 @@ uv sync   # installs all packages from uv.lock
 
 What do you need:
 
-* The **format**, specified with `--format`, can be `soap`, `galaxy`, or `acd`, depending on which parsers are available
+* The **format**, specified with `--format`, can be `soaplab`, `soap`, or `galaxy`, depending on which parsers are available
 * The **output directory**, specified with `--outdir` — a path to a folder (existing or not) where YAML outputs will be written
 * **Input** — one or more files or a directory, passed as the last argument
 
 Use on one XML file:
 
 ```bash
-python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/file.xml
+python -m cli2slivka.cli --format soaplab --outdir path/to/outdir/ path/to/file.xml
 ```
 
 Or on a directory:
 
 ```bash
-python -m cli2slivka.cli --format soap --outdir path/to/outdir/ path/to/xmlfiles/folder/
+python -m cli2slivka.cli --format soaplab --outdir path/to/outdir/ path/to/xmlfiles/folder/
 ```
 
 ### Without specifying format
@@ -142,7 +144,7 @@ The repository includes a tar archive of Soaplab2 XML files for all EMBOSS tools
 
 ```bash
 tar -xzf testdata_SOAPLabXMLs.tar.gz
-python -m cli2slivka.cli --format soap --outdir generated_yamls/ testdata_SOAPLabXMLs/
+python -m cli2slivka.cli --format soaplab --outdir generated_yamls/ testdata_SOAPLabXMLs/
 ```
 
 ## Output
@@ -167,9 +169,8 @@ parameters:
 
 | Format     | Status         |
 | ---------- | -------------- |
-| SOAP XML   | ✅ Implemented |
+| SoapLab XML  | ✅ Implemented |
 | Galaxy XML | 🚧 In progress |
-| EMBOSS ACD | 🚧 Planned     |
 
 ## How It Works (Deep Dive)
 
@@ -189,7 +190,7 @@ class CLIParser:
     def parse(path) -> SlivkaService
 ```
 
-#### SOAP Parser Highlights
+#### SoapLab Parser Highlights
 
 * Detects `<analysis>` root
 
@@ -264,7 +265,7 @@ Done — it will be auto-registered.
 Override `post_process()`:
 
 ```python
-class NeedleParser(SoapXMLParser):
+class NeedleParser(SoapLabXMLParser):
     def post_process(self, service):
         param = service.get_parameter("gapopen")
         if param:
@@ -273,7 +274,7 @@ class NeedleParser(SoapXMLParser):
 
 ## Limitations
 
-* SOAP parsing assumes Soaplab2-style structure
+* SoapLab parsing assumes Soaplab2-style structure
 * Some edge-case parameters may be skipped silently
 * Output detection relies on `analysis_extension`
 * Generated YAMLs are specific to use as Slivka services
@@ -292,26 +293,26 @@ Mount your local input and output directories to run the converter:
 docker run --rm \
   -v "/path/to/local/inputs":/inputs \
   -v "/path/to/local/outputs":/outputs \
-  cli2slivka:1.0 --format soap --outdir /outputs /inputs
+  cli2slivka:1.0 --format soaplab --outdir /outputs /inputs
 ```
 
 **Example — parse local XML files:**
 
 ```bash
 docker run --rm \
-  -v "$(pwd)"/soapdata:/inputs \
+  -v "$(pwd)"/testdata_SOAPLabXMLs:/inputs \
   -v "$(pwd)"/generated_yamls:/outputs \
-  cli2slivka:1.0 --format soap --outdir /outputs /inputs
+  cli2slivka:1.0 --format soaplab --outdir /outputs /inputs
 ```
 
-**Example — use the bundled test data (Git LFS):**
+**Example — use the bundled test data (Git LFS) inside Docker container:**
 
 The `testdata_SOAPLabXMLs.tar.gz` archive is tracked via Git LFS and is included in the Docker image at `/app/testdata_SOAPLabXMLs`. Make sure you have run `git lfs pull` before building the image so the archive is present locally.
 
 ```bash
 docker run --rm \
   -v "$(pwd)"/generated_yamls:/outputs \
-  cli2slivka:1.0 --format soap --outdir /outputs /app/testdata_SOAPLabXMLs
+  cli2slivka:1.0 --format soaplab --outdir /outputs /app/testdata_SOAPLabXMLs
 ```
 
 A `generated_yamls/` folder will appear in your working directory containing the generated YAML files.
@@ -336,7 +337,7 @@ Without this step, the tar archive will appear as a small pointer file rather th
 
 ## Credits
 
-* [Barton Group](https://github.com/bartongroup) — [Slivka](https://github.com/bartongroup/slivka) REST API framework and [slivka-bio-docker](https://github.com/bartongroup/slivka-bio-docker)
+* [The Barton Group](https://github.com/bartongroup) — [Slivka](https://github.com/bartongroup/slivka) REST API framework and [slivka-bio-docker](https://github.com/bartongroup/slivka-bio-docker)
 * [Soaplab2](http://soaplab.sourceforge.net/soaplab2/) — SOAP-based web services for EMBOSS, whose XML format is the primary input format supported
 * [EMBOSS](https://emboss.sourceforge.net/) — European Molecular Biology Open Software Suite, the bioinformatics toolkit whose tools this project helps configure
 * [uv](https://docs.astral.sh/uv/) — Python package and environment manager used in this project
