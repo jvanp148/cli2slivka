@@ -11,7 +11,7 @@ from cli2slivka.utils.xml import slugify
 # run something like python script.py convert --format galaxy file.xml
 
 @click.command()
-@click.option("--format", type=click.Choice(["galaxy", "soaplab", "soap"])) # should be required true because if not 
+@click.option("--format", type=click.Choice(ParserRegistry._parsers_by_format.keys())) # should be required true because if not 
 # set, than there are two different parsers that take suffix .xml as file type...
 @click.option("--outdir", default="generated_yamls", help="Output directory for generated YAML files.", show_default=True, type=click.Path(file_okay=False, dir_okay=True))
 @click.argument('inputs', type=click.Path(exists=True , dir_okay=True), required=True, nargs=-1) # Accepting one or more paths as argument.
