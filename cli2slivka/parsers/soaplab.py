@@ -26,7 +26,7 @@ class SoapLabXMLParser(CLIParser):
             if p:
                 p.max_val = 100.0
     """
-    formats = ('soap', 'soaplab')
+    formats = ('soap', 'soaplab', 'soap_xml', "soaplab_xml", "soaplab-xml", "soap-xml")
     suffixes = ('.xml',)
     
     # Maps SoapLab type strings → SlivkaParameter subclass
